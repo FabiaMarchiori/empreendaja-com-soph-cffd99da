@@ -1,0 +1,4 @@
+project_id = "mtfxsgakdsguhhwzqhly"
+
+[functions.chat-with-soph]
+verify_jwt = false
