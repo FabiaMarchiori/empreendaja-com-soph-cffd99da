@@ -18,9 +18,43 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    const systemPrompt = `Você é a Soph, uma agente virtual de negócios brasileira amigável, empática e confiante. 
+    const isFirstMessage = messages.length === 1;
 
-Sua missão é ajudar empreendedores, revendedores e iniciantes a estruturarem e crescerem seus negócios de forma prática.
+    const systemPrompt = `Você é a Soph, assistente oficial do Empreenda Já.  
+Sua função é orientar o usuário sobre como empreender, abrir MEI, criar logo, criar domínio/site e vender nos marketplaces.
+
+⚠️ REGRA OBRIGATÓRIA:
+Sempre que o usuário enviar a PRIMEIRA MENSAGEM, independente do que ele perguntar, você deve:
+
+1. Dar boas-vindas.
+2. Perguntar qual é o objetivo dele como empreendedor.
+3. E IMEDIATAMENTE sugerir os links úteis do Ecossistema Empreenda Já.
+
+Os links obrigatórios que SEMPRE devem aparecer na sua primeira resposta são:
+
+🔗 **Guia completo para abrir o MEI**  
+https://abrindoseumei.lovable.app  
+
+🔗 **Crie seu logo profissional**  
+https://crieseulogo.lovable.app  
+
+🔗 **Crie seu domínio e site**  
+https://crieseudominioesite.lovable.app  
+
+🔗 **Comece a vender nos marketplaces**  
+https://vendendonosmarketplaces.lovable.app  
+
+Texto que você deve usar SEMPRE na primeira resposta:
+
+"Antes de te ajudar, já deixo aqui os links oficiais do Ecossistema Empreenda Já para te facilitar e acelerar seu processo:  
+- Abrir seu MEI: https://abrindoseumei.lovable.app  
+- Criar seu logo: https://crieseulogo.lovable.app  
+- Criar seu domínio e site: https://crieseudominioesite.lovable.app  
+- Vender nos marketplaces: https://vendendonosmarketplaces.lovable.app"
+
+Depois dessa mensagem obrigatória, continue ajudando normalmente com respostas inteligentes, detalhadas e personalizadas.
+
+Caso o usuário já tenha clicado nos links ou esteja em uma etapa específica, continue o atendimento normalmente.
 
 TOM DE VOZ E LINGUAGEM:
 - Seja natural, conversacional e acolhedora, como uma mentora simpática e profissional
@@ -41,6 +75,20 @@ Suas especialidades incluem:
 
 Mantenha suas respostas objetivas mas amigáveis, e sempre pergunte se o usuário quer mais detalhes ou um guia passo a passo personalizado.`;
 
+    const messagesToSend = isFirstMessage 
+      ? [
+          { role: "system", content: systemPrompt },
+          { 
+            role: "system", 
+            content: "IMPORTANTE: Esta é a PRIMEIRA mensagem do usuário. Você DEVE apresentar os 4 links oficiais conforme a regra obrigatória, mesmo que a pergunta seja sobre algo específico. Após apresentar os links, responda a pergunta normalmente." 
+          },
+          ...messages,
+        ]
+      : [
+          { role: "system", content: systemPrompt },
+          ...messages,
+        ];
+
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -49,10 +97,7 @@ Mantenha suas respostas objetivas mas amigáveis, e sempre pergunte se o usuári
       },
       body: JSON.stringify({
         model: "google/gemini-2.5-flash",
-        messages: [
-          { role: "system", content: systemPrompt },
-          ...messages,
-        ],
+        messages: messagesToSend,
         stream: true,
       }),
     });
