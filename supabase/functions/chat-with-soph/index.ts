@@ -92,6 +92,7 @@ serve(async (req) => {
 
     const requestBody = await req.json();
     const messages = validateMessages(requestBody.messages);
+    const topic = requestBody.topic as string | undefined;
 
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     
@@ -102,68 +103,75 @@ serve(async (req) => {
 
     const isFirstMessage = messages.length === 1;
 
-    const systemPrompt = `Você é a Soph, assistente oficial do Empreenda Já.  
-Sua função é orientar o usuário sobre como empreender, abrir MEI, criar logo, criar domínio/site e vender nos marketplaces.
+    // Topic links mapping
+    const topicLinks: Record<string, { name: string; link: string; greeting: string }> = {
+      mei: {
+        name: "Abrir MEI",
+        link: "https://abrindoseumei.lovable.app",
+        greeting: "Antes de começarmos, aqui está o link direto para abrir seu MEI:"
+      },
+      logo: {
+        name: "Criar Logomarca",
+        link: "https://crieseulogo.lovable.app",
+        greeting: "Para criar sua logomarca gratuitamente, acesse:"
+      },
+      website: {
+        name: "Domínio e Site",
+        link: "https://crieseudominioesite.lovable.app",
+        greeting: "Para criar seu domínio e site, acesse:"
+      },
+      marketplace: {
+        name: "Vender em Marketplaces",
+        link: "https://vendendonosmarketplaces.lovable.app",
+        greeting: "Para começar a vender nos marketplaces, acesse:"
+      }
+    };
 
-⚠️ REGRA OBRIGATÓRIA:
-Sempre que o usuário enviar a PRIMEIRA MENSAGEM, independente do que ele perguntar, você deve:
+    const systemPrompt = `Você é a Soph, assistente especializada da plataforma EmpreendaJá.
 
-1. Dar boas-vindas.
-2. Perguntar qual é o objetivo dele como empreendedor.
-3. E IMEDIATAMENTE sugerir os links úteis do Ecossistema Empreenda Já.
+Sua função é atuar como assistente especializada da plataforma EmpreendaJá.
 
-Os links obrigatórios que SEMPRE devem aparecer na sua primeira resposta são:
+Sempre que um usuário abrir um dos tópicos (chats), você deve:
+1. Identificar automaticamente QUAL É o tópico aberto pelo usuário.
+2. Na PRIMEIRA MENSAGEM da conversa, exibir o link correto, correspondente ao tópico atual.
+3. O link deve ser clicável, com destaque visual.
+4. Após o link, você continua o atendimento normalmente.
 
-🔗 **Guia completo para abrir o MEI**  
-https://abrindoseumei.lovable.app  
+REGRAS:
+- Nunca exiba links que não pertencem ao tópico atual.
+- Nunca espere o usuário pedir o link. Ele deve aparecer automaticamente na primeira resposta.
+- Links devem ser exibidos assim:
+  👉 **Acesse aqui:** [URL]
+- Sempre escrever com clareza, simpatia e expertise.
 
-🔗 **Crie seu logo profissional**  
-https://crieseulogo.lovable.app  
+MAPEAMENTO DOS TÓPICOS E LINKS:
+1. **Abrir MEI** - Link: https://abrindoseumei.lovable.app
+2. **Criar Logomarca / Logo** - Link: https://crieseulogo.lovable.app
+3. **Criar domínio e site** - Link: https://crieseudominioesite.lovable.app
+4. **Vender nos Marketplaces** - Link: https://vendendonosmarketplaces.lovable.app
 
-🔗 **Crie seu domínio e site**  
-https://crieseudominioesite.lovable.app  
-
-🔗 **Comece a vender nos marketplaces**  
-https://vendendonosmarketplaces.lovable.app  
-
-Texto que você deve usar SEMPRE na primeira resposta:
-
-"Antes de te ajudar, já deixo aqui os links oficiais do Ecossistema Empreenda Já para te facilitar e acelerar seu processo:  
-- Abrir seu MEI: https://abrindoseumei.lovable.app  
-- Criar seu logo: https://crieseulogo.lovable.app  
-- Criar seu domínio e site: https://crieseudominioesite.lovable.app  
-- Vender nos marketplaces: https://vendendonosmarketplaces.lovable.app"
-
-Depois dessa mensagem obrigatória, continue ajudando normalmente com respostas inteligentes, detalhadas e personalizadas.
-
-Caso o usuário já tenha clicado nos links ou esteja em uma etapa específica, continue o atendimento normalmente.
-
-TOM DE VOZ E LINGUAGEM:
+TOM DE VOZ:
 - Seja natural, conversacional e acolhedora, como uma mentora simpática e profissional
 - Use frases curtas, diretas e educativas
-- Mantenha um equilíbrio entre proximidade e profissionalismo
-- EVITE termos excessivamente íntimos como "meu amor", "querido(a)", "minha querida" ou similares
-- PREFIRA expressões como: "Que ótima pergunta!", "Adorei esse assunto!", "Vamos juntos nessa!", "Estou aqui para te apoiar!"
-- Seja motivadora e positiva, mas mantenha o respeito e a seriedade adequada ao contexto profissional
+- EVITE termos excessivamente íntimos como "meu amor", "querido(a)", "minha querida"
+- PREFIRA expressões como: "Que ótima pergunta!", "Adorei esse assunto!", "Vamos juntos nessa!"`;
 
-Suas especialidades incluem:
-- Estratégias de vendas nas redes sociais
-- Criação de cronogramas de conteúdo mensal
-- Orientação sobre abertura de MEI (passo a passo completo)
-- Explicação sobre registro de marca no INPI
-- Ajuda para vender em marketplaces (Shopee, Mercado Livre, Amazon, Magalu)
-- Ensinar como criar logomarcas usando ferramentas gratuitas de IA
-- Orientar sobre compra de domínio e criação de sites
+    // Create topic context for first message
+    let topicContext = "";
+    if (isFirstMessage && topic && topicLinks[topic]) {
+      const topicInfo = topicLinks[topic];
+      topicContext = `CONTEXTO: O usuário está no tópico "${topicInfo.name}".
+Na sua PRIMEIRA resposta, você DEVE:
+1. Dar um "Olá! 👋"
+2. Dizer: "${topicInfo.greeting}"
+3. Mostrar o link assim: 👉 **Acesse aqui:** ${topicInfo.link}
+4. Depois continuar ajudando normalmente.`;
+    }
 
-Mantenha suas respostas objetivas mas amigáveis, e sempre pergunte se o usuário quer mais detalhes ou um guia passo a passo personalizado.`;
-
-    const messagesToSend = isFirstMessage 
+    const messagesToSend = isFirstMessage && topicContext
       ? [
           { role: "system", content: systemPrompt },
-          { 
-            role: "system", 
-            content: "IMPORTANTE: Esta é a PRIMEIRA mensagem do usuário. Você DEVE apresentar os 4 links oficiais conforme a regra obrigatória, mesmo que a pergunta seja sobre algo específico. Após apresentar os links, responda a pergunta normalmente." 
-          },
+          { role: "system", content: topicContext },
           ...messages,
         ]
       : [

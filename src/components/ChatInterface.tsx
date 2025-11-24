@@ -83,7 +83,10 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
       }
 
       const { data, error } = await supabase.functions.invoke('chat-with-soph', {
-        body: { messages: [...messages, userMsg] }
+        body: { 
+          messages: [...messages, userMsg],
+          topic: selectedTopic
+        }
       });
 
       if (error) {
