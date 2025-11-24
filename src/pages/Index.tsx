@@ -24,10 +24,18 @@ const Index = () => {
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
+      // Se usuário estiver logado, mostrar os tópicos automaticamente
+      if (session?.user) {
+        setShowTopics(true);
+      }
     });
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
+      // Se usuário fez login, mostrar os tópicos
+      if (session?.user) {
+        setShowTopics(true);
+      }
     });
 
     return () => subscription.unsubscribe();
