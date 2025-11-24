@@ -103,27 +103,65 @@ serve(async (req) => {
 
     const isFirstMessage = messages.length === 1;
 
-    // Topic links mapping
-    const topicLinks: Record<string, { name: string; link: string; greeting: string }> = {
-      mei: {
-        name: "Abrir MEI",
-        link: "https://abrindoseumei.lovable.app",
-        greeting: "Antes de começarmos, aqui está o link direto para abrir seu MEI:"
-      },
+    // Topic links mapping with complete initial messages
+    const topicLinks: Record<string, { name: string; link: string; initialMessage: string }> = {
       logo: {
         name: "Criar Logomarca",
         link: "https://crieseulogo.lovable.app",
-        greeting: "Para criar sua logomarca gratuitamente, acesse:"
+        initialMessage: `Olá! 😊 Para criar sua logomarca profissional gratuitamente, acesse o link abaixo:
+
+👉 Clique aqui para começar:
+https://crieseulogo.lovable.app
+
+Essa ferramenta permite criar logos modernos mesmo sem conhecimento de design. Ela oferece modelos prontos, tipografias profissionais e combinações de cores para deixar sua marca com aparência realmente profissional.
+
+Quer que eu te ajude a escolher o estilo ideal (moderno, minimalista ou fofinho)?`
+      },
+      mei: {
+        name: "Abrir MEI",
+        link: "https://abrindoseumei.lovable.app",
+        initialMessage: `Olá! 😊 Se você deseja abrir seu MEI de forma simples e segura, aqui está o link que recomendo:
+
+👉 Criar seu MEI agora:
+https://abrindoseumei.lovable.app
+
+Nesse guia você encontra um passo a passo rápido, taxas, requisitos e todos os cuidados para não errar no processo. É bem fácil, mas se quiser, posso te explicar exatamente o que você precisa para abrir agora mesmo.
+
+Quer começar pelos requisitos ou pelo passo a passo?`
       },
       website: {
         name: "Domínio e Site",
         link: "https://crieseudominioesite.lovable.app",
-        greeting: "Para criar seu domínio e site, acesse:"
+        initialMessage: `Oi! 😊 Se você quer criar seu domínio e site sem complicação, use o link abaixo:
+
+👉 Criar domínio e site:
+https://crieseudominioesite.lovable.app
+
+Nessa ferramenta você aprende como registrar seu domínio, escolher o nome perfeito e criar um site profissional mesmo sem saber programar.
+
+Quer que eu te ajude a escolher um nome forte para sua marca ou quer começar pelo passo do domínio?`
       },
       marketplace: {
         name: "Vender em Marketplaces",
         link: "https://vendendonosmarketplaces.lovable.app",
-        greeting: "Para começar a vender nos marketplaces, acesse:"
+        initialMessage: `Olá! 😊 Para aprender a vender nos principais marketplaces, use o link a seguir:
+
+👉 Passo a passo de marketplaces:
+https://vendendonosmarketplaces.lovable.app
+
+Lá você aprende a vender no Shopee, Mercado Livre, Amazon e outros — desde criação da conta até estratégias de venda.
+
+Prefere começar aprendendo como criar a conta ou como encontrar produtos que vendem muito?`
+      },
+      brand: {
+        name: "Registrar Marca",
+        link: "https://empreende-ja-soph.lovable.app",
+        initialMessage: `Olá! 😊 Para registrar sua marca, eu posso te orientar aqui mesmo, mas você também pode acessar meu guia rápido:
+
+👉 Guia de Registro de Marca:
+https://empreende-ja-soph.lovable.app
+
+Posso te ajudar com pesquisa, classe, protocolo e acompanhamento. Quer começar me dizendo o nome da sua marca?`
       }
     };
 
@@ -161,11 +199,12 @@ TOM DE VOZ:
     if (isFirstMessage && topic && topicLinks[topic]) {
       const topicInfo = topicLinks[topic];
       topicContext = `CONTEXTO: O usuário está no tópico "${topicInfo.name}".
-Na sua PRIMEIRA resposta, você DEVE:
-1. Dar um "Olá! 👋"
-2. Dizer: "${topicInfo.greeting}"
-3. Mostrar o link assim: 👉 **Acesse aqui:** ${topicInfo.link}
-4. Depois continuar ajudando normalmente.`;
+
+INSTRUÇÃO OBRIGATÓRIA: Na sua PRIMEIRA resposta, você DEVE responder EXATAMENTE com este texto (copie literalmente):
+
+${topicInfo.initialMessage}
+
+NÃO modifique este texto. Use-o exatamente como está.`;
     }
 
     const messagesToSend = isFirstMessage && topicContext
