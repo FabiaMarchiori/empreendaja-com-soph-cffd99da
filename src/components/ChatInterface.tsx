@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
-import { Send, Sparkles } from "lucide-react";
+import { Send, Sparkles, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -10,6 +10,31 @@ type Message = { role: "user" | "assistant"; content: string };
 interface ChatInterfaceProps {
   selectedTopic?: string;
 }
+
+// Função para detectar e renderizar links como botões
+const renderMessageContent = (content: string) => {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const parts = content.split(urlRegex);
+  
+  return parts.map((part, index) => {
+    if (part.match(urlRegex)) {
+      return (
+        <a
+          key={index}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 my-2 px-4 py-2.5 bg-gradient-to-r from-primary via-secondary to-accent text-white font-medium rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+          style={{ backgroundSize: '200% 200%' }}
+        >
+          <ExternalLink className="w-4 h-4" />
+          Acessar Ferramenta
+        </a>
+      );
+    }
+    return <span key={index}>{part}</span>;
+  });
+};
 
 export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -212,7 +237,9 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
                 ...(msg.role === "user" && { backgroundSize: '200% 200%' })
               }}
             >
-              <p className="whitespace-pre-wrap leading-relaxed">{msg.content}</p>
+              <div className="whitespace-pre-wrap leading-relaxed">
+                {renderMessageContent(msg.content)}
+              </div>
             </div>
           </div>
         ))}
