@@ -11,13 +11,13 @@ export default function Auth() {
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (session) {
-        navigate("/chat");
+        navigate("/");
       }
     });
 
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
-        navigate("/chat");
+        navigate("/");
       }
     });
 
@@ -64,7 +64,7 @@ export default function Auth() {
               },
             }}
             providers={[]}
-            redirectTo={`${window.location.origin}/chat`}
+            redirectTo={`${window.location.origin}/`}
             localization={{
               variables: {
                 sign_in: {
