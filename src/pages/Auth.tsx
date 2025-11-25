@@ -25,7 +25,7 @@ export default function Auth() {
   }, [navigate]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-background via-background/95 to-background">
+    <div className="min-h-screen flex items-center justify-center p-4 sm:p-6 bg-gradient-to-br from-background via-background/95 to-background">
       <div className="w-full max-w-md">
         <div className="text-center mb-8 animate-scale-in">
           <div className="relative inline-block mb-6">
@@ -36,7 +36,7 @@ export default function Auth() {
               </div>
             </div>
           </div>
-          <h1 className="text-4xl font-bold mb-3 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Empreenda Já
           </h1>
           <p className="text-muted-foreground text-lg">
@@ -44,7 +44,7 @@ export default function Auth() {
           </p>
         </div>
 
-        <div className="glass-strong rounded-3xl p-8 shadow-elegant">
+        <div className="glass-strong rounded-3xl p-5 sm:p-6 md:p-8 shadow-elegant">
           <SupabaseAuth
             supabaseClient={supabase}
             appearance={{

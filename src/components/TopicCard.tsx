@@ -12,7 +12,7 @@ export const TopicCard = ({ icon: Icon, title, description, onClick }: TopicCard
   return (
     <Card
       onClick={onClick}
-      className="relative p-8 cursor-pointer group overflow-hidden glass hover:glass-strong border-2 border-transparent hover:border-primary/50"
+      className="relative p-4 sm:p-6 md:p-8 cursor-pointer group overflow-hidden glass hover:glass-strong border-2 border-transparent hover:border-primary/50"
       style={{ transition: "var(--transition-bounce)" }}
     >
       {/* Animated Gradient Border Effect */}
@@ -29,14 +29,14 @@ export const TopicCard = ({ icon: Icon, title, description, onClick }: TopicCard
         {/* 3D Icon with Glow Effect */}
         <div className="relative">
           <div className="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-accent opacity-50 blur-xl group-hover:blur-2xl transition-all duration-500 animate-gradient-shift" style={{ backgroundSize: '200% 200%' }}></div>
-          <div className="relative p-5 rounded-2xl bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 group-hover:from-primary/30 group-hover:via-secondary/30 group-hover:to-accent/30 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 animate-gradient-shift" style={{ transition: "var(--transition-bounce)", backgroundSize: '200% 200%' }}>
-            <Icon className="w-10 h-10 text-white glow-text transition-colors duration-500" />
+          <div className="relative p-3 sm:p-4 md:p-5 rounded-2xl bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 group-hover:from-primary/30 group-hover:via-secondary/30 group-hover:to-accent/30 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 animate-gradient-shift" style={{ transition: "var(--transition-bounce)", backgroundSize: '200% 200%' }}>
+            <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-white glow-text transition-colors duration-500" />
           </div>
         </div>
 
         {/* Title and Description */}
-        <h3 className="font-bold text-xl text-foreground group-hover:text-primary transition-colors duration-300">{title}</h3>
-        <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+        <h3 className="font-bold text-base sm:text-lg md:text-xl text-foreground group-hover:text-primary transition-colors duration-300">{title}</h3>
+        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{description}</p>
       </div>
 
       {/* Expanding Shadow on Hover */}

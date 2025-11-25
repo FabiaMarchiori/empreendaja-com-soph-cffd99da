@@ -24,7 +24,7 @@ const renderMessageContent = (content: string) => {
           href={part}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 my-2 px-4 py-2.5 bg-gradient-to-r from-primary via-secondary to-accent text-white font-medium rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+          className="inline-flex items-center gap-2 my-2 px-3 py-2 sm:px-4 sm:py-2.5 bg-gradient-to-r from-primary via-secondary to-accent text-white font-medium rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-sm sm:text-base"
           style={{ backgroundSize: '200% 200%' }}
         >
           <ExternalLink className="w-4 h-4" />
@@ -192,14 +192,14 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
 
   return (
     <div className="flex flex-col h-full bg-background">
-      <div className="flex-1 overflow-y-auto p-6 space-y-6">
+      <div className="flex-1 overflow-y-auto p-3 sm:p-4 md:p-6 space-y-6">
         {messages.length === 0 && (
           <div className="flex flex-col items-center justify-center h-full text-center p-8 animate-scale-in">
             <div className="relative mb-6">
               <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary opacity-50 blur-2xl animate-glow-pulse"></div>
-              <div className="relative w-24 h-24 rounded-3xl glass-strong p-2">
+              <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-3xl glass-strong p-2">
                 <div className="w-full h-full rounded-2xl bg-gradient-to-br from-primary via-secondary to-accent flex items-center justify-center animate-gradient-shift" style={{ backgroundSize: '200% 200%' }}>
-                  <Sparkles className="w-12 h-12 text-white animate-pulse" />
+                  <Sparkles className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white animate-pulse" />
                 </div>
               </div>
             </div>
@@ -227,7 +227,7 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
               </div>
             )}
             <div
-              className={`max-w-[75%] rounded-2xl px-5 py-4 ${
+              className={`max-w-[90%] sm:max-w-[80%] md:max-w-[75%] rounded-2xl px-5 py-4 ${
                 msg.role === "user"
                   ? "bg-gradient-to-br from-primary via-secondary to-accent text-white shadow-primary animate-gradient-shift"
                   : "glass-strong text-foreground"
@@ -266,7 +266,7 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="p-6 border-t border-border/50 glass-strong">
+      <div className="p-3 sm:p-4 md:p-6 border-t border-border/50 glass-strong">
         <div className="flex gap-3">
           <div className="relative flex-1 group">
             <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-accent opacity-0 group-focus-within:opacity-100 blur-xl transition-opacity duration-500"></div>
@@ -275,7 +275,7 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Digite sua mensagem (máx. 2000 caracteres)..."
-              className="relative resize-none min-h-[70px] max-h-[140px] glass border-2 focus:border-primary/50 transition-all duration-300"
+              className="relative resize-none min-h-[50px] max-h-[100px] sm:min-h-[60px] sm:max-h-[120px] md:min-h-[70px] md:max-h-[140px] glass border-2 focus:border-primary/50 transition-all duration-300"
               disabled={isLoading}
               maxLength={2000}
             />
@@ -284,11 +284,11 @@ export const ChatInterface = ({ selectedTopic }: ChatInterfaceProps) => {
             onClick={() => sendMessage()}
             disabled={!input.trim() || isLoading}
             size="icon"
-            className="relative h-[70px] w-[70px] bg-gradient-to-br from-primary via-secondary to-accent shadow-primary hover:shadow-2xl transition-all duration-300 group overflow-hidden"
+            className="relative h-12 w-12 sm:h-14 sm:w-14 md:h-[70px] md:w-[70px] bg-gradient-to-br from-primary via-secondary to-accent shadow-primary hover:shadow-2xl transition-all duration-300 group overflow-hidden"
             style={{ backgroundSize: '200% 200%' }}
           >
             <span className="absolute inset-0 bg-gradient-to-br from-accent via-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ backgroundSize: '200% 200%' }}></span>
-            <Send className="relative w-6 h-6 z-10 group-hover:scale-110 transition-transform" />
+            <Send className="relative w-5 h-5 sm:w-6 sm:h-6 z-10 group-hover:scale-110 transition-transform" />
           </Button>
         </div>
       </div>
