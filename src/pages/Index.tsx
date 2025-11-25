@@ -122,10 +122,10 @@ const Index = () => {
 
             {/* Title with Gradient Text */}
             <div className="space-y-4 animate-slide-in-up" style={{ animationDelay: '0.2s' }}>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent glow-text animate-gradient-shift drop-shadow-lg" style={{ backgroundSize: '200% 200%' }}>
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent glow-text animate-gradient-shift drop-shadow-lg" style={{ backgroundSize: '200% 200%' }}>
                 EmpreendaJá
               </h1>
-              <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">
+              <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
                 com <span className="text-secondary">Soph</span>
               </p>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-xl mx-auto leading-relaxed">
