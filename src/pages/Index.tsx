@@ -122,14 +122,14 @@ const Index = () => {
 
             {/* Title with Gradient Text */}
             <div className="space-y-4 animate-slide-in-up" style={{ animationDelay: '0.2s' }}>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent glow-text animate-gradient-shift" style={{ backgroundSize: '200% 200%' }}>
-                EmpreendeJá
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent glow-text animate-gradient-shift drop-shadow-lg" style={{ backgroundSize: '200% 200%' }}>
+                EmpreendaJá
               </h1>
               <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">
                 com <span className="text-secondary">Soph</span>
               </p>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-xl mx-auto leading-relaxed">
-                Sua agente virtual de negócios que vai te ajudar a estruturar e crescer seu empreendimento
+                Sua agente virtual de negócios que vai te ajudar a estruturar e crescer o seu negócio
               </p>
             </div>
 
