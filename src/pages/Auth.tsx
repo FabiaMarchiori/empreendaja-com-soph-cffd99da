@@ -63,7 +63,7 @@ export default function Auth() {
                 input: 'auth-input',
               },
             }}
-            providers={[]}
+            providers={['google']}
             redirectTo={`${window.location.origin}/`}
             localization={{
               variables: {
