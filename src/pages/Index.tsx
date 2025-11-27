@@ -119,7 +119,7 @@ const Index = () => {
     await supabase.auth.signOut();
     setUser(null);
     setShowTopics(false);
-    navigate("/");
+    navigate("/auth");
   };
 
   return (
@@ -267,7 +267,7 @@ const Index = () => {
           </div>
         </div>
       ) : (
-        <div className="relative container mx-auto px-4 py-8 sm:py-12 md:py-16 max-w-6xl">
+        <div className="relative container mx-auto px-4 pt-16 sm:pt-20 pb-8 sm:pb-12 md:pb-16 max-w-6xl">
           <div className="text-center mb-16 space-y-4 animate-slide-in-up">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent glow-text animate-gradient-shift" style={{ backgroundSize: '200% 200%' }}>
               Como posso te ajudar hoje?
