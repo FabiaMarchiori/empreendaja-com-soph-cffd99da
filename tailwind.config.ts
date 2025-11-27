@@ -133,6 +133,56 @@ export default {
             transform: "scale(1)"
           },
         },
+        "aurora": {
+          "0%, 100%": { 
+            opacity: "0.3",
+            transform: "translateY(0) rotate(0deg) scale(1)" 
+          },
+          "33%": { 
+            opacity: "0.5",
+            transform: "translateY(-30px) rotate(60deg) scale(1.1)" 
+          },
+          "66%": { 
+            opacity: "0.4",
+            transform: "translateY(30px) rotate(-60deg) scale(0.9)" 
+          },
+        },
+        "neon-pulse": {
+          "0%, 100%": { 
+            boxShadow: "0 0 5px currentColor, 0 0 20px currentColor, 0 0 40px currentColor",
+            opacity: "1"
+          },
+          "50%": { 
+            boxShadow: "0 0 10px currentColor, 0 0 30px currentColor, 0 0 60px currentColor",
+            opacity: "0.8"
+          },
+        },
+        "shimmer": {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
+        "spin-slow": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+        "fade-up": {
+          "0%": { 
+            opacity: "0",
+            transform: "translateY(40px)"
+          },
+          "100%": { 
+            opacity: "1",
+            transform: "translateY(0)"
+          },
+        },
+        "border-flow": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
+        "breathe": {
+          "0%, 100%": { transform: "scale(1)", opacity: "0.5" },
+          "50%": { transform: "scale(1.05)", opacity: "0.8" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -143,6 +193,13 @@ export default {
         "gradient-shift": "gradient-shift 3s ease infinite",
         "slide-in-up": "slide-in-up 0.5s ease-out",
         "scale-in": "scale-in 0.3s ease-out",
+        "aurora": "aurora 8s ease-in-out infinite",
+        "neon-pulse": "neon-pulse 2s ease-in-out infinite",
+        "shimmer": "shimmer 3s linear infinite",
+        "spin-slow": "spin-slow 20s linear infinite",
+        "fade-up": "fade-up 0.6s ease-out forwards",
+        "border-flow": "border-flow 3s ease infinite",
+        "breathe": "breathe 4s ease-in-out infinite",
       },
     },
   },
