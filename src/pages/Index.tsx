@@ -108,11 +108,42 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Aurora Background Effect */}
+      <div className="aurora-bg"></div>
+      
       {/* Grid Pattern Background */}
       <div className="absolute inset-0 grid-pattern opacity-50"></div>
       
       {/* Gradient Mesh Background */}
       <div className="absolute inset-0" style={{ background: 'var(--gradient-mesh)' }}></div>
+      
+      {/* Floating Orbs */}
+      <div className="orb orb-primary w-96 h-96 -top-48 -left-48" style={{ animationDelay: '0s' }}></div>
+      <div className="orb orb-secondary w-80 h-80 top-1/3 -right-40" style={{ animationDelay: '-2s' }}></div>
+      <div className="orb orb-accent w-64 h-64 bottom-20 left-1/4" style={{ animationDelay: '-4s' }}></div>
+      
+      {/* Geometric Shapes */}
+      <div className="geo-shape w-32 h-32 top-20 right-20 rotate-45" style={{ animationDuration: '25s' }}></div>
+      <div className="geo-shape w-20 h-20 bottom-32 left-16 rounded-full" style={{ animationDuration: '30s', animationDirection: 'reverse' }}></div>
+      <div className="geo-shape w-16 h-16 top-1/2 right-10" style={{ animationDuration: '20s' }}></div>
+      
+      {/* Floating Particles */}
+      {[...Array(8)].map((_, i) => (
+        <div 
+          key={i}
+          className="particle"
+          style={{ 
+            top: `${Math.random() * 100}%`, 
+            left: `${Math.random() * 100}%`,
+            animationDelay: `${i * 0.5}s`,
+            animationDuration: `${3 + Math.random() * 3}s`,
+            background: i % 3 === 0 ? 'hsl(var(--primary))' : i % 3 === 1 ? 'hsl(var(--secondary))' : 'hsl(var(--accent))'
+          }}
+        ></div>
+      ))}
+      
+      {/* Noise Overlay */}
+      <div className="noise-overlay"></div>
       
       {!showTopics ? (
         <div className="relative flex flex-col items-center justify-center min-h-screen p-4 sm:p-6 text-center">
@@ -134,7 +165,7 @@ const Index = () => {
 
             {/* Title with Gradient Text */}
             <div className="space-y-4 animate-slide-in-up" style={{ animationDelay: '0.2s' }}>
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent glow-text animate-gradient-shift drop-shadow-lg" style={{ backgroundSize: '200% 200%' }}>
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black shimmer-text drop-shadow-lg">
                 EmpreendaJá
               </h1>
               <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
