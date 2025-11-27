@@ -183,6 +183,24 @@ export default {
           "0%, 100%": { transform: "scale(1)", opacity: "0.5" },
           "50%": { transform: "scale(1.05)", opacity: "0.8" },
         },
+        "card-float": {
+          "0%, 100%": { 
+            transform: "translateY(0px)" 
+          },
+          "50%": { 
+            transform: "translateY(-8px)" 
+          },
+        },
+        "stagger-in": {
+          "0%": { 
+            opacity: "0",
+            transform: "translateY(30px) scale(0.9)"
+          },
+          "100%": { 
+            opacity: "1",
+            transform: "translateY(0) scale(1)"
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -200,6 +218,8 @@ export default {
         "fade-up": "fade-up 0.6s ease-out forwards",
         "border-flow": "border-flow 3s ease infinite",
         "breathe": "breathe 4s ease-in-out infinite",
+        "card-float": "card-float 4s ease-in-out infinite",
+        "stagger-in": "stagger-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards",
       },
     },
   },

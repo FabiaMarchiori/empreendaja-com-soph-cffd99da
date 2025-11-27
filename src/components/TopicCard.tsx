@@ -12,7 +12,7 @@ export const TopicCard = ({ icon: Icon, title, description, onClick }: TopicCard
   return (
     <Card
       onClick={onClick}
-      className="relative p-3 sm:p-4 md:p-6 lg:p-8 cursor-pointer group overflow-hidden glass-premium neon-border card-glow"
+      className="relative p-3 sm:p-4 md:p-6 lg:p-8 cursor-pointer group overflow-hidden glass-premium neon-border card-glow card-hover-scale"
       style={{ transition: "var(--transition-bounce)" }}
     >
       {/* Animated Inner Glow */}

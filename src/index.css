@@ -342,3 +342,27 @@ div[style*="Edit with Lovable"],
   opacity: 0.03;
   pointer-events: none;
 }
+
+/* Card Floating Animation */
+.card-floating {
+  animation: card-float 4s ease-in-out infinite;
+}
+
+/* Hover Scale Effect para Cards */
+.card-hover-scale {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.4s ease;
+}
+
+.card-hover-scale:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 
+    0 25px 50px -12px hsl(var(--primary) / 0.4),
+    0 0 30px hsl(var(--secondary) / 0.2);
+}
+
+/* Stagger Animation Container */
+.stagger-container > * {
+  opacity: 0;
+  animation: stagger-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}

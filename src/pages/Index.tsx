@@ -237,12 +237,15 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-6 lg:grid-cols-3 mb-12">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-6 lg:grid-cols-3 mb-12 stagger-container">
             {topics.map((topic, index) => (
               <div 
                 key={topic.id}
-                className="animate-scale-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="card-floating"
+                style={{ 
+                  animationDelay: `${index * 0.3}s`,
+                  animationDuration: '4s'
+                }}
               >
                 <TopicCard
                   icon={topic.icon}
