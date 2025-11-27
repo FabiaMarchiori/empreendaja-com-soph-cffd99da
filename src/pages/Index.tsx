@@ -10,7 +10,8 @@ import {
   Palette, 
   Globe,
   Sparkles,
-  LogIn
+  LogIn,
+  MessageCircle
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -83,14 +84,25 @@ const Index = () => {
       icon: Globe,
       title: "Domínio e Site",
       description: "Presença online profissional"
+    },
+    {
+      id: "free-chat",
+      icon: MessageCircle,
+      title: "Chat Livre",
+      description: "Tire suas dúvidas e converse com a Soph"
     }
   ];
 
   const handleTopicClick = (topicId: string) => {
-    if (user) {
-      navigate(`/chat?topic=${topicId}`);
-    } else {
+    if (!user) {
       navigate("/auth");
+      return;
+    }
+    
+    if (topicId === "free-chat") {
+      navigate("/chat");
+    } else {
+      navigate(`/chat?topic=${topicId}`);
     }
   };
 
@@ -209,18 +221,6 @@ const Index = () => {
                 />
               </div>
             ))}
-          </div>
-
-          <div className="text-center animate-slide-in-up" style={{ animationDelay: '0.8s' }}>
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() => navigate(user ? "/chat" : "/auth")}
-              className="border-2 glass hover:glass-strong text-lg px-8 py-6 font-bold gap-2"
-            >
-              {user ? "Ou inicie um chat livre" : "Fazer Login para Chat Livre"}
-              {!user && <LogIn className="w-5 h-5" />}
-            </Button>
           </div>
         </div>
       )}
