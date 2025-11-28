@@ -3,7 +3,6 @@ import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Sparkles } from "lucide-react";
 
 export default function Auth() {
   const navigate = useNavigate();
@@ -28,13 +27,25 @@ export default function Auth() {
     <div className="min-h-screen flex items-center justify-center p-4 sm:p-6 bg-[#0A0B1E]">
       <div className="w-full max-w-md">
         <div className="text-center mb-8 animate-scale-in">
-          <div className="relative inline-block mb-6">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary opacity-50 blur-2xl animate-glow-pulse"></div>
-            <div className="relative w-20 h-20 rounded-3xl glass-strong p-2 mx-auto">
-              <div className="w-full h-full rounded-2xl bg-gradient-to-br from-primary via-secondary to-accent flex items-center justify-center animate-gradient-shift" style={{ backgroundSize: '200% 200%' }}>
-                <Sparkles className="w-10 h-10 text-white" />
-              </div>
-            </div>
+          <div className="mb-6 flex justify-center">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 object-contain"
+              style={{
+                background: 'transparent',
+                border: 'none',
+                boxShadow: 'none',
+                outline: 'none'
+              }}
+            >
+              <source 
+                src="https://www.dropbox.com/scl/fi/xc1q3ivpss1yvfs2mf5s1/Untitled-design.mp4?rlkey=5hz8rhvh4jkv92ysg508zu58u&raw=1" 
+                type="video/mp4" 
+              />
+            </video>
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Empreenda Já
