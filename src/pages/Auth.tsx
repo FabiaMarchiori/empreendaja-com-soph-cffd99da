@@ -28,18 +28,24 @@ export default function Auth() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8 animate-scale-in">
           <div className="mb-6 flex justify-center">
-            <iframe
-              src="https://www.youtube.com/embed/PKUhsUbrqcQ?autoplay=1&mute=1&loop=1&controls=1&playlist=PKUhsUbrqcQ&modestbranding=1&rel=0&playsinline=1"
-              className="w-64 h-36 sm:w-80 sm:h-44 md:w-96 md:h-56 rounded-2xl"
+            <video
+              controls
+              playsInline
+              preload="metadata"
+              className="w-64 h-36 sm:w-80 sm:h-44 md:w-96 md:h-56 rounded-2xl shadow-lg"
               style={{
                 background: 'transparent',
                 border: 'none',
                 boxShadow: 'none',
                 outline: 'none'
               }}
-              allow="autoplay; encrypted-media"
-              allowFullScreen={false}
-            />
+            >
+              <source 
+                src="https://drive.google.com/uc?export=download&id=1HK83aBXBI5xuLV4_aOcatNyo4ZSOCfXf" 
+                type="video/mp4" 
+              />
+              Seu navegador não suporta vídeos.
+            </video>
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Empreenda Já
