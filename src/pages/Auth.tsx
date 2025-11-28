@@ -29,8 +29,8 @@ export default function Auth() {
         <div className="text-center mb-8 animate-scale-in">
           <div className="mb-6 flex justify-center">
             <iframe
-              src="https://www.youtube.com/embed/PKUhsUbrqcQ?autoplay=1&mute=1&loop=1&controls=0&playlist=PKUhsUbrqcQ&modestbranding=1&showinfo=0&rel=0&playsinline=1"
-              className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 object-contain rounded-2xl"
+              src="https://www.youtube.com/embed/PKUhsUbrqcQ?autoplay=1&mute=1&loop=1&controls=1&playlist=PKUhsUbrqcQ&modestbranding=1&rel=0&playsinline=1"
+              className="w-64 h-36 sm:w-80 sm:h-44 md:w-96 md:h-56 rounded-2xl"
               style={{
                 background: 'transparent',
                 border: 'none',
