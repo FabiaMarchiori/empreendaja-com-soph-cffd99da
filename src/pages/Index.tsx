@@ -252,11 +252,11 @@ const Index = () => {
             {/* Animated Statistics Cards */}
             <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 pt-12 max-w-md mx-auto animate-slide-in-up" style={{ animationDelay: '0.6s' }}>
               <div className="glass-strong rounded-2xl p-4 hover:scale-105 transition-transform">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-br from-primary to-primary-glow bg-clip-text text-transparent">100%</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent">100%</div>
                 <div className="text-xs text-muted-foreground font-medium mt-1">Gratuito</div>
               </div>
               <div className="glass-strong rounded-2xl p-4 hover:scale-105 transition-transform">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-br from-secondary to-secondary-glow bg-clip-text text-transparent">24/7</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-br from-secondary to-accent bg-clip-text text-transparent">24/7</div>
                 <div className="text-xs text-muted-foreground font-medium mt-1">Disponível</div>
               </div>
               <div className="glass-strong rounded-2xl p-4 hover:scale-105 transition-transform">
