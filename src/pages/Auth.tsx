@@ -50,10 +50,10 @@ export default function Auth() {
               Seu navegador não suporta vídeos.
             </video>
           </div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Empreenda Já
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black mb-3 shimmer-text drop-shadow-lg">
+            EmpreendaJá
           </h1>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-white text-lg sm:text-xl md:text-2xl font-medium drop-shadow-md">
             Entre para conversar com a Soph
           </p>
         </div>

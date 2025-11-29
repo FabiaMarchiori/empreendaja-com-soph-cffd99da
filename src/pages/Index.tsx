@@ -166,11 +166,11 @@ const Index = () => {
         <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="glass-premium rounded-full w-10 h-10 sm:w-12 sm:h-12 hover:scale-105 transition-transform">
+              <Button variant="ghost" size="icon" className="rounded-full w-12 h-12 sm:w-14 sm:h-14 hover:scale-105 transition-transform border-2 border-white/20" style={{ backgroundColor: '#6A0DAD' }}>
                 <UserIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="glass-premium border-white/10 min-w-[180px]">
+            <DropdownMenuContent align="end" className="border-white/20 min-w-[200px] rounded-xl" style={{ backgroundColor: '#6A0DAD' }}>
               <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-white hover:text-white">
                 <LogIn className="mr-2 h-4 w-4" />
                 Voltar ao Login
