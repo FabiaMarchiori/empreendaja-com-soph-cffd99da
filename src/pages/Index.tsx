@@ -187,7 +187,7 @@ const Index = () => {
       
       {!showTopics ? (
         <div className="relative flex flex-col items-center justify-center min-h-screen p-4 sm:p-6 text-center">
-          <div className="max-w-2xl space-y-8">
+          <div className="max-w-5xl space-y-8">
             {/* Animated Avatar with Complex Gradients */}
             <div className="relative animate-float">
               <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-accent opacity-30 blur-3xl animate-glow-pulse"></div>
@@ -204,11 +204,11 @@ const Index = () => {
             </div>
 
             {/* Title with Gradient Text */}
-            <div className="space-y-4 animate-slide-in-up" style={{ animationDelay: '0.2s' }}>
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black shimmer-text drop-shadow-lg">
+            <div className="space-y-4 animate-slide-in-up overflow-visible" style={{ animationDelay: '0.2s' }}>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black shimmer-text drop-shadow-lg whitespace-nowrap">
                 EmpreendaJá
               </h1>
-              <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
+              <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground">
                 com <span className="text-secondary">Soph</span>
               </p>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-xl mx-auto leading-relaxed">
