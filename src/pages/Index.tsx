@@ -268,21 +268,33 @@ const Index = () => {
         </div>
       ) : (
         <div className="relative container mx-auto px-4 pt-16 sm:pt-20 pb-8 sm:pb-12 md:pb-16 max-w-6xl">
-          <div className="text-center mb-16 space-y-4 animate-slide-in-up">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent glow-text animate-gradient-shift" style={{ backgroundSize: '200% 200%' }}>
+          {/* Gradient Mesh de fundo */}
+          <div className="absolute inset-0 gradient-mesh-premium pointer-events-none" />
+          
+          {/* Luzes neon decorativas */}
+          <div className="absolute top-20 left-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-10 w-60 h-60 bg-secondary/15 rounded-full blur-3xl" />
+          
+          {/* Título com glow intenso */}
+          <div className="text-center mb-16 space-y-4 animate-fade-up-scale">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black shimmer-text title-glow">
               Como posso te ajudar hoje?
             </h2>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white font-medium drop-shadow-lg">
-              {user ? "Escolha um tópico ou inicie um chat livre com a Soph" : "Escolha um tópico para começar (necessário login)"}
+            <p className="text-lg text-white/80 font-medium drop-shadow-lg">
+              Escolha um tópico ou inicie um chat livre com a Soph
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-6 lg:grid-cols-3 mb-12">
+          {/* Grid com animações staggered */}
+          <div className="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-3 mb-12">
             {topics.map((topic, index) => (
               <div 
                 key={topic.id}
-                className="animate-scale-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="animate-fade-up-scale"
+                style={{ 
+                  animationDelay: `${0.1 + index * 0.08}s`,
+                  animationFillMode: 'both'
+                }}
               >
                 <TopicCard
                   icon={topic.icon}

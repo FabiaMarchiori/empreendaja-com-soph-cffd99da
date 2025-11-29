@@ -375,3 +375,76 @@ div[class*='fixed']:has(a[href*='lovable.dev']) {
 .auth-container p {
   color: rgba(255, 255, 255, 0.8) !important;
 }
+
+/* === PREMIUM FUTURISTIC ANIMATIONS === */
+
+/* Fade Up + Scale - Entrada dos cards */
+@keyframes fade-up-scale {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fade-up-scale {
+  animation: fade-up-scale 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Border Glow - Borda luminosa pulsante */
+@keyframes border-glow-pulse {
+  0%, 100% {
+    box-shadow: 
+      inset 0 0 20px rgba(139, 92, 246, 0.3),
+      0 0 20px rgba(139, 92, 246, 0.2);
+  }
+  50% {
+    box-shadow: 
+      inset 0 0 30px rgba(168, 85, 247, 0.4),
+      0 0 40px rgba(168, 85, 247, 0.3);
+  }
+}
+
+.animate-border-glow {
+  animation: border-glow-pulse 3s ease-in-out infinite;
+}
+
+/* Floating - Cards flutuando sutilmente */
+@keyframes gentle-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-gentle-float {
+  animation: gentle-float 6s ease-in-out infinite;
+}
+
+/* Gradient Mesh - Background da seção de tópicos */
+.gradient-mesh-premium {
+  background: 
+    radial-gradient(ellipse 80% 60% at 20% 30%, rgba(139, 92, 246, 0.2), transparent),
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(168, 85, 247, 0.15), transparent),
+    radial-gradient(ellipse 50% 50% at 50% 90%, rgba(6, 182, 212, 0.15), transparent),
+    radial-gradient(ellipse 40% 40% at 90% 10%, rgba(139, 92, 246, 0.1), transparent);
+}
+
+/* Title Glow - Brilho intenso no título */
+.title-glow {
+  text-shadow: 
+    0 0 20px rgba(139, 92, 246, 0.8),
+    0 0 40px rgba(168, 85, 247, 0.6),
+    0 0 60px rgba(139, 92, 246, 0.4);
+}
+
+/* Parallax Subtle - Efeito parallax sutil */
+.parallax-element {
+  transform: translateZ(0);
+  will-change: transform;
+}
