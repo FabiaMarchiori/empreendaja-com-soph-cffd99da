@@ -123,43 +123,37 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background relative overflow-hidden">
-      {/* Aurora Background Effect */}
-      <div className="aurora-bg"></div>
+    <div className="min-h-screen relative overflow-hidden background-empreendaja">
+      {/* Névoa luminosa roxa no topo */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] 
+                      bg-gradient-radial from-[#A43BFF]/50 via-[#B05AFF]/25 to-transparent 
+                      blur-3xl pointer-events-none" />
       
-      {/* Grid Pattern Background */}
-      <div className="absolute inset-0 grid-pattern opacity-50"></div>
+      {/* Partículas coloridas - Rosa */}
+      <div className="particle particle-pink absolute w-2 h-2 rounded-full top-[20%] left-[15%]" style={{ animationDelay: '0s' }} />
+      <div className="particle particle-pink absolute w-2 h-2 rounded-full top-[30%] right-[10%]" style={{ animationDelay: '2s' }} />
+      <div className="particle particle-pink absolute w-3 h-3 rounded-full bottom-[25%] left-[8%]" style={{ animationDelay: '4s' }} />
       
-      {/* Gradient Mesh Background */}
-      <div className="absolute inset-0" style={{ background: 'var(--gradient-mesh)' }}></div>
+      {/* Partículas coloridas - Azul */}
+      <div className="particle particle-blue absolute w-3 h-3 rounded-full top-[40%] right-[20%]" style={{ animationDelay: '1s' }} />
+      <div className="particle particle-blue absolute w-2 h-2 rounded-full bottom-[35%] left-[25%]" style={{ animationDelay: '3s' }} />
+      <div className="particle particle-blue absolute w-2 h-2 rounded-full top-[65%] right-[35%]" style={{ animationDelay: '5s' }} />
       
-      {/* Floating Orbs */}
-      <div className="orb orb-primary w-96 h-96 -top-48 -left-48" style={{ animationDelay: '0s' }}></div>
-      <div className="orb orb-secondary w-80 h-80 top-1/3 -right-40" style={{ animationDelay: '-2s' }}></div>
-      <div className="orb orb-accent w-64 h-64 bottom-20 left-1/4" style={{ animationDelay: '-4s' }}></div>
+      {/* Partículas coloridas - Cyan */}
+      <div className="particle particle-cyan absolute w-2 h-2 rounded-full top-[55%] left-[80%]" style={{ animationDelay: '0.5s' }} />
+      <div className="particle particle-cyan absolute w-3 h-3 rounded-full bottom-[20%] right-[30%]" style={{ animationDelay: '2.5s' }} />
+      <div className="particle particle-cyan absolute w-2 h-2 rounded-full top-[15%] left-[60%]" style={{ animationDelay: '4.5s' }} />
       
-      {/* Geometric Shapes */}
-      <div className="geo-shape w-32 h-32 top-20 right-20 rotate-45" style={{ animationDuration: '25s' }}></div>
-      <div className="geo-shape w-20 h-20 bottom-32 left-16 rounded-full" style={{ animationDuration: '30s', animationDirection: 'reverse' }}></div>
-      <div className="geo-shape w-16 h-16 top-1/2 right-10" style={{ animationDuration: '20s' }}></div>
-      
-      {/* Floating Particles */}
-      {[...Array(8)].map((_, i) => (
-        <div 
-          key={i}
-          className="particle"
-          style={{ 
-            top: `${Math.random() * 100}%`, 
-            left: `${Math.random() * 100}%`,
-            animationDelay: `${i * 0.5}s`,
-            animationDuration: `${3 + Math.random() * 3}s`,
-            background: i % 3 === 0 ? 'hsl(var(--primary))' : i % 3 === 1 ? 'hsl(var(--secondary))' : 'hsl(var(--accent))'
-          }}
-        ></div>
-      ))}
+      {/* Névoa azul petróleo nas laterais */}
+      <div className="absolute top-1/3 left-0 w-[400px] h-[600px] 
+                      bg-gradient-radial from-[#082A49]/60 via-[#082A49]/30 to-transparent 
+                      blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 right-0 w-[400px] h-[600px] 
+                      bg-gradient-radial from-[#0C324F]/60 via-[#0C324F]/30 to-transparent 
+                      blur-3xl pointer-events-none" />
       
       {/* Noise Overlay */}
-      <div className="noise-overlay"></div>
+      <div className="noise-overlay" />
 
       {/* Profile Menu - Top Right */}
       {user && (
@@ -188,30 +182,34 @@ const Index = () => {
       {!showTopics ? (
         <div className="relative flex flex-col items-center justify-center min-h-screen p-4 sm:p-6 text-center">
           <div className="max-w-5xl space-y-8">
-            {/* Animated Avatar with Complex Gradients */}
+            {/* Animated Avatar with Purple Glow Mist */}
             <div className="relative animate-float">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-accent opacity-30 blur-3xl animate-glow-pulse"></div>
-              <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto mb-6 rounded-3xl glass-strong p-2 shadow-2xl animate-scale-in">
-                <div className="w-full h-full rounded-2xl bg-gradient-to-br from-primary via-secondary to-accent flex items-center justify-center animate-gradient-shift" style={{ backgroundSize: '200% 200%' }}>
+              {/* Névoa roxa luminosa atrás */}
+              <div className="absolute inset-0 w-48 h-48 sm:w-64 sm:h-64 mx-auto -top-8 icon-glow-mist"></div>
+              <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto mb-6 rounded-3xl p-2 
+                              bg-gradient-to-br from-[#7C3AED] via-[#8B5CF6] to-[#A855F7] 
+                              shadow-[0_0_40px_rgba(139,92,246,0.4)] animate-scale-in">
+                <div className="w-full h-full rounded-2xl bg-gradient-to-br from-[#6D28D9] to-[#8B5CF6] 
+                                flex items-center justify-center">
                   <Sparkles className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 text-white animate-pulse" />
                 </div>
               </div>
               
-              {/* Floating Particles */}
-              <div className="absolute top-0 left-1/4 w-2 h-2 rounded-full bg-primary animate-float" style={{ animationDelay: '0s', animationDuration: '4s' }}></div>
-              <div className="absolute top-1/4 right-1/4 w-3 h-3 rounded-full bg-secondary animate-float" style={{ animationDelay: '0.5s', animationDuration: '3s' }}></div>
-              <div className="absolute bottom-1/4 left-1/3 w-2 h-2 rounded-full bg-accent animate-float" style={{ animationDelay: '1s', animationDuration: '5s' }}></div>
+              {/* Floating Particles around icon */}
+              <div className="particle particle-pink absolute w-2 h-2 rounded-full top-0 left-1/4" style={{ animationDelay: '0s' }}></div>
+              <div className="particle particle-blue absolute w-3 h-3 rounded-full top-1/4 right-1/4" style={{ animationDelay: '0.5s' }}></div>
+              <div className="particle particle-cyan absolute w-2 h-2 rounded-full bottom-1/4 left-1/3" style={{ animationDelay: '1s' }}></div>
             </div>
 
-            {/* Title with Gradient Text */}
+            {/* Title with EmpreendaJá Gradient */}
             <div className="space-y-4 animate-slide-in-up overflow-visible" style={{ animationDelay: '0.2s' }}>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black shimmer-text drop-shadow-lg whitespace-nowrap">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black title-empreendaja whitespace-nowrap">
                 EmpreendaJá
               </h1>
-              <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground">
-                com <span className="text-secondary">Soph</span>
+              <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white">
+                com <span className="text-[#D28EFF]">Soph</span>
               </p>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-xl mx-auto leading-relaxed">
                 Sua agente virtual de negócios que vai te ajudar a estruturar e crescer o seu negócio
               </p>
             </div>
@@ -268,19 +266,21 @@ const Index = () => {
         </div>
       ) : (
         <div className="relative container mx-auto px-4 pt-16 sm:pt-20 pb-8 sm:pb-12 md:pb-16 max-w-6xl">
-          {/* Gradient Mesh de fundo */}
-          <div className="absolute inset-0 gradient-mesh-premium pointer-events-none" />
+          {/* Névoa roxa superior */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] 
+                          bg-gradient-radial from-[#A43BFF]/30 via-[#B05AFF]/15 to-transparent 
+                          blur-3xl pointer-events-none" />
           
-          {/* Luzes neon decorativas */}
-          <div className="absolute top-20 left-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 right-10 w-60 h-60 bg-secondary/15 rounded-full blur-3xl" />
+          {/* Luzes neon decorativas azuis */}
+          <div className="absolute top-40 left-5 w-32 h-32 bg-[#0EA5E9]/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-40 right-5 w-48 h-48 bg-[#06B6D4]/15 rounded-full blur-3xl" />
           
-          {/* Título com glow intenso */}
+          {/* Título com gradiente EmpreendaJá */}
           <div className="text-center mb-16 space-y-4 animate-fade-up-scale">
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black shimmer-text title-glow">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black title-empreendaja">
               Como posso te ajudar hoje?
             </h2>
-            <p className="text-lg text-white/80 font-medium drop-shadow-lg">
+            <p className="text-lg text-gray-300 font-medium drop-shadow-lg">
               Escolha um tópico ou inicie um chat livre com a Soph
             </p>
           </div>
