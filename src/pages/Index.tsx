@@ -189,9 +189,9 @@ const Index = () => {
               {/* Névoa roxa luminosa atrás */}
               <div className="absolute inset-0 w-48 h-48 sm:w-64 sm:h-64 mx-auto -top-8 icon-glow-mist"></div>
               <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto mb-6 rounded-3xl p-2 
-                              bg-gradient-to-br from-[#7C3AED] via-[#8B5CF6] to-[#A855F7] 
-                              shadow-[0_0_40px_rgba(139,92,246,0.4)] animate-scale-in">
-                <div className="w-full h-full rounded-2xl bg-gradient-to-br from-[#6D28D9] to-[#8B5CF6] 
+                              bg-[#6456B7] 
+                              shadow-[0_0_40px_rgba(100,86,183,0.4)] animate-scale-in">
+                <div className="w-full h-full rounded-2xl bg-[#6456B7] 
                                 flex items-center justify-center">
                   <Sparkles className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 text-white animate-pulse" />
                 </div>
@@ -209,7 +209,7 @@ const Index = () => {
                 EmpreendaJá
               </h1>
               <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white">
-                com <span className="text-[#D28EFF]">Soph</span>
+                com <span className="text-[#C77DFF]">Soph</span>
               </p>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-xl mx-auto leading-relaxed">
                 Sua agente virtual de negócios que vai te ajudar a estruturar e crescer o seu negócio
@@ -221,11 +221,10 @@ const Index = () => {
               <Button
                 size="lg"
                 onClick={() => setShowTopics(true)}
-                className="relative text-sm sm:text-base md:text-lg px-6 py-4 sm:px-8 sm:py-5 md:px-10 md:py-7 bg-gradient-to-r from-primary via-secondary to-accent shadow-primary hover:shadow-2xl transition-all font-bold group overflow-hidden"
-                style={{ backgroundSize: '200% 200%' }}
+                className="relative text-sm sm:text-base md:text-lg px-6 py-4 sm:px-8 sm:py-5 md:px-10 md:py-7 bg-gradient-to-r from-[#9D4EDD] to-[#C77DFF] shadow-[0_0_20px_rgba(157,78,221,0.4)] hover:shadow-[0_0_30px_rgba(199,125,255,0.5)] transition-all font-bold group overflow-hidden"
               >
                 <span className="relative z-10">Começar Agora</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-accent via-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity" style={{ backgroundSize: '200% 200%' }}></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#C77DFF] to-[#9D4EDD] opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </Button>
               {user ? (
                 <Button

@@ -467,17 +467,17 @@ div[class*='fixed']:has(a[href*='lovable.dev']) {
 .title-empreendaja {
   background: linear-gradient(
     90deg,
-    #C46BFF 0%,
-    #A33FEF 40%,
-    #D28EFF 70%,
-    #C46BFF 100%
+    #9D4EDD 0%,
+    #9D4EDD 30%,
+    #C77DFF 70%,
+    #C77DFF 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 20px rgba(196, 107, 255, 0.5))
-          drop-shadow(0 0 40px rgba(163, 63, 239, 0.3));
+  filter: drop-shadow(0 0 20px rgba(157, 78, 221, 0.5))
+          drop-shadow(0 0 40px rgba(199, 125, 255, 0.3));
   animation: title-shimmer 4s ease-in-out infinite;
 }
 
