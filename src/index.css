@@ -451,16 +451,16 @@ div[class*='fixed']:has(a[href*='lovable.dev']) {
 
 /* === NOVA IDENTIDADE VISUAL EMPREENDAJÁ === */
 
-/* Background Principal - Azul do Espaço (#023347) → Azul Prússia (#0A2845) */
+/* Background Principal - Azul-Marinho (#1F155B) → Roxo Escuro (#240046) */
 .background-empreendaja {
   background: 
     /* Gradiente radial sutil no centro superior */
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(2, 51, 71, 0.6) 0%, rgba(2, 51, 71, 0.3) 40%, transparent 70%),
-    /* Azul nas laterais */
-    radial-gradient(ellipse 100% 80% at 0% 50%, rgba(10, 40, 69, 0.6) 0%, transparent 60%),
-    radial-gradient(ellipse 100% 80% at 100% 50%, rgba(10, 40, 69, 0.6) 0%, transparent 60%),
-    /* Base - degradê Azul do Espaço para Azul Prússia */
-    linear-gradient(180deg, #023347 0%, #0A2845 100%);
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(31, 21, 91, 0.6) 0%, rgba(31, 21, 91, 0.3) 40%, transparent 70%),
+    /* Roxo nas laterais */
+    radial-gradient(ellipse 100% 80% at 0% 50%, rgba(36, 0, 70, 0.6) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 80% at 100% 50%, rgba(36, 0, 70, 0.6) 0%, transparent 60%),
+    /* Base - degradê Azul-Marinho para Roxo Escuro */
+    linear-gradient(180deg, #1F155B 0%, #240046 100%);
 }
 
 /* Título EmpreendaJá - Gradiente Roxo/Rosa */
