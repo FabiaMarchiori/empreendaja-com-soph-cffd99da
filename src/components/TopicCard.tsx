@@ -39,15 +39,15 @@ export const TopicCard = ({ icon: Icon, title, description, onClick }: TopicCard
         {/* Ícone Azul Yale Profundo (#184160) */}
         <div className="relative flex-shrink-0">
           {/* Glow atrás do ícone */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0C2148] via-[#184160] to-[#060F3A] 
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0C2148] via-[#013E55] to-[#060F3A] 
                           opacity-30 blur-2xl group-hover:opacity-50 group-hover:blur-3xl
                           transition-all duration-500 scale-150" />
           <div className="relative p-3 sm:p-4 md:p-5 rounded-xl 
                           bg-white/10 backdrop-blur-sm
                           group-hover:bg-white/15 group-hover:scale-110 transition-all duration-500">
-            <Icon className="w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11 text-[#184160] 
-                            drop-shadow-[0_0_15px_rgba(24,65,96,0.6)]
-                            group-hover:drop-shadow-[0_0_20px_rgba(24,65,96,0.8)]
+            <Icon className="w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11 text-[#013E55] 
+                            drop-shadow-[0_0_15px_rgba(1,62,85,0.6)]
+                            group-hover:drop-shadow-[0_0_20px_rgba(1,62,85,0.8)]
                             transition-all duration-500" />
           </div>
         </div>
