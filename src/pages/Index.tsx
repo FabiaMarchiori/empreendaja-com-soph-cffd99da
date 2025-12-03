@@ -208,9 +208,9 @@ const Index = () => {
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black title-empreendaja whitespace-nowrap">
                 EmpreendaJá
               </h1>
-              <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white">
-                com <span className="text-[#C77DFF]">Soph</span>
-              </p>
+                <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white">
+                  com <span className="text-[#4AAEFF]">Soph</span>
+                </p>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-xl mx-auto leading-relaxed">
                 Sua agente virtual de negócios que vai te ajudar a estruturar e crescer o seu negócio
               </p>

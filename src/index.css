@@ -465,11 +465,20 @@ div[class*='fixed']:has(a[href*='lovable.dev']) {
 
 /* Título Neon Azul - Como posso te ajudar hoje? */
 .title-neon-blue {
-  color: #74C8FF;
-  text-shadow: 
-    0 0 20px rgba(116, 200, 255, 0.6),
-    0 0 40px rgba(116, 200, 255, 0.4),
-    0 0 60px rgba(116, 200, 255, 0.2);
+  background: linear-gradient(
+    90deg,
+    #C372FF 0%,
+    #C372FF 30%,
+    #4AAEFF 70%,
+    #4AAEFF 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 20px rgba(195, 114, 255, 0.5))
+          drop-shadow(0 0 40px rgba(74, 174, 255, 0.3));
+  animation: title-shimmer 4s ease-in-out infinite;
 }
 
 /* Card Glassmorphism com Borda Neon Azul */
@@ -507,21 +516,21 @@ div[class*='fixed']:has(a[href*='lovable.dev']) {
   color: #A9C4D9;
 }
 
-/* Título EmpreendaJá - Gradiente Roxo/Rosa */
+/* Título EmpreendaJá - Gradiente Roxo/Azul */
 .title-empreendaja {
   background: linear-gradient(
     90deg,
-    #9D4EDD 0%,
-    #9D4EDD 30%,
-    #C77DFF 70%,
-    #C77DFF 100%
+    #C372FF 0%,
+    #C372FF 30%,
+    #4AAEFF 70%,
+    #4AAEFF 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 20px rgba(157, 78, 221, 0.5))
-          drop-shadow(0 0 40px rgba(199, 125, 255, 0.3));
+  filter: drop-shadow(0 0 20px rgba(195, 114, 255, 0.5))
+          drop-shadow(0 0 40px rgba(74, 174, 255, 0.3));
   animation: title-shimmer 4s ease-in-out infinite;
 }
 
