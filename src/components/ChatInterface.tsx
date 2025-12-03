@@ -19,6 +19,7 @@ const urlToSlugMap: Record<string, string> = {
   'https://crieseudominioesite.lovable.app': 'website',
   'https://vendendonosmarketplaces.lovable.app': 'marketplace',
   'https://empreende-ja-soph.lovable.app': 'brand',
+  'https://registresuamarca.lovable.app': 'brand',
 };
 
 // Função para detectar e renderizar links como botões internos

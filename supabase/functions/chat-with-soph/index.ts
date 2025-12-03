@@ -155,11 +155,11 @@ Prefere começar aprendendo como criar a conta ou como encontrar produtos que ve
       },
       brand: {
         name: "Registrar Marca",
-        link: "https://empreende-ja-soph.lovable.app",
+        link: "https://registresuamarca.lovable.app",
         initialMessage: `Olá! 😊 Para registrar sua marca, eu posso te orientar aqui mesmo, mas você também pode acessar meu guia rápido:
 
 👉 Guia de Registro de Marca:
-https://empreende-ja-soph.lovable.app
+https://registresuamarca.lovable.app
 
 Posso te ajudar com pesquisa, classe, protocolo e acompanhamento. Quer começar me dizendo o nome da sua marca?`
       }
