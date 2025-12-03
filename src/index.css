@@ -612,3 +612,18 @@ div[class*='fixed']:has(a[href*='lovable.dev']) {
   color: #45E3FF;
   filter: drop-shadow(0 0 15px rgba(69, 227, 255, 0.6)) drop-shadow(0 0 30px rgba(69, 227, 255, 0.3));
 }
+
+/* Safe Area Support for Mobile Navigation Bars */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .tool-iframe-container {
+    padding-bottom: calc(env(safe-area-inset-bottom) + 16px);
+  }
+  
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 20px);
+  }
+}
