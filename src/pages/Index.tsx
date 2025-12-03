@@ -124,34 +124,34 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden background-empreendaja">
-      {/* Névoa luminosa roxo escuro no topo */}
+      {/* Névoa luminosa roxo-azulado no topo */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] 
-                      bg-gradient-radial from-[#3A1A5F]/60 via-[#7A4FD9]/30 to-transparent 
+                      bg-gradient-radial from-[#482A72]/50 via-[#2E1B4D]/30 to-transparent 
                       blur-3xl pointer-events-none" />
       
-      {/* Partículas Neon Azul (#2FD6F3) */}
-      <div className="particle particle-neon-blue absolute w-2 h-2 rounded-full top-[20%] left-[15%]" style={{ animationDelay: '0s' }} />
-      <div className="particle particle-neon-blue absolute w-3 h-3 rounded-full top-[40%] right-[20%]" style={{ animationDelay: '1s' }} />
-      <div className="particle particle-neon-blue absolute w-2 h-2 rounded-full top-[55%] left-[80%]" style={{ animationDelay: '0.5s' }} />
-      <div className="particle particle-neon-blue absolute w-2 h-2 rounded-full bottom-[35%] left-[25%]" style={{ animationDelay: '3s' }} />
+      {/* Partículas Neon Azul (#00B7FF) */}
+      <div className="particle absolute w-2 h-2 rounded-full top-[20%] left-[15%] bg-[#00B7FF] shadow-[0_0_10px_#00B7FF]" style={{ animationDelay: '0s' }} />
+      <div className="particle absolute w-3 h-3 rounded-full top-[40%] right-[20%] bg-[#5AD7FF] shadow-[0_0_12px_#5AD7FF]" style={{ animationDelay: '1s' }} />
+      <div className="particle absolute w-2 h-2 rounded-full top-[55%] left-[80%] bg-[#00B7FF] shadow-[0_0_10px_#00B7FF]" style={{ animationDelay: '0.5s' }} />
+      <div className="particle absolute w-2 h-2 rounded-full bottom-[35%] left-[25%] bg-[#74C8FF] shadow-[0_0_10px_#74C8FF]" style={{ animationDelay: '3s' }} />
       
-      {/* Partículas Neon Roxo (#7A4FD9) */}
-      <div className="particle particle-neon-purple absolute w-2 h-2 rounded-full top-[30%] right-[10%]" style={{ animationDelay: '2s' }} />
-      <div className="particle particle-neon-purple absolute w-3 h-3 rounded-full bottom-[25%] left-[8%]" style={{ animationDelay: '4s' }} />
-      <div className="particle particle-neon-purple absolute w-2 h-2 rounded-full top-[65%] right-[35%]" style={{ animationDelay: '5s' }} />
-      <div className="particle particle-neon-purple absolute w-3 h-3 rounded-full bottom-[20%] right-[30%]" style={{ animationDelay: '2.5s' }} />
+      {/* Partículas Neon Ciano (#5AD7FF) */}
+      <div className="particle absolute w-2 h-2 rounded-full top-[30%] right-[10%] bg-[#5AD7FF] shadow-[0_0_10px_#5AD7FF]" style={{ animationDelay: '2s' }} />
+      <div className="particle absolute w-3 h-3 rounded-full bottom-[25%] left-[8%] bg-[#00B7FF] shadow-[0_0_12px_#00B7FF]" style={{ animationDelay: '4s' }} />
+      <div className="particle absolute w-2 h-2 rounded-full top-[65%] right-[35%] bg-[#A1F3FF] shadow-[0_0_10px_#A1F3FF]" style={{ animationDelay: '5s' }} />
+      <div className="particle absolute w-3 h-3 rounded-full bottom-[20%] right-[30%] bg-[#74C8FF] shadow-[0_0_12px_#74C8FF]" style={{ animationDelay: '2.5s' }} />
       
-      {/* Luzes Neon Decorativas */}
-      <div className="absolute top-40 left-5 w-32 h-32 neon-blue-glow rounded-full" />
-      <div className="absolute bottom-40 right-5 w-48 h-48 neon-purple-glow rounded-full" />
-      <div className="absolute top-1/2 right-10 w-24 h-24 neon-blue-glow rounded-full" />
+      {/* Luzes Neon Decorativas Azul */}
+      <div className="absolute top-40 left-5 w-32 h-32 bg-[#00B7FF]/20 blur-3xl rounded-full" />
+      <div className="absolute bottom-40 right-5 w-48 h-48 bg-[#5AD7FF]/15 blur-3xl rounded-full" />
+      <div className="absolute top-1/2 right-10 w-24 h-24 bg-[#74C8FF]/20 blur-3xl rounded-full" />
       
       {/* Névoa azul petróleo nas laterais */}
       <div className="absolute top-1/3 left-0 w-[400px] h-[600px] 
-                      bg-gradient-radial from-[#013E55]/60 via-[#013E55]/30 to-transparent 
+                      bg-gradient-radial from-[#062C4F]/50 via-[#043B59]/30 to-transparent 
                       blur-3xl pointer-events-none" />
       <div className="absolute top-1/4 right-0 w-[400px] h-[600px] 
-                      bg-gradient-radial from-[#013E55]/60 via-[#013E55]/30 to-transparent 
+                      bg-gradient-radial from-[#043B59]/50 via-[#062C4F]/30 to-transparent 
                       blur-3xl pointer-events-none" />
       
       {/* Noise Overlay */}
@@ -276,12 +276,12 @@ const Index = () => {
           <div className="absolute top-40 left-5 w-32 h-32 neon-blue-glow rounded-full" />
           <div className="absolute bottom-40 right-5 w-48 h-48 neon-purple-glow rounded-full" />
           
-          {/* Título com gradiente EmpreendaJá */}
+          {/* Título Neon Azul */}
           <div className="text-center mb-16 space-y-4 animate-fade-up-scale">
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black title-empreendaja">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black title-neon-blue">
               Como posso te ajudar hoje?
             </h2>
-            <p className="text-lg text-white/80 font-medium drop-shadow-lg">
+            <p className="text-lg text-[#A9C4D9] font-medium drop-shadow-lg">
               Escolha um tópico ou inicie um chat livre com a Soph
             </p>
           </div>

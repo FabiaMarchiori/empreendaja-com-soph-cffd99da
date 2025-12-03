@@ -451,16 +451,60 @@ div[class*='fixed']:has(a[href*='lovable.dev']) {
 
 /* === NOVA IDENTIDADE VISUAL EMPREENDAJÁ === */
 
-/* Background Principal - Azul-Marinho (#1F155B) → Roxo Escuro (#240046) */
+/* Background Principal - Roxo-Azulado Glassmorphism (#482A72 → #043B59) */
 .background-empreendaja {
   background: 
     /* Gradiente radial sutil no centro superior */
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(31, 21, 91, 0.6) 0%, rgba(31, 21, 91, 0.3) 40%, transparent 70%),
-    /* Roxo nas laterais */
-    radial-gradient(ellipse 100% 80% at 0% 50%, rgba(36, 0, 70, 0.6) 0%, transparent 60%),
-    radial-gradient(ellipse 100% 80% at 100% 50%, rgba(36, 0, 70, 0.6) 0%, transparent 60%),
-    /* Base - degradê Azul-Marinho para Roxo Escuro */
-    linear-gradient(180deg, #1F155B 0%, #240046 100%);
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(72, 42, 114, 0.5) 0%, rgba(46, 27, 77, 0.3) 40%, transparent 70%),
+    /* Azul petróleo nas laterais */
+    radial-gradient(ellipse 100% 80% at 0% 50%, rgba(6, 44, 79, 0.5) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 80% at 100% 50%, rgba(4, 59, 89, 0.5) 0%, transparent 60%),
+    /* Base - degradê Roxo-Azulado diagonal */
+    linear-gradient(135deg, #482A72 0%, #2E1B4D 40%, #062C4F 75%, #043B59 100%);
+}
+
+/* Título Neon Azul - Como posso te ajudar hoje? */
+.title-neon-blue {
+  color: #74C8FF;
+  text-shadow: 
+    0 0 20px rgba(116, 200, 255, 0.6),
+    0 0 40px rgba(116, 200, 255, 0.4),
+    0 0 60px rgba(116, 200, 255, 0.2);
+}
+
+/* Card Glassmorphism com Borda Neon Azul */
+.card-glass-neon {
+  background: rgba(15, 20, 40, 0.45);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 18px;
+  border: 1px solid #1A4E7A;
+  box-shadow: 0 0 18px rgba(0, 183, 255, 0.4);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-glass-neon:hover {
+  border-color: #00B7FF;
+  box-shadow: 
+    0 0 30px rgba(0, 183, 255, 0.6),
+    0 0 60px rgba(0, 183, 255, 0.3),
+    inset 0 0 30px rgba(0, 183, 255, 0.05);
+  transform: translateY(-8px);
+}
+
+/* Ícone Neon Azul */
+.icon-neon-cyan {
+  color: #5AD7FF;
+  filter: drop-shadow(0 0 12px rgba(161, 243, 255, 0.6));
+}
+
+/* Textos dos Cards */
+.text-card-title {
+  color: #E9F7FF;
+}
+
+.text-card-description {
+  color: #A9C4D9;
 }
 
 /* Título EmpreendaJá - Gradiente Roxo/Rosa */
