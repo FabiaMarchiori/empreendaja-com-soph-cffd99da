@@ -1,7 +1,1 @@
-project_id = "frtnvbhmrtuelztgumou"
-
-[functions.chat-with-soph]
-verify_jwt = true
-
-[functions.get-tool-url]
-verify_jwt = true
+project_id = "jnhvptmulaoczestccam"
