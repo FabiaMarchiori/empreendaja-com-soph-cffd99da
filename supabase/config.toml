@@ -1,1 +1,4 @@
 project_id = "jnhvptmulaoczestccam"
+
+[functions.validate-soph-token]
+verify_jwt = false
