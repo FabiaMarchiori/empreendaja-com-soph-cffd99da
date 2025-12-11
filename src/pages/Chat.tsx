@@ -3,40 +3,20 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, LogOut } from "lucide-react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import { useEffect, useState } from "react";
-import { User } from "@supabase/supabase-js";
+import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
 
 const Chat = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const topic = searchParams.get("topic") || undefined;
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-      setLoading(false);
-      
-      if (!session) {
-        navigate("/auth");
-      }
-    });
-
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
-      setLoading(false);
-      
-      if (!session) {
-        navigate("/auth");
-      }
-    });
-
-    return () => subscription.unsubscribe();
-  }, [navigate]);
+  const { isAuthenticated, loading, ssoUser } = useAuth(true);
 
   const handleLogout = async () => {
+    // Clear SSO session if exists
+    sessionStorage.removeItem('soph_sso_valid');
+    sessionStorage.removeItem('soph_sso_user');
+    
     await supabase.auth.signOut();
     toast.success("Você saiu da sua conta");
     navigate("/");
@@ -50,7 +30,7 @@ const Chat = () => {
     );
   }
 
-  if (!user) {
+  if (!isAuthenticated) {
     return null;
   }
 
