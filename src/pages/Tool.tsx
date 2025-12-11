@@ -3,38 +3,20 @@ import { useParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Loader2, AlertCircle } from "lucide-react";
-import { User } from "@supabase/supabase-js";
+import { useAuth } from "@/hooks/useAuth";
 
 const Tool = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { isAuthenticated, loading: authLoading } = useAuth(true);
+  const [toolLoading, setToolLoading] = useState(true);
   const [toolUrl, setToolUrl] = useState<string | null>(null);
   const [toolName, setToolName] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-      if (!session) {
-        navigate("/auth");
-      }
-    });
-
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
-      if (!session) {
-        navigate("/auth");
-      }
-    });
-
-    return () => subscription.unsubscribe();
-  }, [navigate]);
-
-  useEffect(() => {
     const fetchToolUrl = async () => {
-      if (!user || !slug) return;
+      if (!isAuthenticated || !slug) return;
 
       try {
         const { data, error } = await supabase.functions.invoke('get-tool-url', {
@@ -44,7 +26,7 @@ const Tool = () => {
         if (error) {
           console.error("Error fetching tool URL:", error);
           setError("Ferramenta não encontrada");
-          setLoading(false);
+          setToolLoading(false);
           return;
         }
 
@@ -58,16 +40,16 @@ const Tool = () => {
         console.error("Error:", err);
         setError("Erro ao carregar ferramenta");
       } finally {
-        setLoading(false);
+      setToolLoading(false);
       }
     };
 
-    if (user && slug) {
+    if (isAuthenticated && slug) {
       fetchToolUrl();
     }
-  }, [user, slug]);
+  }, [isAuthenticated, slug]);
 
-  if (loading || !user) {
+  if (authLoading || toolLoading || !isAuthenticated) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#482A72] via-[#2E1B4D] via-[#062C4F] to-[#043B59]">
         <div className="flex flex-col items-center gap-4">
