@@ -7,19 +7,34 @@ export default function Embedded() {
   const [status, setStatus] = useState("Carregando sua mentora...");
 
   useEffect(() => {
+    console.log("[Embedded] Página carregada");
+    console.log("[Embedded] Minha localização:", window.location.href);
+
     const handler = async (event: MessageEvent) => {
-      // Aceitar apenas do App de Importadoras
+      // LOG COMPLETO ANTES DE QUALQUER VERIFICAÇÃO
+      console.log("[Embedded] DEBUG ORIGIN:", {
+        origin: event.origin,
+        data: event.data,
+        location: window.location.href
+      });
+
+      // Verificar origem - APENAS LOGAR, NÃO REJEITAR
       if (event.origin !== "https://aplicativodeimportadoras25.lovable.app") {
-        console.log("[Embedded] Origem ignorada:", event.origin);
-        return;
+        console.warn("[Embedded] Origem diferente da esperada:", event.origin);
+        console.warn("[Embedded] Esperado:", "https://aplicativodeimportadoras25.lovable.app");
+        // NÃO dá return aqui - queremos ver TUDO
       }
 
+      // Verificar se é SSO_TOKEN
       if (event.data?.type === "SSO_TOKEN") {
+        console.log("[Embedded] ✅ SSO_TOKEN recebido!");
+        console.log("[Embedded] Token presente:", !!event.data.token);
+        
         const token = event.data.token;
-        console.log("[Embedded] Token recebido via postMessage");
         setStatus("Validando acesso...");
 
         const result = await validateSophToken(token);
+        console.log("[Embedded] Resultado da validação:", result);
 
         if (result.valid && result.payload?.sub) {
           sessionStorage.setItem("soph_sso_valid", "true");
@@ -31,6 +46,8 @@ export default function Embedded() {
           setStatus("Acesso não autorizado");
           setTimeout(() => navigate("/auth"), 2000);
         }
+      } else {
+        console.log("[Embedded] Tipo de mensagem:", event.data?.type || "indefinido");
       }
     };
 
