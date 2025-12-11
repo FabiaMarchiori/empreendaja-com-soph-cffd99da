@@ -8,6 +8,7 @@ import Chat from "./pages/Chat";
 import Auth from "./pages/Auth";
 import Tool from "./pages/Tool";
 import SSOEntry from "./pages/SSOEntry";
+import Embedded from "./pages/Embedded";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/chat" element={<Chat />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/sso" element={<SSOEntry />} />
+          <Route path="/embedded" element={<Embedded />} />
           <Route path="/tool/:slug" element={<Tool />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
