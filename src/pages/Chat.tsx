@@ -1,9 +1,11 @@
+import { useEffect } from "react";
 import { ChatInterface } from "@/components/ChatInterface";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, LogOut } from "lucide-react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
+import { useAccessControl } from "@/hooks/useAccessControl";
 import { toast } from "sonner";
 
 const Chat = () => {
@@ -11,6 +13,14 @@ const Chat = () => {
   const [searchParams] = useSearchParams();
   const topic = searchParams.get("topic") || undefined;
   const { isAuthenticated, loading, ssoUser } = useAuth(true);
+  const { loading: accessLoading, isExpired } = useAccessControl();
+
+  // Redirecionar para página de acesso expirado se necessário
+  useEffect(() => {
+    if (!accessLoading && isExpired) {
+      navigate('/acesso-expirado');
+    }
+  }, [accessLoading, isExpired, navigate]);
 
   const handleLogout = async () => {
     // Clear SSO session if exists
@@ -22,7 +32,7 @@ const Chat = () => {
     navigate("/");
   };
 
-  if (loading) {
+  if (loading || accessLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="animate-pulse text-muted-foreground">Carregando...</div>
@@ -32,6 +42,10 @@ const Chat = () => {
 
   if (!isAuthenticated) {
     return null;
+  }
+
+  if (isExpired) {
+    return null; // Will redirect via useEffect
   }
 
   return (

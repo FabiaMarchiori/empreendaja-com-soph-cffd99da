@@ -14,6 +14,72 @@ export type Database = {
   }
   public: {
     Tables: {
+      profiles: {
+        Row: {
+          access_origin: string | null
+          access_until: string | null
+          created_at: string | null
+          email: string | null
+          id: string
+          updated_at: string | null
+        }
+        Insert: {
+          access_origin?: string | null
+          access_until?: string | null
+          created_at?: string | null
+          email?: string | null
+          id: string
+          updated_at?: string | null
+        }
+        Update: {
+          access_origin?: string | null
+          access_until?: string | null
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      promo_codes: {
+        Row: {
+          code: string
+          created_at: string | null
+          duration_months: number
+          email: string | null
+          expires_at: string | null
+          id: string
+          origin: string
+          used: boolean
+          used_at: string | null
+          used_by: string | null
+        }
+        Insert: {
+          code: string
+          created_at?: string | null
+          duration_months?: number
+          email?: string | null
+          expires_at?: string | null
+          id?: string
+          origin?: string
+          used?: boolean
+          used_at?: string | null
+          used_by?: string | null
+        }
+        Update: {
+          code?: string
+          created_at?: string | null
+          duration_months?: number
+          email?: string | null
+          expires_at?: string | null
+          id?: string
+          origin?: string
+          used?: boolean
+          used_at?: string | null
+          used_by?: string | null
+        }
+        Relationships: []
+      }
       protected_tools: {
         Row: {
           created_at: string | null
