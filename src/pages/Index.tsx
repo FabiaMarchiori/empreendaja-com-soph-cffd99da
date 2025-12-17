@@ -25,14 +25,19 @@ import {
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { User } from "@supabase/supabase-js";
-import { useAccessControl } from "@/hooks/useAccessControl";
 
 const Index = () => {
   const navigate = useNavigate();
   const [showTopics, setShowTopics] = useState(false);
   const [user, setUser] = useState<User | null>(null);
-  const { hasAccess, daysRemaining, needsAccess, loading: accessLoading } = useAccessControl();
+  
+  // Estados locais para verificação de acesso (SEM redirects automáticos)
+  const [hasAccess, setHasAccess] = useState(false);
+  const [daysRemaining, setDaysRemaining] = useState<number | null>(null);
+  const [needsAccess, setNeedsAccess] = useState(false);
+  const [accessLoading, setAccessLoading] = useState(true);
 
+  // Verificar sessão do usuário
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
@@ -45,12 +50,55 @@ const Index = () => {
     return () => subscription.unsubscribe();
   }, []);
 
-  // Redirecionar usuário logado sem acesso para /sem-acesso
+  // Verificar acesso SE o usuário estiver logado (SEM redirect automático)
   useEffect(() => {
-    if (!accessLoading && user && needsAccess) {
-      navigate('/sem-acesso');
-    }
-  }, [accessLoading, user, needsAccess, navigate]);
+    const checkAccessIfLoggedIn = async () => {
+      if (!user) {
+        setAccessLoading(false);
+        setHasAccess(false);
+        setNeedsAccess(false);
+        setDaysRemaining(null);
+        return;
+      }
+
+      try {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('access_until')
+          .eq('id', user.id)
+          .maybeSingle();
+
+        if (!profile?.access_until) {
+          setHasAccess(false);
+          setNeedsAccess(true);
+          setAccessLoading(false);
+          return;
+        }
+
+        const accessUntil = new Date(profile.access_until);
+        const now = new Date();
+        const hasValidAccess = accessUntil > now;
+
+        if (hasValidAccess) {
+          const diffTime = accessUntil.getTime() - now.getTime();
+          setDaysRemaining(Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
+        } else {
+          setDaysRemaining(null);
+        }
+
+        setHasAccess(hasValidAccess);
+        setNeedsAccess(!hasValidAccess);
+        setAccessLoading(false);
+      } catch (error) {
+        console.error('Erro ao verificar acesso:', error);
+        setHasAccess(false);
+        setNeedsAccess(true);
+        setAccessLoading(false);
+      }
+    };
+
+    checkAccessIfLoggedIn();
+  }, [user]);
 
   // Se usuário logado com acesso, mostrar tópicos automaticamente
   useEffect(() => {
@@ -116,6 +164,12 @@ const Index = () => {
       return;
     }
     
+    // Se não tem acesso, redirecionar para /sem-acesso
+    if (needsAccess || !hasAccess) {
+      navigate("/sem-acesso");
+      return;
+    }
+    
     if (topicId === "free-chat") {
       navigate("/chat");
     } else {
@@ -127,13 +181,10 @@ const Index = () => {
     await supabase.auth.signOut();
     setUser(null);
     setShowTopics(false);
-    navigate("/auth");
+    setHasAccess(false);
+    setNeedsAccess(false);
+    setDaysRemaining(null);
   };
-
-  // Se usuário logado sem acesso, não renderizar (vai redirecionar)
-  if (user && needsAccess && !accessLoading) {
-    return null;
-  }
 
   return (
     <div className="min-h-screen relative overflow-hidden background-empreendaja">
