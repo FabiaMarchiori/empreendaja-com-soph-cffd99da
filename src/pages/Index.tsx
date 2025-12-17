@@ -250,11 +250,11 @@ const Index = () => {
               <Button
                 size="lg"
                 variant="outline"
-                onClick={() => navigate("/auth")}
+                onClick={() => navigate("/auth", { state: { fromRedemption: true } })}
                 className="text-sm sm:text-base md:text-lg px-6 py-4 sm:px-8 sm:py-5 md:px-10 md:py-7 border-2 glass hover:glass-strong font-bold gap-2"
               >
                 <LogIn className="w-5 h-5" />
-                Fazer Login
+                Já tenho código de acesso
               </Button>
             </div>
 

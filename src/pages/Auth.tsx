@@ -2,13 +2,23 @@ import { Auth as SupabaseAuth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Auth() {
   const navigate = useNavigate();
+  const location = useLocation();
+  
+  // Verificar se veio do botão "Já tenho código de acesso"
+  const fromRedemption = location.state?.fromRedemption === true;
 
   useEffect(() => {
     const checkAccessAndRedirect = async (userId: string) => {
+      // Se veio do fluxo de resgate, redirecionar direto para resgatar código
+      if (fromRedemption) {
+        navigate("/resgatar-acesso");
+        return;
+      }
+
       try {
         const { data: profile } = await supabase
           .from('profiles')
@@ -51,7 +61,7 @@ export default function Auth() {
     });
 
     return () => subscription.unsubscribe();
-  }, [navigate]);
+  }, [navigate, fromRedemption]);
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 sm:p-6 bg-[#0A0B1E]">
