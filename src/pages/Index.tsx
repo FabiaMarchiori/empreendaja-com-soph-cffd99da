@@ -13,8 +13,7 @@ import {
   LogIn,
   MessageCircle,
   User as UserIcon,
-  LogOut,
-  Gift
+  LogOut
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -32,27 +31,33 @@ const Index = () => {
   const navigate = useNavigate();
   const [showTopics, setShowTopics] = useState(false);
   const [user, setUser] = useState<User | null>(null);
-  const { isExpired, daysRemaining, hasAccess } = useAccessControl();
+  const { hasAccess, daysRemaining, needsAccess, loading: accessLoading } = useAccessControl();
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
-      // Se usuário estiver logado, mostrar os tópicos automaticamente
-      if (session?.user) {
-        setShowTopics(true);
-      }
     });
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
-      // Se usuário fez login, mostrar os tópicos
-      if (session?.user) {
-        setShowTopics(true);
-      }
     });
 
     return () => subscription.unsubscribe();
   }, []);
+
+  // Redirecionar usuário logado sem acesso para /sem-acesso
+  useEffect(() => {
+    if (!accessLoading && user && needsAccess) {
+      navigate('/sem-acesso');
+    }
+  }, [accessLoading, user, needsAccess, navigate]);
+
+  // Se usuário logado com acesso, mostrar tópicos automaticamente
+  useEffect(() => {
+    if (!accessLoading && user && hasAccess) {
+      setShowTopics(true);
+    }
+  }, [accessLoading, user, hasAccess]);
 
   const topics = [
     {
@@ -110,12 +115,6 @@ const Index = () => {
       navigate("/auth");
       return;
     }
-
-    // Se acesso expirou, redirecionar para página de expiração
-    if (isExpired) {
-      navigate("/acesso-expirado");
-      return;
-    }
     
     if (topicId === "free-chat") {
       navigate("/chat");
@@ -130,6 +129,11 @@ const Index = () => {
     setShowTopics(false);
     navigate("/auth");
   };
+
+  // Se usuário logado sem acesso, não renderizar (vai redirecionar)
+  if (user && needsAccess && !accessLoading) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen relative overflow-hidden background-empreendaja">
@@ -166,8 +170,8 @@ const Index = () => {
       {/* Noise Overlay */}
       <div className="noise-overlay" />
 
-      {/* Profile Menu - Top Right */}
-      {user && (
+      {/* Profile Menu - Top Right (only for logged in users with access) */}
+      {user && hasAccess && (
         <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -176,7 +180,7 @@ const Index = () => {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="border-white/20 min-w-[200px] rounded-xl" style={{ backgroundColor: '#6A0DAD' }}>
-              {hasAccess && daysRemaining && (
+              {daysRemaining && (
                 <>
                   <div className="px-2 py-1.5 text-xs text-white/70">
                     Acesso válido por mais {daysRemaining} dias
@@ -184,13 +188,9 @@ const Index = () => {
                   <DropdownMenuSeparator className="bg-white/10" />
                 </>
               )}
-              <DropdownMenuItem onClick={() => navigate('/resgatar-acesso')} className="cursor-pointer text-white hover:text-white">
-                <Gift className="mr-2 h-4 w-4" />
-                Resgatar código
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-white hover:text-white">
-                <LogIn className="mr-2 h-4 w-4" />
-                Voltar ao Login
+              <DropdownMenuItem onClick={() => navigate('/chat')} className="cursor-pointer text-white hover:text-white">
+                <MessageCircle className="mr-2 h-4 w-4" />
+                Chat Livre
               </DropdownMenuItem>
               <DropdownMenuSeparator className="bg-white/10" />
               <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-red-400 hover:text-red-400 focus:text-red-400">
@@ -241,32 +241,21 @@ const Index = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8 animate-slide-in-up" style={{ animationDelay: '0.4s' }}>
               <Button
                 size="lg"
-                onClick={() => setShowTopics(true)}
+                onClick={() => navigate("/auth")}
                 className="relative text-sm sm:text-base md:text-lg px-6 py-4 sm:px-8 sm:py-5 md:px-10 md:py-7 bg-gradient-to-r from-[#9D4EDD] to-[#C77DFF] shadow-[0_0_20px_rgba(157,78,221,0.4)] hover:shadow-[0_0_30px_rgba(199,125,255,0.5)] transition-all font-bold group overflow-hidden"
               >
                 <span className="relative z-10">Começar Agora</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-[#C77DFF] to-[#9D4EDD] opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </Button>
-              {user ? (
-                <Button
-                  size="lg"
-                  variant="outline"
-                  onClick={() => navigate("/chat")}
-                  className="text-sm sm:text-base md:text-lg px-6 py-4 sm:px-8 sm:py-5 md:px-10 md:py-7 border-2 glass hover:glass-strong font-bold"
-                >
-                  Chat Livre
-                </Button>
-              ) : (
-                <Button
-                  size="lg"
-                  variant="outline"
-                  onClick={() => navigate("/auth")}
-                  className="text-sm sm:text-base md:text-lg px-6 py-4 sm:px-8 sm:py-5 md:px-10 md:py-7 border-2 glass hover:glass-strong font-bold gap-2"
-                >
-                  <LogIn className="w-5 h-5" />
-                  Fazer Login
-                </Button>
-              )}
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={() => navigate("/auth")}
+                className="text-sm sm:text-base md:text-lg px-6 py-4 sm:px-8 sm:py-5 md:px-10 md:py-7 border-2 glass hover:glass-strong font-bold gap-2"
+              >
+                <LogIn className="w-5 h-5" />
+                Fazer Login
+              </Button>
             </div>
 
             {/* Animated Statistics Cards */}

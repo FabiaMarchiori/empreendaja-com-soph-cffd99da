@@ -4,11 +4,12 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Loader2, AlertCircle } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { AccessGate } from "@/components/AccessGate";
 
-const Tool = () => {
+const ToolContent = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const { isAuthenticated, loading: authLoading } = useAuth(true);
+  const { isAuthenticated } = useAuth(true);
   const [toolLoading, setToolLoading] = useState(true);
   const [toolUrl, setToolUrl] = useState<string | null>(null);
   const [toolName, setToolName] = useState<string>("");
@@ -40,7 +41,7 @@ const Tool = () => {
         console.error("Error:", err);
         setError("Erro ao carregar ferramenta");
       } finally {
-      setToolLoading(false);
+        setToolLoading(false);
       }
     };
 
@@ -49,7 +50,7 @@ const Tool = () => {
     }
   }, [isAuthenticated, slug]);
 
-  if (authLoading || toolLoading || !isAuthenticated) {
+  if (toolLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#482A72] via-[#2E1B4D] via-[#062C4F] to-[#043B59]">
         <div className="flex flex-col items-center gap-4">
@@ -113,6 +114,14 @@ const Tool = () => {
         )}
       </main>
     </div>
+  );
+};
+
+const Tool = () => {
+  return (
+    <AccessGate>
+      <ToolContent />
+    </AccessGate>
   );
 };
 

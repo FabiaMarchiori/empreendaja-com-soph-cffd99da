@@ -8,15 +8,45 @@ export default function Auth() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const checkAccessAndRedirect = async (userId: string) => {
+      try {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('access_until')
+          .eq('id', userId)
+          .maybeSingle();
+
+        if (!profile?.access_until) {
+          // Usuário nunca resgatou acesso
+          navigate("/sem-acesso");
+          return;
+        }
+
+        const accessUntil = new Date(profile.access_until);
+        const now = new Date();
+        
+        if (accessUntil > now) {
+          // Acesso válido
+          navigate("/");
+        } else {
+          // Acesso expirado
+          navigate("/sem-acesso");
+        }
+      } catch (error) {
+        console.error("Error checking access:", error);
+        navigate("/sem-acesso");
+      }
+    };
+
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      if (session) {
-        navigate("/");
+      if (session?.user) {
+        checkAccessAndRedirect(session.user.id);
       }
     });
 
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) {
-        navigate("/");
+      if (session?.user) {
+        checkAccessAndRedirect(session.user.id);
       }
     });
 

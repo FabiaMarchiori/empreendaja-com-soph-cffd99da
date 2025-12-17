@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { ChatInterface } from "@/components/ChatInterface";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, LogOut } from "lucide-react";
@@ -7,23 +6,14 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useAccessControl } from "@/hooks/useAccessControl";
 import { toast } from "sonner";
+import { AccessGate } from "@/components/AccessGate";
 
-const Chat = () => {
+const ChatContent = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const topic = searchParams.get("topic") || undefined;
-  const { isAuthenticated, loading, ssoUser } = useAuth(true);
-  const { loading: accessLoading, isExpired } = useAccessControl();
-
-  // Redirecionar para página de acesso expirado se necessário
-  useEffect(() => {
-    if (!accessLoading && isExpired) {
-      navigate('/acesso-expirado');
-    }
-  }, [accessLoading, isExpired, navigate]);
 
   const handleLogout = async () => {
-    // Clear SSO session if exists
     sessionStorage.removeItem('soph_sso_valid');
     sessionStorage.removeItem('soph_sso_user');
     
@@ -31,22 +21,6 @@ const Chat = () => {
     toast.success("Você saiu da sua conta");
     navigate("/");
   };
-
-  if (loading || accessLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="animate-pulse text-muted-foreground">Carregando...</div>
-      </div>
-    );
-  }
-
-  if (!isAuthenticated) {
-    return null;
-  }
-
-  if (isExpired) {
-    return null; // Will redirect via useEffect
-  }
 
   return (
     <div className="flex flex-col h-screen bg-background relative overflow-hidden">
@@ -101,6 +75,14 @@ const Chat = () => {
         <ChatInterface selectedTopic={topic} />
       </main>
     </div>
+  );
+};
+
+const Chat = () => {
+  return (
+    <AccessGate>
+      <ChatContent />
+    </AccessGate>
   );
 };
 

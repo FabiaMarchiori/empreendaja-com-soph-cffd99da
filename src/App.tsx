@@ -10,7 +10,7 @@ import Tool from "./pages/Tool";
 import SSOEntry from "./pages/SSOEntry";
 import Embedded from "./pages/Embedded";
 import RedeemAccess from "./pages/RedeemAccess";
-import AccessExpired from "./pages/AccessExpired";
+import NoAccess from "./pages/NoAccess";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,7 +29,7 @@ const App = () => (
           <Route path="/embedded" element={<Embedded />} />
           <Route path="/tool/:slug" element={<Tool />} />
           <Route path="/resgatar-acesso" element={<RedeemAccess />} />
-          <Route path="/acesso-expirado" element={<AccessExpired />} />
+          <Route path="/sem-acesso" element={<NoAccess />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
