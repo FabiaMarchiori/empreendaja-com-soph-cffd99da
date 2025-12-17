@@ -12,7 +12,7 @@ interface AccessControlState {
 }
 
 export const useAccessControl = () => {
-  const { user, isAuthenticated, loading: authLoading } = useAuth();
+  const { user, isAuthenticated, loading: authLoading } = useAuth(false);
   const [state, setState] = useState<AccessControlState>({
     loading: true,
     hasAccess: false,
