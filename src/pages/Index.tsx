@@ -13,7 +13,8 @@ import {
   LogIn,
   MessageCircle,
   User as UserIcon,
-  LogOut
+  LogOut,
+  Gift
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -25,11 +26,13 @@ import {
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { User } from "@supabase/supabase-js";
+import { useAccessControl } from "@/hooks/useAccessControl";
 
 const Index = () => {
   const navigate = useNavigate();
   const [showTopics, setShowTopics] = useState(false);
   const [user, setUser] = useState<User | null>(null);
+  const { isExpired, daysRemaining, hasAccess } = useAccessControl();
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -107,6 +110,12 @@ const Index = () => {
       navigate("/auth");
       return;
     }
+
+    // Se acesso expirou, redirecionar para página de expiração
+    if (isExpired) {
+      navigate("/acesso-expirado");
+      return;
+    }
     
     if (topicId === "free-chat") {
       navigate("/chat");
@@ -167,6 +176,18 @@ const Index = () => {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="border-white/20 min-w-[200px] rounded-xl" style={{ backgroundColor: '#6A0DAD' }}>
+              {hasAccess && daysRemaining && (
+                <>
+                  <div className="px-2 py-1.5 text-xs text-white/70">
+                    Acesso válido por mais {daysRemaining} dias
+                  </div>
+                  <DropdownMenuSeparator className="bg-white/10" />
+                </>
+              )}
+              <DropdownMenuItem onClick={() => navigate('/resgatar-acesso')} className="cursor-pointer text-white hover:text-white">
+                <Gift className="mr-2 h-4 w-4" />
+                Resgatar código
+              </DropdownMenuItem>
               <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-white hover:text-white">
                 <LogIn className="mr-2 h-4 w-4" />
                 Voltar ao Login

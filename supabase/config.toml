@@ -1,1 +1,16 @@
 project_id = "bxbbfduicxpgibpjunro"
+
+[functions.chat-with-soph]
+verify_jwt = false
+
+[functions.generate-soph-token]
+verify_jwt = false
+
+[functions.get-tool-url]
+verify_jwt = false
+
+[functions.validate-soph-token]
+verify_jwt = false
+
+[functions.redeem-promo-code]
+verify_jwt = false
