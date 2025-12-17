@@ -7,8 +7,8 @@ interface AccessControlState {
   hasAccess: boolean;
   accessUntil: Date | null;
   accessOrigin: string | null;
-  isExpired: boolean;
   daysRemaining: number | null;
+  needsAccess: boolean; // true se user logado mas sem acesso válido
 }
 
 export const useAccessControl = () => {
@@ -18,8 +18,8 @@ export const useAccessControl = () => {
     hasAccess: false,
     accessUntil: null,
     accessOrigin: null,
-    isExpired: false,
     daysRemaining: null,
+    needsAccess: false,
   });
 
   useEffect(() => {
@@ -32,8 +32,8 @@ export const useAccessControl = () => {
           hasAccess: false,
           accessUntil: null,
           accessOrigin: null,
-          isExpired: false,
           daysRemaining: null,
+          needsAccess: false,
         });
         return;
       }
@@ -57,8 +57,8 @@ export const useAccessControl = () => {
             hasAccess: false,
             accessUntil: null,
             accessOrigin: null,
-            isExpired: false,
             daysRemaining: null,
+            needsAccess: true, // User logado mas nunca resgatou acesso
           });
           return;
         }
@@ -66,7 +66,6 @@ export const useAccessControl = () => {
         const accessUntil = new Date(profile.access_until);
         const now = new Date();
         const hasAccess = accessUntil > now;
-        const isExpired = !hasAccess && profile.access_until !== null;
         
         // Calcular dias restantes
         let daysRemaining: number | null = null;
@@ -80,8 +79,8 @@ export const useAccessControl = () => {
           hasAccess,
           accessUntil,
           accessOrigin: profile.access_origin,
-          isExpired,
           daysRemaining,
+          needsAccess: !hasAccess, // Precisa de acesso se não tem acesso válido
         });
       } catch (error) {
         console.error('Erro ao verificar acesso:', error);
