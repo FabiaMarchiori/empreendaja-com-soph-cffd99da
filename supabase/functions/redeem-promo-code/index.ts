@@ -19,7 +19,6 @@ serve(async (req) => {
     // Cliente com auth do usuário
     const authHeader = req.headers.get('Authorization');
     if (!authHeader) {
-      console.log('Requisição sem header de autorização');
       return new Response(JSON.stringify({ error: 'Não autorizado' }), {
         status: 401,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
@@ -33,19 +32,15 @@ serve(async (req) => {
     // Verificar usuário autenticado
     const { data: { user }, error: userError } = await supabaseUser.auth.getUser();
     if (userError || !user) {
-      console.log('Erro ao verificar usuário:', userError);
       return new Response(JSON.stringify({ error: 'Usuário não autenticado' }), {
         status: 401,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       });
     }
 
-    console.log('Usuário autenticado:', user.id, user.email);
-
     // Receber código
     const { code } = await req.json();
     if (!code || typeof code !== 'string' || code.trim().length === 0) {
-      console.log('Código inválido recebido:', code);
       return new Response(JSON.stringify({ error: 'Código inválido' }), {
         status: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
@@ -53,7 +48,6 @@ serve(async (req) => {
     }
 
     const normalizedCode = code.trim().toUpperCase();
-    console.log('Tentando resgatar código:', normalizedCode);
 
     // Cliente service_role para operações administrativas
     const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey);
@@ -68,7 +62,6 @@ serve(async (req) => {
     if (existingProfile?.access_until) {
       const accessUntil = new Date(existingProfile.access_until);
       if (accessUntil > new Date()) {
-        console.log('Usuário já tem acesso ativo até:', accessUntil);
         return new Response(JSON.stringify({ 
           error: 'Você já possui acesso ativo até ' + accessUntil.toLocaleDateString('pt-BR')
         }), {
@@ -87,7 +80,7 @@ serve(async (req) => {
       .maybeSingle();
 
     if (codeError) {
-      console.error('Erro ao buscar código:', codeError);
+      console.error('Error fetching promo code:', codeError);
       return new Response(JSON.stringify({ error: 'Erro ao verificar código' }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
@@ -95,7 +88,6 @@ serve(async (req) => {
     }
 
     if (!promoCode) {
-      console.log('Código não encontrado ou já utilizado:', normalizedCode);
       return new Response(JSON.stringify({ error: 'Código inválido ou já utilizado' }), {
         status: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
@@ -104,7 +96,6 @@ serve(async (req) => {
 
     // Verificar se código tem email vinculado (opcional)
     if (promoCode.email && promoCode.email.toLowerCase() !== user.email?.toLowerCase()) {
-      console.log('Código vinculado a outro email:', promoCode.email, '!==', user.email);
       return new Response(JSON.stringify({ error: 'Este código está vinculado a outro e-mail' }), {
         status: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
@@ -115,8 +106,6 @@ serve(async (req) => {
     const now = new Date();
     const expiresAt = new Date(now);
     expiresAt.setMonth(expiresAt.getMonth() + promoCode.duration_months);
-
-    console.log('Processando código - expira em:', expiresAt);
 
     // Marcar código como usado
     const { error: updateCodeError } = await supabaseAdmin
@@ -130,7 +119,7 @@ serve(async (req) => {
       .eq('id', promoCode.id);
 
     if (updateCodeError) {
-      console.error('Erro ao atualizar código:', updateCodeError);
+      console.error('Error updating promo code:', updateCodeError);
       return new Response(JSON.stringify({ error: 'Erro ao processar código' }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
@@ -149,7 +138,7 @@ serve(async (req) => {
       }, { onConflict: 'id' });
 
     if (profileError) {
-      console.error('Erro ao atualizar perfil:', profileError);
+      console.error('Error updating profile:', profileError);
       // Reverter o código para não usado
       await supabaseAdmin
         .from('promo_codes')
@@ -162,8 +151,6 @@ serve(async (req) => {
       });
     }
 
-    console.log('Código resgatado com sucesso! Acesso até:', expiresAt);
-
     return new Response(JSON.stringify({
       success: true,
       message: 'Acesso ativado com sucesso!',
@@ -174,7 +161,7 @@ serve(async (req) => {
     });
 
   } catch (error) {
-    console.error('Erro no redeem-promo-code:', error);
+    console.error('Internal server error:', error);
     return new Response(JSON.stringify({ error: 'Erro interno do servidor' }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }

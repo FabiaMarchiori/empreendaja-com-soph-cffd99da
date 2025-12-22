@@ -13,41 +13,31 @@ export default function SSOEntry() {
   useEffect(() => {
     const token = searchParams.get('token');
     
-    console.log('[SSOEntry] Iniciando validação de token...');
-    
     if (!token) {
-      console.log('[SSOEntry] Token não fornecido na URL');
       setStatus('error');
       setErrorMessage('Token não fornecido');
       return;
     }
 
-    console.log('[SSOEntry] Token recebido, validando...');
-
     validateSophToken(token).then((result) => {
-      console.log('[SSOEntry] Resultado da validação:', result);
-      
       if (result.valid) {
         const userId = result.payload?.sub || 'sso_user';
-        console.log('[SSOEntry] Token válido! User:', userId);
         
-        // Store validation in sessionStorage BEFORE redirect
+        // Store token for re-validation, plus validation timestamp
+        sessionStorage.setItem('soph_sso_token', token);
         sessionStorage.setItem('soph_sso_valid', 'true');
         sessionStorage.setItem('soph_sso_user', userId);
-        
-        console.log('[SSOEntry] SessionStorage setado, redirecionando para /chat...');
+        sessionStorage.setItem('soph_sso_validated_at', Date.now().toString());
         
         // Small delay to ensure sessionStorage is written
         setTimeout(() => {
           navigate('/chat', { replace: true });
         }, 100);
       } else {
-        console.log('[SSOEntry] Token inválido:', result.error);
         setStatus('error');
         setErrorMessage(result.error || 'Acesso não autorizado');
       }
-    }).catch((err) => {
-      console.error('[SSOEntry] Erro na validação:', err);
+    }).catch(() => {
       setStatus('error');
       setErrorMessage('Erro ao validar token');
     });
