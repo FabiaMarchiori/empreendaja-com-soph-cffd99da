@@ -67,29 +67,6 @@ export default function Auth() {
     <div className="min-h-screen flex items-center justify-center p-4 sm:p-6 bg-[#0A0B1E]">
       <div className="w-full max-w-4xl">
         <div className="text-center mb-8 animate-scale-in">
-          <div className="mb-6 flex justify-center">
-            <video
-              autoPlay
-              muted
-              loop
-              controls
-              playsInline
-              preload="auto"
-              className="w-[80vw] sm:w-[75vw] md:w-[65vw] lg:w-[55vw] max-w-2xl aspect-video rounded-2xl shadow-lg"
-              style={{
-                background: 'transparent',
-                border: 'none',
-                boxShadow: 'none',
-                outline: 'none'
-              }}
-            >
-              <source 
-                src="https://frtnvbhmrtuelztgumou.supabase.co/storage/v1/object/public/videos/Untitled%20design.mp4" 
-                type="video/mp4" 
-              />
-              Seu navegador não suporta vídeos.
-            </video>
-          </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black mb-3 shimmer-text drop-shadow-lg">
             EmpreendaJá
           </h1>
