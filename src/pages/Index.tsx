@@ -260,10 +260,10 @@ const Index = () => {
             {/* Avatar Circular Premium da Soph */}
             <div className="relative animate-float">
               {/* Névoa roxa luminosa atrás */}
-              <div className="absolute inset-0 w-48 h-48 sm:w-64 sm:h-64 mx-auto -top-8 icon-glow-mist"></div>
+              <div className="absolute inset-0 w-56 h-56 sm:w-64 sm:h-64 mx-auto -top-8 icon-glow-mist"></div>
               
               {/* Avatar Circular da Soph */}
-              <div className="relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 mx-auto mb-6 
+              <div className="relative w-40 h-40 sm:w-36 sm:h-36 md:w-44 md:h-44 mx-auto mb-6
                               rounded-full overflow-hidden
                               bg-gradient-to-br from-[#1F155B] to-[#240046]
                               shadow-[0_0_40px_rgba(100,86,183,0.3)]
