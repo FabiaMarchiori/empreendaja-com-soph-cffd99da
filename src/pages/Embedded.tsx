@@ -9,16 +9,18 @@ const ALLOWED_ORIGINS = [
   "http://localhost:3000"
 ];
 
+// Regex para validar subdomínios legítimos do lovable.app
+const LOVABLE_APP_PATTERN = /^https:\/\/[a-z0-9-]+\.lovable\.app$/;
+
 export default function Embedded() {
   const navigate = useNavigate();
   const [status, setStatus] = useState("Carregando sua mentora...");
 
   useEffect(() => {
     const handler = async (event: MessageEvent) => {
-      // Verificar se a origem é permitida
-      const isAllowedOrigin = ALLOWED_ORIGINS.some(origin => 
-        event.origin === origin || event.origin.includes('lovable.app')
-      );
+      // Verificar se a origem é permitida (exata ou subdomínio válido do lovable.app)
+      const isAllowedOrigin = ALLOWED_ORIGINS.includes(event.origin) || 
+        LOVABLE_APP_PATTERN.test(event.origin);
 
       if (!isAllowedOrigin) {
         return;
