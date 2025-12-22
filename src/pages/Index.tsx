@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import sophAvatar from "@/assets/soph-avatar.png";
 import { TopicCard } from "@/components/TopicCard";
 import { 
   TrendingUp, 
@@ -256,20 +257,26 @@ const Index = () => {
       {!showTopics ? (
         <div className="relative flex flex-col items-center justify-center min-h-screen p-4 sm:p-6 text-center">
           <div className="max-w-5xl space-y-8">
-            {/* Animated Avatar with Purple Glow Mist */}
+            {/* Avatar Circular Premium da Soph */}
             <div className="relative animate-float">
               {/* Névoa roxa luminosa atrás */}
               <div className="absolute inset-0 w-48 h-48 sm:w-64 sm:h-64 mx-auto -top-8 icon-glow-mist"></div>
-              <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto mb-6 rounded-3xl p-2 
-                              bg-[#6456B7] 
-                              shadow-[0_0_40px_rgba(100,86,183,0.4)] animate-scale-in">
-                <div className="w-full h-full rounded-2xl bg-[#6456B7] 
-                                flex items-center justify-center">
-                  <Sparkles className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 text-white animate-pulse" />
-                </div>
+              
+              {/* Avatar Circular da Soph */}
+              <div className="relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 mx-auto mb-6 
+                              rounded-full overflow-hidden
+                              bg-gradient-to-br from-[#1F155B] to-[#240046]
+                              shadow-[0_0_40px_rgba(100,86,183,0.3)]
+                              border-2 border-white/10
+                              animate-scale-in">
+                <img 
+                  src={sophAvatar} 
+                  alt="Soph - Mentora Virtual" 
+                  className="w-full h-full object-cover object-top scale-[1.8] translate-y-[30%]"
+                />
               </div>
               
-              {/* Floating Particles around icon */}
+              {/* Floating Particles around avatar */}
               <div className="particle particle-pink absolute w-2 h-2 rounded-full top-0 left-1/4" style={{ animationDelay: '0s' }}></div>
               <div className="particle particle-blue absolute w-3 h-3 rounded-full top-1/4 right-1/4" style={{ animationDelay: '0.5s' }}></div>
               <div className="particle particle-cyan absolute w-2 h-2 rounded-full bottom-1/4 left-1/3" style={{ animationDelay: '1s' }}></div>
