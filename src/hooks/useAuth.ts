@@ -4,6 +4,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { User } from "@supabase/supabase-js";
 import { validateSophToken } from "@/lib/validateSophToken";
 
+// SSO validation window: 5 minutes (matches token expiry)
+const SSO_VALIDATION_MAX_AGE_MS = 5 * 60 * 1000;
+
 interface AuthState {
   user: User | null;
   ssoUser: string | null;
@@ -22,30 +25,44 @@ export function useAuth(redirectOnUnauthenticated: boolean = true): AuthState {
     const validateSSO = async () => {
       // Check for SSO token and validate it server-side
       const ssoToken = sessionStorage.getItem('soph_sso_token');
+      const validatedAt = sessionStorage.getItem('soph_sso_validated_at');
       
       if (ssoToken) {
-        console.log('[useAuth] SSO token found, validating server-side...');
+        // Check if validation is stale (older than 5 minutes)
+        if (validatedAt) {
+          const elapsed = Date.now() - parseInt(validatedAt, 10);
+          if (elapsed > SSO_VALIDATION_MAX_AGE_MS) {
+            // Token expired, clear and re-validate
+            sessionStorage.removeItem('soph_sso_token');
+            sessionStorage.removeItem('soph_sso_valid');
+            sessionStorage.removeItem('soph_sso_user');
+            sessionStorage.removeItem('soph_sso_validated_at');
+            return false;
+          }
+        }
+        
         try {
           const result = await validateSophToken(ssoToken);
           
           if (result.valid && result.payload?.sub) {
-            console.log('[useAuth] SSO token válido:', result.payload.sub);
+            // Update validation timestamp
+            sessionStorage.setItem('soph_sso_validated_at', Date.now().toString());
             setSsoUser(result.payload.sub);
             setLoading(false);
             return true; // SSO valid
           } else {
-            console.warn('[useAuth] SSO token inválido, limpando sessão');
             // Clear invalid tokens
             sessionStorage.removeItem('soph_sso_token');
             sessionStorage.removeItem('soph_sso_valid');
             sessionStorage.removeItem('soph_sso_user');
+            sessionStorage.removeItem('soph_sso_validated_at');
           }
-        } catch (err) {
-          console.error('[useAuth] Erro ao validar SSO token:', err);
+        } catch {
           // Clear tokens on error
           sessionStorage.removeItem('soph_sso_token');
           sessionStorage.removeItem('soph_sso_valid');
           sessionStorage.removeItem('soph_sso_user');
+          sessionStorage.removeItem('soph_sso_validated_at');
         }
       }
       
@@ -59,7 +76,6 @@ export function useAuth(redirectOnUnauthenticated: boolean = true): AuthState {
 
       // Fallback to Supabase authentication
       const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-        console.log('[useAuth] Auth state changed:', _event, session?.user?.email);
         setUser(session?.user ?? null);
         setLoading(false);
         
@@ -69,7 +85,6 @@ export function useAuth(redirectOnUnauthenticated: boolean = true): AuthState {
       });
 
       supabase.auth.getSession().then(({ data: { session } }) => {
-        console.log('[useAuth] Session check:', session?.user?.email);
         setUser(session?.user ?? null);
         setLoading(false);
         
