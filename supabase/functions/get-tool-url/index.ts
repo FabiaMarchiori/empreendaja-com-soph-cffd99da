@@ -41,7 +41,30 @@ serve(async (req) => {
       });
     }
 
-    console.log("Authenticated user requesting tool URL:", user.id);
+    // Check if user has valid access (access_until > now)
+    const { data: profile, error: profileError } = await supabaseClient
+      .from('profiles')
+      .select('access_until')
+      .eq('id', user.id)
+      .maybeSingle();
+
+    if (profileError) {
+      console.error("Profile fetch error:", profileError);
+      return new Response(JSON.stringify({ error: "Failed to verify access" }), {
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    if (!profile?.access_until || new Date(profile.access_until) <= new Date()) {
+      console.error("Access expired or not granted for user:", user.id);
+      return new Response(JSON.stringify({ error: "Access expired or not granted" }), {
+        status: 403,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    console.log("Authenticated user with valid access requesting tool URL:", user.id);
 
     const { slug } = await req.json();
 

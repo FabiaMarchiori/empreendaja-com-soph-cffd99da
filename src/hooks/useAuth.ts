@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { User } from "@supabase/supabase-js";
+import { validateSophToken } from "@/lib/validateSophToken";
 
 interface AuthState {
   user: User | null;
@@ -18,39 +19,69 @@ export function useAuth(redirectOnUnauthenticated: boolean = true): AuthState {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check SSO first (sessionStorage)
-    const ssoValid = sessionStorage.getItem('soph_sso_valid');
-    const ssoUserData = sessionStorage.getItem('soph_sso_user');
-    
-    if (ssoValid === 'true' && ssoUserData) {
-      console.log('[useAuth] SSO válido encontrado:', ssoUserData);
-      setSsoUser(ssoUserData);
-      setLoading(false);
-      return; // SSO valid, no need to check Supabase
-    }
-
-    // Fallback to Supabase authentication
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      console.log('[useAuth] Auth state changed:', _event, session?.user?.email);
-      setUser(session?.user ?? null);
-      setLoading(false);
+    const validateSSO = async () => {
+      // Check for SSO token and validate it server-side
+      const ssoToken = sessionStorage.getItem('soph_sso_token');
       
-      if (!session && redirectOnUnauthenticated) {
-        navigate("/auth");
+      if (ssoToken) {
+        console.log('[useAuth] SSO token found, validating server-side...');
+        try {
+          const result = await validateSophToken(ssoToken);
+          
+          if (result.valid && result.payload?.sub) {
+            console.log('[useAuth] SSO token válido:', result.payload.sub);
+            setSsoUser(result.payload.sub);
+            setLoading(false);
+            return true; // SSO valid
+          } else {
+            console.warn('[useAuth] SSO token inválido, limpando sessão');
+            // Clear invalid tokens
+            sessionStorage.removeItem('soph_sso_token');
+            sessionStorage.removeItem('soph_sso_valid');
+            sessionStorage.removeItem('soph_sso_user');
+          }
+        } catch (err) {
+          console.error('[useAuth] Erro ao validar SSO token:', err);
+          // Clear tokens on error
+          sessionStorage.removeItem('soph_sso_token');
+          sessionStorage.removeItem('soph_sso_valid');
+          sessionStorage.removeItem('soph_sso_user');
+        }
       }
-    });
-
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      console.log('[useAuth] Session check:', session?.user?.email);
-      setUser(session?.user ?? null);
-      setLoading(false);
       
-      if (!session && redirectOnUnauthenticated) {
-        navigate("/auth");
-      }
-    });
+      return false; // No valid SSO
+    };
 
-    return () => subscription.unsubscribe();
+    const checkAuth = async () => {
+      // First, try SSO validation
+      const ssoValid = await validateSSO();
+      if (ssoValid) return;
+
+      // Fallback to Supabase authentication
+      const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+        console.log('[useAuth] Auth state changed:', _event, session?.user?.email);
+        setUser(session?.user ?? null);
+        setLoading(false);
+        
+        if (!session && redirectOnUnauthenticated) {
+          navigate("/auth");
+        }
+      });
+
+      supabase.auth.getSession().then(({ data: { session } }) => {
+        console.log('[useAuth] Session check:', session?.user?.email);
+        setUser(session?.user ?? null);
+        setLoading(false);
+        
+        if (!session && redirectOnUnauthenticated) {
+          navigate("/auth");
+        }
+      });
+
+      return () => subscription.unsubscribe();
+    };
+
+    checkAuth();
   }, [navigate, redirectOnUnauthenticated]);
 
   const isAuthenticated = !!user || !!ssoUser;
