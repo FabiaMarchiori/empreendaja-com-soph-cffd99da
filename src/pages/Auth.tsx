@@ -73,6 +73,7 @@ export default function Auth() {
           <p className="text-white text-lg sm:text-xl md:text-2xl font-medium drop-shadow-md">
             Entre para conversar com a Soph
           </p>
+          {/* BUILD MARKER: v2-2024-12-22 - REMOVER DEPOIS */}
         </div>
 
         <div className="glass-strong rounded-3xl p-5 sm:p-6 md:p-8 shadow-elegant max-w-md mx-auto">
