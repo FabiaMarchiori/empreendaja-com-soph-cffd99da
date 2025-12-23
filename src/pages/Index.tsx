@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import sophAvatar from "@/assets/soph-avatar.png";
+import sophAvatar from "@/assets/soph-avatar-full.png";
 import { TopicCard } from "@/components/TopicCard";
 import { 
   TrendingUp, 
@@ -257,22 +257,22 @@ const Index = () => {
       {!showTopics ? (
         <div className="relative flex flex-col items-center justify-center min-h-screen p-4 sm:p-6 text-center">
           <div className="max-w-5xl space-y-8">
-            {/* Avatar Circular Premium da Soph */}
+            {/* Avatar Premium da Soph - Da cintura para cima */}
             <div className="relative animate-float">
               {/* Névoa roxa luminosa atrás */}
-              <div className="absolute inset-0 w-56 h-56 sm:w-64 sm:h-64 mx-auto -top-8 icon-glow-mist"></div>
+              <div className="absolute inset-0 w-72 h-72 sm:w-80 sm:h-80 mx-auto -top-8 icon-glow-mist"></div>
               
-              {/* Avatar Circular da Soph */}
-              <div className="relative w-40 h-40 sm:w-36 sm:h-36 md:w-44 md:h-44 mx-auto mb-6
-                              rounded-full overflow-hidden
+              {/* Avatar da Soph - Formato retangular arredondado */}
+              <div className="relative w-48 h-56 sm:w-52 sm:h-64 md:w-60 md:h-72 mx-auto mb-6
+                              rounded-3xl overflow-hidden
                               bg-gradient-to-br from-[#1F155B] to-[#240046]
-                              shadow-[0_0_40px_rgba(100,86,183,0.3)]
+                              shadow-[0_0_50px_rgba(100,86,183,0.4)]
                               border-2 border-white/10
                               animate-scale-in">
                 <img 
                   src={sophAvatar} 
                   alt="Soph - Mentora Virtual" 
-                  className="w-full h-full object-cover object-top scale-[1.8] translate-y-[30%]"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
               
