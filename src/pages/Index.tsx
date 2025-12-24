@@ -258,12 +258,12 @@ const Index = () => {
         <div className="relative flex flex-col items-center justify-center min-h-screen p-4 sm:p-6 text-center">
           <div className="max-w-5xl space-y-8">
             {/* Avatar da Soph - Sem moldura, integrado ao background */}
-            <div className="relative animate-float">
+            <div className="relative">
               {/* Névoa roxa luminosa atrás - glow sutil */}
-              <div className="absolute inset-0 w-72 h-72 sm:w-80 sm:h-80 mx-auto -top-8 icon-glow-mist"></div>
+              <div className="absolute inset-0 w-80 h-80 sm:w-96 sm:h-96 mx-auto -top-8 icon-glow-mist"></div>
               
               {/* Avatar da Soph - SEM moldura, apenas drop-shadow sutil */}
-              <div className="relative w-56 sm:w-64 md:w-72 lg:w-80 mx-auto mb-6 animate-scale-in">
+              <div className="relative w-72 sm:w-80 md:w-96 lg:w-[28rem] mx-auto mb-6 animate-scale-in">
                 <img 
                   src={sophAvatar} 
                   alt="Soph - Mentora Virtual" 
