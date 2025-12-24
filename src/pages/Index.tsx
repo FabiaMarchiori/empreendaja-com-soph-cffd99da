@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import sophAvatar from "@/assets/soph-avatar-full.png";
+import sophAvatar from "@/assets/soph-avatar-transparent.png";
 import { TopicCard } from "@/components/TopicCard";
 import { 
   TrendingUp, 
@@ -257,22 +257,17 @@ const Index = () => {
       {!showTopics ? (
         <div className="relative flex flex-col items-center justify-center min-h-screen p-4 sm:p-6 text-center">
           <div className="max-w-5xl space-y-8">
-            {/* Avatar Premium da Soph - Da cintura para cima */}
+            {/* Avatar da Soph - Sem moldura, integrado ao background */}
             <div className="relative animate-float">
-              {/* Névoa roxa luminosa atrás */}
+              {/* Névoa roxa luminosa atrás - glow sutil */}
               <div className="absolute inset-0 w-72 h-72 sm:w-80 sm:h-80 mx-auto -top-8 icon-glow-mist"></div>
               
-              {/* Avatar da Soph - Formato retangular arredondado */}
-              <div className="relative w-48 h-56 sm:w-52 sm:h-64 md:w-60 md:h-72 mx-auto mb-6
-                              rounded-3xl overflow-hidden
-                              bg-gradient-to-br from-[#1F155B] to-[#240046]
-                              shadow-[0_0_50px_rgba(100,86,183,0.4)]
-                              border-2 border-white/10
-                              animate-scale-in">
+              {/* Avatar da Soph - SEM moldura, apenas drop-shadow sutil */}
+              <div className="relative w-48 sm:w-56 md:w-64 lg:w-72 mx-auto mb-6 animate-scale-in">
                 <img 
                   src={sophAvatar} 
                   alt="Soph - Mentora Virtual" 
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-auto drop-shadow-[0_0_30px_rgba(100,86,183,0.5)]"
                 />
               </div>
               
