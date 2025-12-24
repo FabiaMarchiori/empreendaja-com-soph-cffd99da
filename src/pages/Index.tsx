@@ -263,7 +263,7 @@ const Index = () => {
               <div className="absolute inset-0 w-72 h-72 sm:w-80 sm:h-80 mx-auto -top-8 icon-glow-mist"></div>
               
               {/* Avatar da Soph - SEM moldura, apenas drop-shadow sutil */}
-              <div className="relative w-48 sm:w-56 md:w-64 lg:w-72 mx-auto mb-6 animate-scale-in">
+              <div className="relative w-56 sm:w-64 md:w-72 lg:w-80 mx-auto mb-6 animate-scale-in">
                 <img 
                   src={sophAvatar} 
                   alt="Soph - Mentora Virtual" 
