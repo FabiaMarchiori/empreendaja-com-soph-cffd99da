@@ -6,6 +6,12 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+// URL da API do App Importadoras para validação de códigos
+const IMPORTADORAS_API_URL = 'https://appdeimportadoras25demarco.netlify.app/api/validate-soph-code';
+
+// Duração fixa do acesso em meses (regra de negócio do App Importadoras)
+const DURATION_MONTHS = 6;
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -71,60 +77,58 @@ serve(async (req) => {
       }
     }
 
-    // Verificar se código existe e não foi usado
-    const { data: promoCode, error: codeError } = await supabaseAdmin
-      .from('promo_codes')
-      .select('*')
-      .eq('code', normalizedCode)
-      .eq('used', false)
-      .maybeSingle();
+    // ===== INTEGRAÇÃO COM API DO APP IMPORTADORAS =====
+    console.log('Calling Importadoras API for code validation...');
+    
+    let importadorasResult;
+    try {
+      const importadorasResponse = await fetch(IMPORTADORAS_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: normalizedCode })
+      });
 
-    if (codeError) {
-      console.error('Error fetching promo code:', codeError);
-      return new Response(JSON.stringify({ error: 'Erro ao verificar código' }), {
+      console.log('Importadoras API response status:', importadorasResponse.status);
+
+      if (!importadorasResponse.ok) {
+        console.error('Importadoras API returned non-OK status:', importadorasResponse.status);
+        return new Response(JSON.stringify({ 
+          error: 'Não foi possível validar o código. Tente novamente em alguns instantes.' 
+        }), {
+          status: 500,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+
+      importadorasResult = await importadorasResponse.json();
+      console.log('Importadoras API result valid:', importadorasResult.valid);
+
+    } catch (fetchError) {
+      console.error('Error calling Importadoras API:', fetchError);
+      return new Response(JSON.stringify({ 
+        error: 'Não foi possível validar o código. Tente novamente em alguns instantes.' 
+      }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       });
     }
 
-    if (!promoCode) {
-      return new Response(JSON.stringify({ error: 'Código inválido ou já utilizado' }), {
+    // Verificar resposta da API
+    if (!importadorasResult.valid) {
+      return new Response(JSON.stringify({ 
+        error: 'Código inválido ou não autorizado. Verifique seu acesso no App Importadoras.' 
+      }), {
         status: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       });
     }
 
-    // Verificar se código tem email vinculado (opcional)
-    if (promoCode.email && promoCode.email.toLowerCase() !== user.email?.toLowerCase()) {
-      return new Response(JSON.stringify({ error: 'Este código está vinculado a outro e-mail' }), {
-        status: 400,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-      });
-    }
-
-    // Calcular data de expiração
+    // ===== CÓDIGO VÁLIDO - LIBERAR ACESSO =====
+    
+    // Calcular data de expiração (6 meses fixos)
     const now = new Date();
     const expiresAt = new Date(now);
-    expiresAt.setMonth(expiresAt.getMonth() + promoCode.duration_months);
-
-    // Marcar código como usado
-    const { error: updateCodeError } = await supabaseAdmin
-      .from('promo_codes')
-      .update({
-        used: true,
-        used_by: user.id,
-        used_at: now.toISOString(),
-        expires_at: expiresAt.toISOString()
-      })
-      .eq('id', promoCode.id);
-
-    if (updateCodeError) {
-      console.error('Error updating promo code:', updateCodeError);
-      return new Response(JSON.stringify({ error: 'Erro ao processar código' }), {
-        status: 500,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-      });
-    }
+    expiresAt.setMonth(expiresAt.getMonth() + DURATION_MONTHS);
 
     // Atualizar ou criar perfil do usuário
     const { error: profileError } = await supabaseAdmin
@@ -132,30 +136,26 @@ serve(async (req) => {
       .upsert({
         id: user.id,
         email: user.email,
-        access_origin: promoCode.origin,
+        access_origin: 'importadoras',
         access_until: expiresAt.toISOString(),
         updated_at: now.toISOString()
       }, { onConflict: 'id' });
 
     if (profileError) {
       console.error('Error updating profile:', profileError);
-      // Reverter o código para não usado
-      await supabaseAdmin
-        .from('promo_codes')
-        .update({ used: false, used_by: null, used_at: null, expires_at: null })
-        .eq('id', promoCode.id);
-      
       return new Response(JSON.stringify({ error: 'Erro ao ativar acesso' }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       });
     }
 
+    console.log('Access granted successfully for user:', user.id);
+
     return new Response(JSON.stringify({
       success: true,
       message: 'Acesso ativado com sucesso!',
       access_until: expiresAt.toISOString(),
-      duration_months: promoCode.duration_months
+      duration_months: DURATION_MONTHS
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     });
