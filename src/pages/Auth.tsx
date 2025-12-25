@@ -102,6 +102,8 @@ export default function Auth() {
                 sign_in: {
                   email_label: "Email",
                   password_label: "Senha",
+                  email_input_placeholder: "seu@email.com",
+                  password_input_placeholder: "••••••••",
                   button_label: "Entrar",
                   loading_button_label: "Entrando...",
                   link_text: "Já tem uma conta? Entre",
@@ -109,9 +111,18 @@ export default function Auth() {
                 sign_up: {
                   email_label: "Email",
                   password_label: "Senha",
+                  email_input_placeholder: "seu@email.com",
+                  password_input_placeholder: "••••••••",
                   button_label: "Criar conta",
                   loading_button_label: "Criando conta...",
                   link_text: "Não tem uma conta? Cadastre-se",
+                },
+                forgotten_password: {
+                  email_label: "Email",
+                  email_input_placeholder: "seu@email.com",
+                  button_label: "Enviar instruções",
+                  loading_button_label: "Enviando...",
+                  link_text: "Esqueceu sua senha?",
                 },
               },
             }}
