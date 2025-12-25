@@ -412,16 +412,7 @@ div[class*='fixed']:has(a[href*='lovable.dev']) {
   background: rgba(255, 255, 255, 0.05) !important;
 }
 
-/* Traduzir "Forgot your password?" para português */
-.auth-container a[href*="forgot-password"],
-.auth-container a:contains("Forgot") {
-  font-size: 0 !important;
-}
-
-.auth-container a[href*="forgot-password"]::after {
-  content: "Esqueceu sua senha?";
-  font-size: 14px !important;
-}
+/* Tradução já configurada na prop localization do SupabaseAuth */
 
 /* Textos auxiliares (separadores, mensagens) */
 .auth-container span,
