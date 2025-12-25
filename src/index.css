@@ -147,10 +147,50 @@
 /* Supabase Auth UI Customization */
 .auth-container input {
   @apply glass-strong text-white placeholder:text-muted-foreground;
+  border-radius: 16px !important;
+  padding: 14px 18px !important;
+  font-size: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+.auth-container input:focus {
+  border-color: hsl(var(--primary)) !important;
+  box-shadow: 0 0 0 3px hsl(var(--primary) / 0.2) !important;
+}
+
+.auth-container input[type="password"] {
+  padding-right: 48px !important;
 }
 
 .auth-container label {
   @apply text-white font-medium;
+  margin-bottom: 8px !important;
+}
+
+/* Botões com bordas arredondadas */
+.auth-container button {
+  border-radius: 16px !important;
+  padding: 14px 24px !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.auth-container button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px -5px hsl(var(--primary) / 0.4) !important;
+}
+
+/* Botão do Google específico */
+.auth-container button[type="button"] {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+.auth-container button[type="button"]:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
 }
 
 /* Hide Lovable badges */
@@ -362,18 +402,44 @@ div[class*='fixed']:has(a[href*='lovable.dev']) {
   color: #FFFFFF !important;
   font-weight: 500 !important;
   opacity: 0.9 !important;
-  transition: opacity 0.2s ease !important;
+  transition: all 0.2s ease !important;
+  border-radius: 8px !important;
+  padding: 4px 8px !important;
 }
 
 .auth-container a:hover {
   opacity: 1 !important;
-  text-decoration: underline !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Traduzir "Forgot your password?" para português */
+.auth-container a[href*="forgot-password"],
+.auth-container a:contains("Forgot") {
+  font-size: 0 !important;
+}
+
+.auth-container a[href*="forgot-password"]::after {
+  content: "Esqueceu sua senha?";
+  font-size: 14px !important;
 }
 
 /* Textos auxiliares (separadores, mensagens) */
 .auth-container span,
 .auth-container p {
   color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Separador "ou" estilizado */
+.auth-container hr {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  margin: 20px 0 !important;
+}
+
+/* Container do form mais espaçado */
+.auth-container form {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
 }
 
 /* === PREMIUM FUTURISTIC ANIMATIONS === */
