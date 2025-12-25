@@ -14,11 +14,11 @@
     --popover-foreground: 210 40% 98%;
     --primary: 263 70% 50%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 280 65% 60%;
+    --secondary: 263 60% 60%;
     --secondary-foreground: 0 0% 100%;
     --muted: 217 33% 17%;
     --muted-foreground: 215 20% 65%;
-    --accent: 188 94% 43%;
+    --accent: 210 100% 65%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
@@ -26,10 +26,10 @@
     --input: 217 33% 17%;
     --ring: 263 70% 50%;
     --chart-1: 263 70% 50%;
-    --chart-2: 280 65% 60%;
-    --chart-3: 188 94% 43%;
+    --chart-2: 263 60% 60%;
+    --chart-3: 210 100% 65%;
     --chart-4: 220 70% 50%;
-    --chart-5: 340 75% 55%;
+    --chart-5: 263 70% 60%;
     --radius: 1rem;
 
     /* Premium Gradients */
@@ -38,7 +38,7 @@
     --gradient-shimmer: linear-gradient(90deg, 
       hsl(var(--primary)) 0%, 
       hsl(var(--secondary)) 25%, 
-      hsl(var(--accent)) 50%, 
+      #4AAEFF 50%, 
       hsl(var(--secondary)) 75%, 
       hsl(var(--primary)) 100%);
 
@@ -69,11 +69,11 @@
     --popover-foreground: 210 40% 98%;
     --primary: 263 70% 50%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 280 65% 60%;
+    --secondary: 263 60% 60%;
     --secondary-foreground: 0 0% 100%;
     --muted: 217 33% 17%;
     --muted-foreground: 215 20% 65%;
-    --accent: 188 94% 43%;
+    --accent: 210 100% 65%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
@@ -81,10 +81,10 @@
     --input: 217 33% 17%;
     --ring: 263 70% 50%;
     --chart-1: 263 70% 50%;
-    --chart-2: 280 65% 60%;
-    --chart-3: 188 94% 43%;
+    --chart-2: 263 60% 60%;
+    --chart-3: 210 100% 65%;
     --chart-4: 220 70% 50%;
-    --chart-5: 340 75% 55%;
+    --chart-5: 263 70% 60%;
 
     --sidebar-background: 222 47% 11%;
     --sidebar-foreground: 210 40% 98%;
