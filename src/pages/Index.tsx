@@ -295,10 +295,10 @@ const Index = () => {
               <Button
                 size="lg"
                 onClick={() => navigate("/auth")}
-                className="relative text-sm sm:text-base md:text-lg px-6 py-4 sm:px-8 sm:py-5 md:px-10 md:py-7 bg-gradient-to-r from-[#9D4EDD] to-[#C77DFF] shadow-[0_0_20px_rgba(157,78,221,0.4)] hover:shadow-[0_0_30px_rgba(199,125,255,0.5)] transition-all font-bold group overflow-hidden"
+                className="relative text-sm sm:text-base md:text-lg px-6 py-4 sm:px-8 sm:py-5 md:px-10 md:py-7 bg-gradient-to-r from-[#7A4FD9] to-[#9D4EDD] shadow-[0_0_20px_rgba(122,79,217,0.4)] hover:shadow-[0_0_30px_rgba(157,78,221,0.5)] transition-all font-bold group overflow-hidden"
               >
                 <span className="relative z-10">Começar Agora</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-[#C77DFF] to-[#9D4EDD] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#9D4EDD] to-[#7A4FD9] opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </Button>
               <Button
                 size="lg"
