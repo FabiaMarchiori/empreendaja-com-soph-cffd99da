@@ -5,9 +5,7 @@ import { useAuth } from './useAuth';
 interface AccessControlState {
   loading: boolean;
   hasAccess: boolean;
-  accessUntil: Date | null;
   accessOrigin: string | null;
-  daysRemaining: number | null;
   needsAccess: boolean; // true se user logado mas sem acesso válido
 }
 
@@ -16,9 +14,7 @@ export const useAccessControl = () => {
   const [state, setState] = useState<AccessControlState>({
     loading: true,
     hasAccess: false,
-    accessUntil: null,
     accessOrigin: null,
-    daysRemaining: null,
     needsAccess: false,
   });
 
@@ -30,9 +26,7 @@ export const useAccessControl = () => {
         setState({
           loading: false,
           hasAccess: false,
-          accessUntil: null,
           accessOrigin: null,
-          daysRemaining: null,
           needsAccess: false,
         });
         return;
@@ -41,7 +35,7 @@ export const useAccessControl = () => {
       try {
         const { data: profile, error } = await supabase
           .from('profiles')
-          .select('access_until, access_origin')
+          .select('has_access, access_origin')
           .eq('id', user.id)
           .maybeSingle();
 
@@ -51,36 +45,13 @@ export const useAccessControl = () => {
           return;
         }
 
-        if (!profile || !profile.access_until) {
-          setState({
-            loading: false,
-            hasAccess: false,
-            accessUntil: null,
-            accessOrigin: null,
-            daysRemaining: null,
-            needsAccess: true, // User logado mas nunca resgatou acesso
-          });
-          return;
-        }
-
-        const accessUntil = new Date(profile.access_until);
-        const now = new Date();
-        const hasAccess = accessUntil > now;
-        
-        // Calcular dias restantes
-        let daysRemaining: number | null = null;
-        if (hasAccess) {
-          const diffTime = accessUntil.getTime() - now.getTime();
-          daysRemaining = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        }
+        const hasAccess = profile?.has_access === true;
 
         setState({
           loading: false,
           hasAccess,
-          accessUntil,
-          accessOrigin: profile.access_origin,
-          daysRemaining,
-          needsAccess: !hasAccess, // Precisa de acesso se não tem acesso válido
+          accessOrigin: profile?.access_origin ?? null,
+          needsAccess: !hasAccess, // Precisa de acesso se has_access não é true
         });
       } catch (error) {
         console.error('Erro ao verificar acesso:', error);
