@@ -34,7 +34,6 @@ const Index = () => {
   
   // Estados locais para verificação de acesso (SEM redirects automáticos)
   const [hasAccess, setHasAccess] = useState(false);
-  const [daysRemaining, setDaysRemaining] = useState<number | null>(null);
   const [needsAccess, setNeedsAccess] = useState(false);
   const [accessLoading, setAccessLoading] = useState(true);
 
@@ -58,34 +57,17 @@ const Index = () => {
         setAccessLoading(false);
         setHasAccess(false);
         setNeedsAccess(false);
-        setDaysRemaining(null);
         return;
       }
 
       try {
         const { data: profile } = await supabase
           .from('profiles')
-          .select('access_until')
+          .select('has_access')
           .eq('id', user.id)
           .maybeSingle();
 
-        if (!profile?.access_until) {
-          setHasAccess(false);
-          setNeedsAccess(true);
-          setAccessLoading(false);
-          return;
-        }
-
-        const accessUntil = new Date(profile.access_until);
-        const now = new Date();
-        const hasValidAccess = accessUntil > now;
-
-        if (hasValidAccess) {
-          const diffTime = accessUntil.getTime() - now.getTime();
-          setDaysRemaining(Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
-        } else {
-          setDaysRemaining(null);
-        }
+        const hasValidAccess = profile?.has_access === true;
 
         setHasAccess(hasValidAccess);
         setNeedsAccess(!hasValidAccess);
@@ -184,7 +166,6 @@ const Index = () => {
     setShowTopics(false);
     setHasAccess(false);
     setNeedsAccess(false);
-    setDaysRemaining(null);
   };
 
   return (
@@ -232,14 +213,6 @@ const Index = () => {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="border-white/20 min-w-[200px] rounded-xl" style={{ backgroundColor: '#6A0DAD' }}>
-              {daysRemaining && (
-                <>
-                  <div className="px-2 py-1.5 text-xs text-white/70">
-                    Acesso válido por mais {daysRemaining} dias
-                  </div>
-                  <DropdownMenuSeparator className="bg-white/10" />
-                </>
-              )}
               <DropdownMenuItem onClick={() => navigate('/chat')} className="cursor-pointer text-white hover:text-white">
                 <MessageCircle className="mr-2 h-4 w-4" />
                 Chat Livre
