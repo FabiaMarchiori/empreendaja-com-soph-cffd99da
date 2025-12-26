@@ -41,10 +41,10 @@ serve(async (req) => {
       });
     }
 
-    // Check if user has valid access (access_until > now)
+    // Check if user has valid access (has_access = true)
     const { data: profile, error: profileError } = await supabaseClient
       .from('profiles')
-      .select('access_until')
+      .select('has_access')
       .eq('id', user.id)
       .maybeSingle();
 
@@ -56,9 +56,9 @@ serve(async (req) => {
       });
     }
 
-    if (!profile?.access_until || new Date(profile.access_until) <= new Date()) {
-      console.error("Access expired or not granted for user:", user.id);
-      return new Response(JSON.stringify({ error: "Access expired or not granted" }), {
+    if (profile?.has_access !== true) {
+      console.error("Access not granted for user:", user.id);
+      return new Response(JSON.stringify({ error: "Access not granted" }), {
         status: 403,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
