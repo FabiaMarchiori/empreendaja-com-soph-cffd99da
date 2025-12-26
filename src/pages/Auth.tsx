@@ -22,24 +22,13 @@ export default function Auth() {
       try {
         const { data: profile } = await supabase
           .from('profiles')
-          .select('access_until')
+          .select('has_access')
           .eq('id', userId)
           .maybeSingle();
 
-        if (!profile?.access_until) {
-          // Usuário nunca resgatou acesso
-          navigate("/sem-acesso");
-          return;
-        }
-
-        const accessUntil = new Date(profile.access_until);
-        const now = new Date();
-        
-        if (accessUntil > now) {
-          // Acesso válido
+        if (profile?.has_access === true) {
           navigate("/");
         } else {
-          // Acesso expirado
           navigate("/sem-acesso");
         }
       } catch (error) {

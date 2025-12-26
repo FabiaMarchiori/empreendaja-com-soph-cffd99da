@@ -96,7 +96,7 @@ const RedeemAccess = () => {
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
-            <Button onClick={() => navigate('/auth')} className="w-full">
+            <Button onClick={() => navigate('/auth', { state: { fromRedemption: true } })} className="w-full">
               Fazer login
             </Button>
             <Button variant="ghost" onClick={() => navigate('/')}>
