@@ -58,10 +58,14 @@ serve(async (req) => {
   }
 
   try {
-    // Verify authentication
+    // Verify authentication - more robust handling
     const authHeader = req.headers.get('Authorization');
-    if (!authHeader) {
-      console.error("No authorization header provided");
+    
+    // Log for debugging
+    console.log("chat-with-soph: Auth header present:", !!authHeader);
+    
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      console.error("No valid authorization header provided");
       return new Response(JSON.stringify({ error: "Authentication required" }), {
         status: 401,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -69,7 +73,15 @@ serve(async (req) => {
     }
 
     // Extract JWT token from Bearer header
-    const token = authHeader.replace('Bearer ', '');
+    const token = authHeader.replace('Bearer ', '').trim();
+    
+    if (!token || token.length < 10) {
+      console.error("Invalid token format");
+      return new Response(JSON.stringify({ error: "Invalid token format" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
     const supabaseClient = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
@@ -77,12 +89,31 @@ serve(async (req) => {
       { global: { headers: { Authorization: authHeader } } }
     );
 
-    // Pass token explicitly to getUser
-    const { data: { user }, error: authError } = await supabaseClient.auth.getUser(token);
+    // Pass token explicitly to getUser with better error handling
+    let user;
+    try {
+      const { data, error: authError } = await supabaseClient.auth.getUser(token);
+      
+      if (authError) {
+        console.error("Auth getUser error:", authError.message);
+        return new Response(JSON.stringify({ error: "Session expired. Please login again." }), {
+          status: 401,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      
+      user = data?.user;
+    } catch (authException) {
+      console.error("Auth exception:", authException);
+      return new Response(JSON.stringify({ error: "Authentication failed" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
-    if (authError || !user) {
-      console.error("Authentication error:", authError);
-      return new Response(JSON.stringify({ error: "Invalid authentication" }), {
+    if (!user) {
+      console.error("No user found for token");
+      return new Response(JSON.stringify({ error: "Invalid session" }), {
         status: 401,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
