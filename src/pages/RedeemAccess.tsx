@@ -12,7 +12,6 @@ const RedeemAccess = () => {
   const [code, setCode] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [accessUntil, setAccessUntil] = useState<string | null>(null);
   const navigate = useNavigate();
   const { toast } = useToast();
   const { isAuthenticated, loading: authLoading } = useAuth();
@@ -61,10 +60,9 @@ const RedeemAccess = () => {
 
       if (data.success) {
         setSuccess(true);
-        setAccessUntil(data.access_until);
         toast({
           title: "Acesso ativado!",
-          description: `Você tem ${data.duration_months} meses de acesso à Soph.`,
+          description: "Você agora tem acesso completo à Soph.",
         });
       }
     } catch (error: any) {
@@ -77,14 +75,6 @@ const RedeemAccess = () => {
     } finally {
       setLoading(false);
     }
-  };
-
-  const formatDate = (dateStr: string) => {
-    return new Date(dateStr).toLocaleDateString('pt-BR', {
-      day: '2-digit',
-      month: 'long',
-      year: 'numeric'
-    });
   };
 
   if (authLoading) {
@@ -140,13 +130,6 @@ const RedeemAccess = () => {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="text-center p-4 rounded-lg bg-primary/10 border border-primary/20">
-              <p className="text-sm text-muted-foreground mb-1">Acesso válido até</p>
-              <p className="text-lg font-semibold text-foreground">
-                {accessUntil ? formatDate(accessUntil) : '6 meses a partir de hoje'}
-              </p>
-            </div>
-            
             <div className="flex items-center gap-2 p-3 rounded-lg bg-muted/50 text-sm text-muted-foreground">
               <Sparkles className="w-4 h-4 text-primary flex-shrink-0" />
               <p>Agora você tem acesso a todas as ferramentas e funcionalidades da Soph!</p>

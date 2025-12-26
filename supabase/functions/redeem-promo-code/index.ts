@@ -9,9 +9,6 @@ const corsHeaders = {
 // URL da API do App Importadoras para validação de códigos
 const IMPORTADORAS_API_URL = 'https://appdeimportadoras25demarco.netlify.app/api/validate-soph-code';
 
-// Duração fixa do acesso em meses (regra de negócio do App Importadoras)
-const DURATION_MONTHS = 6;
-
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -57,25 +54,6 @@ serve(async (req) => {
 
     // Cliente service_role para operações administrativas
     const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey);
-
-    // Verificar se usuário já tem acesso ativo
-    const { data: existingProfile } = await supabaseAdmin
-      .from('profiles')
-      .select('access_until')
-      .eq('id', user.id)
-      .maybeSingle();
-
-    if (existingProfile?.access_until) {
-      const accessUntil = new Date(existingProfile.access_until);
-      if (accessUntil > new Date()) {
-        return new Response(JSON.stringify({ 
-          error: 'Você já possui acesso ativo até ' + accessUntil.toLocaleDateString('pt-BR')
-        }), {
-          status: 400,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-        });
-      }
-    }
 
     // ===== INTEGRAÇÃO COM API DO APP IMPORTADORAS =====
     console.log('Calling Importadoras API for code validation...');
@@ -124,21 +102,17 @@ serve(async (req) => {
     }
 
     // ===== CÓDIGO VÁLIDO - LIBERAR ACESSO =====
-    
-    // Calcular data de expiração (6 meses fixos)
-    const now = new Date();
-    const expiresAt = new Date(now);
-    expiresAt.setMonth(expiresAt.getMonth() + DURATION_MONTHS);
+    console.log('Code valid, granting access for user:', user.id);
 
-    // Atualizar ou criar perfil do usuário
+    // Atualizar ou criar perfil do usuário com has_access = true
     const { error: profileError } = await supabaseAdmin
       .from('profiles')
       .upsert({
         id: user.id,
         email: user.email,
         access_origin: 'importadoras',
-        access_until: expiresAt.toISOString(),
-        updated_at: now.toISOString()
+        has_access: true,
+        updated_at: new Date().toISOString()
       }, { onConflict: 'id' });
 
     if (profileError) {
@@ -153,9 +127,7 @@ serve(async (req) => {
 
     return new Response(JSON.stringify({
       success: true,
-      message: 'Acesso ativado com sucesso!',
-      access_until: expiresAt.toISOString(),
-      duration_months: DURATION_MONTHS
+      message: 'Acesso ativado com sucesso!'
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     });

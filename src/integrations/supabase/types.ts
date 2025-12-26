@@ -20,6 +20,7 @@ export type Database = {
           access_until: string | null
           created_at: string | null
           email: string | null
+          has_access: boolean
           id: string
           updated_at: string | null
         }
@@ -28,6 +29,7 @@ export type Database = {
           access_until?: string | null
           created_at?: string | null
           email?: string | null
+          has_access?: boolean
           id: string
           updated_at?: string | null
         }
@@ -36,6 +38,7 @@ export type Database = {
           access_until?: string | null
           created_at?: string | null
           email?: string | null
+          has_access?: boolean
           id?: string
           updated_at?: string | null
         }
