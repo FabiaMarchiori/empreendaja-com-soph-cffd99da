@@ -3,8 +3,6 @@ import { Button } from "@/components/ui/button";
 import sophAvatar from "@/assets/soph-avatar-transparent.png";
 import { TopicCard } from "@/components/TopicCard";
 import { 
-  TrendingUp, 
-  Calendar, 
   FileText, 
   Award, 
   ShoppingCart, 
@@ -91,18 +89,6 @@ const Index = () => {
   }, [accessLoading, user, hasAccess]);
 
   const topics = [
-    {
-      id: "sales",
-      icon: TrendingUp,
-      title: "Vendas nas Redes Sociais",
-      description: "Aprenda estratégias eficazes para captar vendas"
-    },
-    {
-      id: "content",
-      icon: Calendar,
-      title: "Cronograma de Conteúdo",
-      description: "Planeje suas postagens mensais"
-    },
     {
       id: "mei",
       icon: FileText,
