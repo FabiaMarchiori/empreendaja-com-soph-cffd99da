@@ -142,7 +142,7 @@ const Index = () => {
     if (topicId === "free-chat") {
       navigate("/chat");
     } else {
-      navigate(`/chat?topic=${topicId}`);
+      navigate(`/tool/${topicId}`);
     }
   };
 
