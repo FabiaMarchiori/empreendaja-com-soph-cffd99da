@@ -12,8 +12,10 @@ import {
   LogIn,
   MessageCircle,
   User as UserIcon,
-  LogOut
+  LogOut,
+  Calculator
 } from "lucide-react";
+import { PremiumTopicCard } from "@/components/PremiumTopicCard";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -94,6 +96,13 @@ const Index = () => {
       icon: FileText,
       title: "Abrir MEI",
       description: "Guia completo passo a passo"
+    },
+    {
+      id: "pricing",
+      icon: Calculator,
+      title: "Precificação Inteligente",
+      description: "Calcule o preço ideal dos seus produtos com base em custos, impostos e margem real.",
+      isPremium: true
     },
     {
       id: "brand",
@@ -319,12 +328,21 @@ const Index = () => {
                   animationFillMode: 'both'
                 }}
               >
-                <TopicCard
-                  icon={topic.icon}
-                  title={topic.title}
-                  description={topic.description}
-                  onClick={() => handleTopicClick(topic.id)}
-                />
+                {topic.isPremium ? (
+                  <PremiumTopicCard
+                    icon={topic.icon}
+                    title={topic.title}
+                    description={topic.description}
+                    onClick={() => handleTopicClick(topic.id)}
+                  />
+                ) : (
+                  <TopicCard
+                    icon={topic.icon}
+                    title={topic.title}
+                    description={topic.description}
+                    onClick={() => handleTopicClick(topic.id)}
+                  />
+                )}
               </div>
             ))}
           </div>
