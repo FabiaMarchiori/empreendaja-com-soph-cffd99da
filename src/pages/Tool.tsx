@@ -15,6 +15,13 @@ const ToolContent = () => {
   const [toolName, setToolName] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
 
+  // Redirect pricing to dedicated page (avoids iframe issues with Google OAuth)
+  useEffect(() => {
+    if (slug === "pricing") {
+      navigate("/pricing", { replace: true });
+    }
+  }, [slug, navigate]);
+
   useEffect(() => {
     const fetchToolUrl = async () => {
       if (!isAuthenticated || !slug) return;
