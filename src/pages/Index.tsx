@@ -150,6 +150,8 @@ const Index = () => {
     
     if (topicId === "free-chat") {
       navigate("/chat");
+    } else if (topicId === "pricing") {
+      navigate("/pricing");
     } else {
       navigate(`/tool/${topicId}`);
     }

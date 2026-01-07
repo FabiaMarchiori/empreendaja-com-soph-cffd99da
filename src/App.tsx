@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Chat from "./pages/Chat";
 import Auth from "./pages/Auth";
 import Tool from "./pages/Tool";
+import PricingRedirect from "./pages/PricingRedirect";
 import SSOEntry from "./pages/SSOEntry";
 import Embedded from "./pages/Embedded";
 import RedeemAccess from "./pages/RedeemAccess";
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/sso" element={<SSOEntry />} />
           <Route path="/embedded" element={<Embedded />} />
           <Route path="/tool/:slug" element={<Tool />} />
+          <Route path="/pricing" element={<PricingRedirect />} />
           <Route path="/resgatar-acesso" element={<RedeemAccess />} />
           <Route path="/sem-acesso" element={<NoAccess />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
