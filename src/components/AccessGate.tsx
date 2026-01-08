@@ -1,5 +1,5 @@
 import { ReactNode, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { useAccessControl } from '@/hooks/useAccessControl';
 
@@ -9,6 +9,7 @@ interface AccessGateProps {
 
 export const AccessGate = ({ children }: AccessGateProps) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { isAuthenticated, loading: authLoading } = useAuth(true);
   const { loading: accessLoading, hasAccess, needsAccess } = useAccessControl();
 
@@ -16,14 +17,14 @@ export const AccessGate = ({ children }: AccessGateProps) => {
     if (authLoading || accessLoading) return;
 
     if (!isAuthenticated) {
-      navigate('/auth');
+      navigate('/auth', { state: { returnTo: location.pathname + location.search } });
       return;
     }
 
     if (needsAccess || !hasAccess) {
       navigate('/resgatar-acesso');
     }
-  }, [authLoading, accessLoading, isAuthenticated, hasAccess, needsAccess, navigate]);
+  }, [authLoading, accessLoading, isAuthenticated, hasAccess, needsAccess, navigate, location]);
 
   // Loading state
   if (authLoading || accessLoading) {
