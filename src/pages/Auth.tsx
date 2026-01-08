@@ -2,10 +2,12 @@ import { Auth as SupabaseAuth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Auth() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const returnTo = (location.state as { returnTo?: string })?.returnTo || null;
 
   useEffect(() => {
     const checkAccessAndRedirect = async (userId: string) => {
@@ -17,8 +19,8 @@ export default function Auth() {
           .maybeSingle();
 
         if (profile?.has_access === true) {
-          // Usuário com acesso ativo -> entra no app
-          navigate("/");
+          // Usuário com acesso ativo -> entra no app ou returnTo
+          navigate(returnTo || "/");
         } else {
           // Usuário sem acesso -> vai resgatar código
           navigate("/resgatar-acesso");

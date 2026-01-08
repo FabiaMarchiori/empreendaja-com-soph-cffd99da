@@ -15,10 +15,11 @@ const PricingRedirectContent = () => {
   useEffect(() => {
     const fetchAndRedirect = async () => {
       try {
-        const { data: { session } } = await supabase.auth.getSession();
+        const { data: { session }, error: sessionError } = await supabase.auth.getSession();
         
-        if (!session) {
-          navigate("/auth");
+        // Se não há sessão ou erro de sessão, redirecionar para login com returnTo
+        if (!session || sessionError) {
+          navigate("/auth", { state: { returnTo: "/pricing" } });
           return;
         }
 
@@ -28,6 +29,11 @@ const PricingRedirectContent = () => {
 
         if (fnError || !data?.url) {
           console.error("Error fetching tool URL:", fnError);
+          // Se erro relacionado a sessão, redirecionar para login
+          if (fnError?.message?.includes('session') || fnError?.message?.includes('auth')) {
+            navigate("/auth", { state: { returnTo: "/pricing" } });
+            return;
+          }
           setError("Não foi possível carregar a ferramenta");
           return;
         }
@@ -37,8 +43,13 @@ const PricingRedirectContent = () => {
         
         // Redirect fora do iframe (top-level)
         window.location.replace(finalUrl);
-      } catch (err) {
+      } catch (err: any) {
         console.error("Error:", err);
+        // Tratar erro de sessão como necessidade de login
+        if (err?.message?.includes('session') || err?.name === 'AuthSessionMissingError') {
+          navigate("/auth", { state: { returnTo: "/pricing" } });
+          return;
+        }
         setError("Erro ao carregar a ferramenta");
       }
     };
