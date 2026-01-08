@@ -23,6 +23,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { User } from "@supabase/supabase-js";
@@ -201,28 +202,87 @@ const Index = () => {
       <div className="noise-overlay" />
 
       {/* Profile Menu - Top Right (only for logged in users with access) */}
-      {user && hasAccess && (
-        <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="rounded-full w-12 h-12 sm:w-14 sm:h-14 hover:scale-105 transition-transform border-2 border-white/20" style={{ backgroundColor: '#6A0DAD' }}>
-                <UserIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="border-white/20 min-w-[200px] rounded-xl" style={{ backgroundColor: '#6A0DAD' }}>
-              <DropdownMenuItem onClick={() => navigate('/chat')} className="cursor-pointer text-white hover:text-white">
-                <MessageCircle className="mr-2 h-4 w-4" />
-                Chat Livre
-              </DropdownMenuItem>
-              <DropdownMenuSeparator className="bg-white/10" />
-              <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-red-400 hover:text-red-400 focus:text-red-400">
-                <LogOut className="mr-2 h-4 w-4" />
-                Sair do App
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-      )}
+      {user && hasAccess && (() => {
+        const userName = user?.user_metadata?.full_name || user?.user_metadata?.name || null;
+        const userEmail = user?.email;
+        const userInitials = userName 
+          ? userName.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()
+          : userEmail?.charAt(0).toUpperCase() || 'U';
+        const avatarUrl = user?.user_metadata?.avatar_url || user?.user_metadata?.picture;
+
+        return (
+          <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="rounded-full w-12 h-12 sm:w-14 sm:h-14 hover:scale-105 transition-transform border-2 border-white/20 p-0 overflow-hidden" style={{ backgroundColor: '#6A0DAD' }}>
+                  {avatarUrl ? (
+                    <img src={avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
+                  ) : (
+                    <UserIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  )}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent 
+                align="end" 
+                className="min-w-[260px] rounded-xl border shadow-lg"
+                style={{ 
+                  backgroundColor: '#1B1030',
+                  borderColor: 'rgba(255,255,255,0.08)'
+                }}
+              >
+                {/* Bloco de Identidade do Usuário */}
+                <div className="flex items-center gap-3 px-3 py-3">
+                  <Avatar className="w-10 h-10 border border-white/20">
+                    <AvatarImage src={avatarUrl} />
+                    <AvatarFallback 
+                      className="text-white font-semibold text-sm"
+                      style={{ backgroundColor: '#6A0DAD' }}
+                    >
+                      {userInitials}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="flex flex-col overflow-hidden">
+                    {userName && (
+                      <span className="text-white font-medium text-sm truncate">
+                        {userName}
+                      </span>
+                    )}
+                    <span 
+                      className="text-xs truncate"
+                      style={{ color: '#B6AFC9', opacity: 0.85 }}
+                    >
+                      {userEmail}
+                    </span>
+                  </div>
+                </div>
+
+                <DropdownMenuSeparator style={{ backgroundColor: 'rgba(255,255,255,0.08)' }} />
+
+                {/* Ações */}
+                <DropdownMenuItem 
+                  onClick={() => navigate('/chat')} 
+                  className="cursor-pointer text-white mx-1 my-1 rounded-lg hover:bg-white/10 focus:bg-white/10 focus:text-white"
+                >
+                  <MessageCircle className="mr-2 h-4 w-4" />
+                  Chat Livre
+                </DropdownMenuItem>
+
+                <DropdownMenuSeparator style={{ backgroundColor: 'rgba(255,255,255,0.08)' }} />
+
+                {/* Sair do App */}
+                <DropdownMenuItem 
+                  onClick={handleLogout} 
+                  className="cursor-pointer mx-1 my-1 rounded-lg hover:bg-red-500/10 focus:bg-red-500/10"
+                  style={{ color: '#E57373' }}
+                >
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Sair do App
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        );
+      })()}
       
       {!showTopics ? (
         <div className="relative flex flex-col items-center justify-center min-h-screen p-4 sm:p-6 text-center">
