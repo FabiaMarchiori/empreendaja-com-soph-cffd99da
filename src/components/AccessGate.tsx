@@ -21,7 +21,7 @@ export const AccessGate = ({ children }: AccessGateProps) => {
     }
 
     if (needsAccess || !hasAccess) {
-      navigate('/sem-acesso');
+      navigate('/resgatar-acesso');
     }
   }, [authLoading, accessLoading, isAuthenticated, hasAccess, needsAccess, navigate]);
 

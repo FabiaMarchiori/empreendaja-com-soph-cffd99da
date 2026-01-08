@@ -96,11 +96,11 @@ const NoAccess = () => {
           <div className="pt-4 border-t border-border/50 flex gap-2">
             <Button 
               variant="ghost" 
-              onClick={() => navigate('/')}
+              onClick={() => navigate('/auth')}
               className="flex-1 text-muted-foreground hover:text-foreground"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Voltar
+              Trocar conta
             </Button>
             <Button 
               variant="ghost" 

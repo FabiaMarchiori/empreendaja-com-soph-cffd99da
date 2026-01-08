@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -12,9 +12,48 @@ const RedeemAccess = () => {
   const [code, setCode] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [checkingAccess, setCheckingAccess] = useState(true);
   const navigate = useNavigate();
   const { toast } = useToast();
   const { isAuthenticated, loading: authLoading } = useAuth();
+
+  // Verificar se usuário já tem acesso - se sim, redirecionar para home
+  useEffect(() => {
+    const checkIfAlreadyHasAccess = async () => {
+      if (authLoading) return;
+      
+      if (!isAuthenticated) {
+        setCheckingAccess(false);
+        return;
+      }
+
+      try {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) {
+          setCheckingAccess(false);
+          return;
+        }
+
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('has_access')
+          .eq('id', user.id)
+          .maybeSingle();
+
+        if (profile?.has_access === true) {
+          // Já tem acesso, redirecionar para home
+          navigate('/');
+          return;
+        }
+      } catch (error) {
+        console.error('Erro ao verificar acesso:', error);
+      }
+      
+      setCheckingAccess(false);
+    };
+
+    checkIfAlreadyHasAccess();
+  }, [isAuthenticated, authLoading, navigate]);
 
   const handleRedeem = async () => {
     if (!code.trim()) {
@@ -77,7 +116,7 @@ const RedeemAccess = () => {
     }
   };
 
-  if (authLoading) {
+  if (authLoading || checkingAccess) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <Loader2 className="w-8 h-8 animate-spin text-primary" />
@@ -96,12 +135,12 @@ const RedeemAccess = () => {
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
-            <Button onClick={() => navigate('/auth', { state: { fromRedemption: true } })} className="w-full">
+            <Button onClick={() => navigate('/auth')} className="w-full">
               Fazer login
             </Button>
-            <Button variant="ghost" onClick={() => navigate('/')}>
+            <Button variant="ghost" onClick={() => navigate('/sem-acesso')}>
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Voltar para início
+              Ver opções de acesso
             </Button>
           </CardContent>
         </Card>
@@ -205,11 +244,11 @@ const RedeemAccess = () => {
           <div className="pt-4 border-t border-border/50">
             <Button 
               variant="ghost" 
-              onClick={() => navigate('/')}
+              onClick={() => navigate('/sem-acesso')}
               className="w-full text-muted-foreground hover:text-foreground"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Voltar para início
+              Ver outras opções
             </Button>
           </div>
         </CardContent>
