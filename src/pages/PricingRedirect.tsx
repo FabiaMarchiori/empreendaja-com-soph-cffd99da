@@ -24,7 +24,8 @@ const PricingRedirectContent = () => {
         }
 
         const { data, error: fnError } = await supabase.functions.invoke('get-tool-url', {
-          body: { slug: 'pricing' }
+          body: { slug: 'pricing' },
+          headers: { Authorization: `Bearer ${session.access_token}` }
         });
 
         if (fnError || !data?.url) {

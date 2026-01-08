@@ -14,15 +14,35 @@ serve(async (req) => {
   try {
     // Verify authentication
     const authHeader = req.headers.get('Authorization');
+    const origin = req.headers.get('origin') || req.headers.get('referer') || 'unknown';
+    
     if (!authHeader) {
-      console.error("No authorization header provided");
+      console.error("No authorization header provided. Origin:", origin);
       return new Response(JSON.stringify({ error: "Authentication required" }), {
         status: 401,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
-    const token = authHeader.replace('Bearer ', '');
+    if (!authHeader.startsWith('Bearer ')) {
+      console.error("Invalid authorization header format. Origin:", origin);
+      return new Response(JSON.stringify({ error: "Invalid authorization format" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    const token = authHeader.replace('Bearer ', '').trim();
+    
+    if (!token || token.length < 20) {
+      console.error("Token is empty or too short. Token length:", token.length, "Origin:", origin);
+      return new Response(JSON.stringify({ error: "Invalid token" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    
+    console.log("Processing request. Token length:", token.length, "Origin:", origin);
 
     const supabaseClient = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
