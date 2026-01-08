@@ -214,7 +214,15 @@ const Index = () => {
           <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-full w-12 h-12 sm:w-14 sm:h-14 hover:scale-105 transition-transform border-2 border-white/20 p-0 overflow-hidden" style={{ backgroundColor: '#6A0DAD' }}>
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="rounded-full w-12 h-12 sm:w-14 sm:h-14 hover:scale-105 transition-transform p-0 overflow-hidden"
+                  style={{ 
+                    backgroundColor: '#2ED8FF',
+                    border: '2px solid rgba(255,255,255,0.2)'
+                  }}
+                >
                   {avatarUrl ? (
                     <img src={avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
                   ) : (
@@ -224,19 +232,20 @@ const Index = () => {
               </DropdownMenuTrigger>
               <DropdownMenuContent 
                 align="end" 
-                className="min-w-[260px] rounded-xl border shadow-lg"
+                className="min-w-[260px] rounded-xl border shadow-xl"
                 style={{ 
-                  backgroundColor: '#1B1030',
-                  borderColor: 'rgba(255,255,255,0.08)'
+                  background: 'linear-gradient(180deg, #0B3C4A 0%, #0F5C6E 100%)',
+                  borderColor: 'rgba(255,255,255,0.12)',
+                  boxShadow: '0 8px 32px rgba(0,0,0,0.4)'
                 }}
               >
                 {/* Bloco de Identidade do Usuário */}
                 <div className="flex items-center gap-3 px-3 py-3">
-                  <Avatar className="w-10 h-10 border border-white/20">
+                  <Avatar className="w-10 h-10" style={{ border: '1px solid rgba(255,255,255,0.2)' }}>
                     <AvatarImage src={avatarUrl} />
                     <AvatarFallback 
                       className="text-white font-semibold text-sm"
-                      style={{ backgroundColor: '#6A0DAD' }}
+                      style={{ backgroundColor: '#2ED8FF' }}
                     >
                       {userInitials}
                     </AvatarFallback>
@@ -249,31 +258,31 @@ const Index = () => {
                     )}
                     <span 
                       className="text-xs truncate"
-                      style={{ color: '#B6AFC9', opacity: 0.85 }}
+                      style={{ color: '#B8DCE6' }}
                     >
                       {userEmail}
                     </span>
                   </div>
                 </div>
 
-                <DropdownMenuSeparator style={{ backgroundColor: 'rgba(255,255,255,0.08)' }} />
+                <DropdownMenuSeparator style={{ backgroundColor: 'rgba(255,255,255,0.12)' }} />
 
                 {/* Ações */}
                 <DropdownMenuItem 
                   onClick={() => navigate('/chat')} 
-                  className="cursor-pointer text-white mx-1 my-1 rounded-lg hover:bg-white/10 focus:bg-white/10 focus:text-white"
+                  className="cursor-pointer text-white mx-1 my-1 rounded-lg transition-colors focus:text-white focus:bg-[rgba(46,216,255,0.18)] hover:bg-[rgba(46,216,255,0.18)]"
                 >
-                  <MessageCircle className="mr-2 h-4 w-4" />
+                  <MessageCircle className="mr-2 h-4 w-4" style={{ color: '#2ED8FF' }} />
                   Chat Livre
                 </DropdownMenuItem>
 
-                <DropdownMenuSeparator style={{ backgroundColor: 'rgba(255,255,255,0.08)' }} />
+                <DropdownMenuSeparator style={{ backgroundColor: 'rgba(255,255,255,0.12)' }} />
 
                 {/* Sair do App */}
                 <DropdownMenuItem 
                   onClick={handleLogout} 
-                  className="cursor-pointer mx-1 my-1 rounded-lg hover:bg-red-500/10 focus:bg-red-500/10"
-                  style={{ color: '#E57373' }}
+                  className="cursor-pointer mx-1 my-1 rounded-lg transition-colors hover:bg-[rgba(255,107,107,0.15)] focus:bg-[rgba(255,107,107,0.15)]"
+                  style={{ color: '#FF6B6B' }}
                 >
                   <LogOut className="mr-2 h-4 w-4" />
                   Sair do App
