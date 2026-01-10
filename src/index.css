@@ -6,94 +6,96 @@
 
 @layer base {
   :root {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 11%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 263 70% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 263 60% 60%;
+    /* === NOVA PALETA SOPH - AZUL ESCURO + CIANO === */
+    --background: 200 75% 8%; /* #071E2D */
+    --foreground: 200 50% 95%; /* #E9F7FF */
+    --card: 200 70% 10%; /* #0B2A3C */
+    --card-foreground: 200 50% 95%;
+    --popover: 200 70% 10%;
+    --popover-foreground: 200 50% 95%;
+    --primary: 187 100% 50%; /* #00E5FF - Ciano */
+    --primary-foreground: 200 75% 8%;
+    --secondary: 185 100% 41%; /* #00C2D1 - Ciano escuro */
     --secondary-foreground: 0 0% 100%;
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 210 100% 65%;
-    --accent-foreground: 0 0% 100%;
+    --muted: 200 50% 15%; /* #0E3447 */
+    --muted-foreground: 200 30% 70%; /* #A9C4D9 */
+    --accent: 187 100% 50%; /* #00E5FF */
+    --accent-foreground: 200 75% 8%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 263 70% 50%;
-    --chart-1: 263 70% 50%;
-    --chart-2: 263 60% 60%;
-    --chart-3: 210 100% 65%;
-    --chart-4: 220 70% 50%;
-    --chart-5: 263 70% 60%;
+    --destructive-foreground: 200 50% 95%;
+    --border: 200 50% 20%;
+    --input: 200 50% 15%;
+    --ring: 187 100% 50%;
+    --chart-1: 187 100% 50%;
+    --chart-2: 185 100% 41%;
+    --chart-3: 187 100% 60%;
+    --chart-4: 200 70% 50%;
+    --chart-5: 185 100% 50%;
     --radius: 1rem;
 
-    /* Premium Gradients */
+    /* Premium Gradients - Ciano */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
     --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--primary)));
     --gradient-shimmer: linear-gradient(90deg, 
       hsl(var(--primary)) 0%, 
       hsl(var(--secondary)) 25%, 
-      #4AAEFF 50%, 
+      #00E5FF 50%, 
       hsl(var(--secondary)) 75%, 
       hsl(var(--primary)) 100%);
 
-    /* Elegant Shadows */
+    /* Elegant Shadows - Ciano */
     --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.3);
     --shadow-glow: 0 0 40px hsl(var(--primary) / 0.4);
 
     /* Smooth Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-    /* Sidebar specific colors */
-    --sidebar-background: 222 47% 11%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 263 70% 50%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 217 33% 17%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217 33% 17%;
-    --sidebar-ring: 263 70% 50%;
+    /* Sidebar specific colors - Ciano */
+    --sidebar-background: 200 75% 8%;
+    --sidebar-foreground: 200 50% 95%;
+    --sidebar-primary: 187 100% 50%;
+    --sidebar-primary-foreground: 200 75% 8%;
+    --sidebar-accent: 200 50% 15%;
+    --sidebar-accent-foreground: 200 50% 95%;
+    --sidebar-border: 200 50% 20%;
+    --sidebar-ring: 187 100% 50%;
   }
 
   .dark {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 11%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 263 70% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 263 60% 60%;
+    /* === NOVA PALETA SOPH - AZUL ESCURO + CIANO === */
+    --background: 200 75% 8%; /* #071E2D */
+    --foreground: 200 50% 95%; /* #E9F7FF */
+    --card: 200 70% 10%; /* #0B2A3C */
+    --card-foreground: 200 50% 95%;
+    --popover: 200 70% 10%;
+    --popover-foreground: 200 50% 95%;
+    --primary: 187 100% 50%; /* #00E5FF */
+    --primary-foreground: 200 75% 8%;
+    --secondary: 185 100% 41%; /* #00C2D1 */
     --secondary-foreground: 0 0% 100%;
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 210 100% 65%;
-    --accent-foreground: 0 0% 100%;
+    --muted: 200 50% 15%;
+    --muted-foreground: 200 30% 70%;
+    --accent: 187 100% 50%;
+    --accent-foreground: 200 75% 8%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 263 70% 50%;
-    --chart-1: 263 70% 50%;
-    --chart-2: 263 60% 60%;
-    --chart-3: 210 100% 65%;
-    --chart-4: 220 70% 50%;
-    --chart-5: 263 70% 60%;
+    --destructive-foreground: 200 50% 95%;
+    --border: 200 50% 20%;
+    --input: 200 50% 15%;
+    --ring: 187 100% 50%;
+    --chart-1: 187 100% 50%;
+    --chart-2: 185 100% 41%;
+    --chart-3: 187 100% 60%;
+    --chart-4: 200 70% 50%;
+    --chart-5: 185 100% 50%;
 
-    --sidebar-background: 222 47% 11%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 263 70% 50%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 217 33% 17%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217 33% 17%;
-    --sidebar-ring: 263 70% 50%;
+    --sidebar-background: 200 75% 8%;
+    --sidebar-foreground: 200 50% 95%;
+    --sidebar-primary: 187 100% 50%;
+    --sidebar-primary-foreground: 200 75% 8%;
+    --sidebar-accent: 200 50% 15%;
+    --sidebar-accent-foreground: 200 50% 95%;
+    --sidebar-border: 200 50% 20%;
+    --sidebar-ring: 187 100% 50%;
   }
 }
 
@@ -110,20 +112,20 @@
 
 /* Glass effect */
 .glass {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(7, 30, 45, 0.6);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 229, 255, 0.1);
 }
 
 .glass-strong {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(11, 42, 60, 0.8);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(0, 229, 255, 0.15);
 }
 
-/* Glowing text effect */
+/* Glowing text effect - Ciano */
 .glow-text {
   text-shadow: 0 0 20px hsl(var(--primary) / 0.5);
 }
@@ -139,8 +141,8 @@
 /* Grid pattern background */
 .grid-pattern {
   background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    linear-gradient(rgba(0, 229, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.02) 1px, transparent 1px);
   background-size: 50px 50px;
 }
 
@@ -150,7 +152,7 @@
   border-radius: 16px !important;
   padding: 14px 18px !important;
   font-size: 16px !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(0, 229, 255, 0.1) !important;
   transition: all 0.3s ease !important;
 }
 
@@ -184,13 +186,13 @@
 
 /* Botão do Google específico */
 .auth-container button[type="button"] {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  background: rgba(11, 42, 60, 0.6) !important;
+  border: 1px solid rgba(0, 229, 255, 0.15) !important;
 }
 
 .auth-container button[type="button"]:hover {
-  background: rgba(255, 255, 255, 0.1) !important;
-  border-color: rgba(255, 255, 255, 0.25) !important;
+  background: rgba(14, 52, 71, 0.8) !important;
+  border-color: rgba(0, 229, 255, 0.25) !important;
 }
 
 /* Hide Lovable badges */
@@ -202,7 +204,7 @@ div[class*='fixed']:has(a[href*='lovable.dev']) {
   display: none !important;
 }
 
-/* Aurora Background Animation */
+/* Aurora Background Animation - Ciano */
 .aurora-bg {
   position: absolute;
   width: 100%;
@@ -225,7 +227,7 @@ div[class*='fixed']:has(a[href*='lovable.dev']) {
   }
 }
 
-/* Neon Border Animation */
+/* Neon Border Animation - Ciano */
 .neon-border {
   position: relative;
   border: 2px solid hsl(var(--primary) / 0.3);
@@ -245,15 +247,15 @@ div[class*='fixed']:has(a[href*='lovable.dev']) {
   }
 }
 
-/* Shimmer Text Animation */
+/* Shimmer Text Animation - Ciano */
 .shimmer-text {
   background: linear-gradient(
     90deg,
-    hsl(var(--primary)) 0%,
-    hsl(var(--secondary)) 25%,
-    hsl(var(--accent)) 50%,
-    hsl(var(--secondary)) 75%,
-    hsl(var(--primary)) 100%
+    #00E5FF 0%,
+    #00C2D1 25%,
+    #00E5FF 50%,
+    #00C2D1 75%,
+    #00E5FF 100%
   );
   background-size: 200% auto;
   background-clip: text;
@@ -268,7 +270,7 @@ div[class*='fixed']:has(a[href*='lovable.dev']) {
   }
 }
 
-/* Floating Orbs */
+/* Floating Orbs - Ciano */
 .orb {
   position: absolute;
   border-radius: 50%;
@@ -352,7 +354,7 @@ div[class*='fixed']:has(a[href*='lovable.dev']) {
   }
 }
 
-/* Particles */
+/* Particles - Ciano */
 .particle {
   position: absolute;
   width: 4px;
@@ -381,10 +383,10 @@ div[class*='fixed']:has(a[href*='lovable.dev']) {
 
 /* Premium Glass Effect */
 .glass-premium {
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(7, 30, 45, 0.6);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 229, 255, 0.1);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
@@ -399,7 +401,7 @@ div[class*='fixed']:has(a[href*='lovable.dev']) {
 
 /* Supabase Auth UI - Links inferiores */
 .auth-container a {
-  color: #FFFFFF !important;
+  color: #00E5FF !important;
   font-weight: 500 !important;
   opacity: 0.9 !important;
   transition: all 0.2s ease !important;
@@ -409,7 +411,7 @@ div[class*='fixed']:has(a[href*='lovable.dev']) {
 
 .auth-container a:hover {
   opacity: 1 !important;
-  background: rgba(255, 255, 255, 0.05) !important;
+  background: rgba(0, 229, 255, 0.1) !important;
 }
 
 /* Tradução já configurada na prop localization do SupabaseAuth */
@@ -417,12 +419,12 @@ div[class*='fixed']:has(a[href*='lovable.dev']) {
 /* Textos auxiliares (separadores, mensagens) */
 .auth-container span,
 .auth-container p {
-  color: rgba(255, 255, 255, 0.8) !important;
+  color: rgba(214, 234, 242, 0.8) !important;
 }
 
 /* Separador "ou" estilizado */
 .auth-container hr {
-  border-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(0, 229, 255, 0.1) !important;
   margin: 20px 0 !important;
 }
 
@@ -451,17 +453,17 @@ div[class*='fixed']:has(a[href*='lovable.dev']) {
   animation: fade-up-scale 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Border Glow - Borda luminosa pulsante */
+/* Border Glow - Borda luminosa pulsante - CIANO */
 @keyframes border-glow-pulse {
   0%, 100% {
     box-shadow: 
-      inset 0 0 20px rgba(139, 92, 246, 0.3),
-      0 0 20px rgba(139, 92, 246, 0.2);
+      inset 0 0 20px rgba(0, 229, 255, 0.3),
+      0 0 20px rgba(0, 229, 255, 0.2);
   }
   50% {
     box-shadow: 
-      inset 0 0 30px rgba(168, 85, 247, 0.4),
-      0 0 40px rgba(168, 85, 247, 0.3);
+      inset 0 0 30px rgba(0, 194, 209, 0.4),
+      0 0 40px rgba(0, 194, 209, 0.3);
   }
 }
 
@@ -483,21 +485,21 @@ div[class*='fixed']:has(a[href*='lovable.dev']) {
   animation: gentle-float 6s ease-in-out infinite;
 }
 
-/* Gradient Mesh - Background da seção de tópicos */
+/* Gradient Mesh - Background da seção de tópicos - CIANO */
 .gradient-mesh-premium {
   background: 
-    radial-gradient(ellipse 80% 60% at 20% 30%, rgba(139, 92, 246, 0.2), transparent),
-    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(168, 85, 247, 0.15), transparent),
-    radial-gradient(ellipse 50% 50% at 50% 90%, rgba(6, 182, 212, 0.15), transparent),
-    radial-gradient(ellipse 40% 40% at 90% 10%, rgba(139, 92, 246, 0.1), transparent);
+    radial-gradient(ellipse 80% 60% at 20% 30%, rgba(0, 229, 255, 0.15), transparent),
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(0, 194, 209, 0.1), transparent),
+    radial-gradient(ellipse 50% 50% at 50% 90%, rgba(0, 229, 255, 0.1), transparent),
+    radial-gradient(ellipse 40% 40% at 90% 10%, rgba(0, 194, 209, 0.08), transparent);
 }
 
-/* Title Glow - Brilho intenso no título */
+/* Title Glow - Brilho intenso no título - CIANO */
 .title-glow {
   text-shadow: 
-    0 0 20px rgba(139, 92, 246, 0.8),
-    0 0 40px rgba(168, 85, 247, 0.6),
-    0 0 60px rgba(139, 92, 246, 0.4);
+    0 0 20px rgba(0, 229, 255, 0.8),
+    0 0 40px rgba(0, 194, 209, 0.6),
+    0 0 60px rgba(0, 229, 255, 0.4);
 }
 
 /* Parallax Subtle - Efeito parallax sutil */
@@ -506,88 +508,88 @@ div[class*='fixed']:has(a[href*='lovable.dev']) {
   will-change: transform;
 }
 
-/* === NOVA IDENTIDADE VISUAL EMPREENDAJÁ === */
+/* === NOVA IDENTIDADE VISUAL SOPH - AZUL ESCURO + CIANO === */
 
-/* Background Principal - Roxo-Azulado Glassmorphism (#482A72 → #043B59) */
+/* Background Principal - Azul Escuro Profundo (#071E2D → #0E3447) */
 .background-empreendaja {
   background: 
-    /* Gradiente radial sutil no centro superior */
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(72, 42, 114, 0.5) 0%, rgba(46, 27, 77, 0.3) 40%, transparent 70%),
-    /* Azul petróleo nas laterais */
-    radial-gradient(ellipse 100% 80% at 0% 50%, rgba(6, 44, 79, 0.5) 0%, transparent 60%),
-    radial-gradient(ellipse 100% 80% at 100% 50%, rgba(4, 59, 89, 0.5) 0%, transparent 60%),
-    /* Base - degradê Roxo-Azulado diagonal */
-    linear-gradient(135deg, #482A72 0%, #2E1B4D 40%, #062C4F 75%, #043B59 100%);
+    /* Gradiente radial ciano sutil no centro superior */
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0, 229, 255, 0.15) 0%, rgba(11, 42, 60, 0.3) 40%, transparent 70%),
+    /* Azul escuro nas laterais */
+    radial-gradient(ellipse 100% 80% at 0% 50%, rgba(7, 30, 45, 0.5) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 80% at 100% 50%, rgba(14, 52, 71, 0.5) 0%, transparent 60%),
+    /* Base - degradê Azul Escuro diagonal */
+    linear-gradient(135deg, #071E2D 0%, #0B2A3C 40%, #0E3447 75%, #0B2A3C 100%);
 }
 
-/* Título Neon Azul - Como posso te ajudar hoje? */
+/* Título Neon Ciano - Como posso te ajudar hoje? */
 .title-neon-blue {
   background: linear-gradient(
     90deg,
-    #C372FF 0%,
-    #C372FF 30%,
-    #4AAEFF 70%,
-    #4AAEFF 100%
+    #00E5FF 0%,
+    #00E5FF 30%,
+    #00C2D1 70%,
+    #00E5FF 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 20px rgba(195, 114, 255, 0.5))
-          drop-shadow(0 0 40px rgba(74, 174, 255, 0.3));
+  filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.5))
+          drop-shadow(0 0 40px rgba(0, 194, 209, 0.3));
   animation: title-shimmer 4s ease-in-out infinite;
 }
 
-/* Card Glassmorphism com Borda Neon Azul */
+/* Card Glassmorphism com Borda Neon Ciano */
 .card-glass-neon {
-  background: rgba(15, 20, 40, 0.45);
+  background: rgba(7, 30, 45, 0.6);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-radius: 18px;
-  border: 1px solid #1A4E7A;
-  box-shadow: 0 0 18px rgba(0, 183, 255, 0.4);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  box-shadow: 0 0 18px rgba(0, 229, 255, 0.25);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-glass-neon:hover {
-  border-color: #00B7FF;
+  border-color: #00E5FF;
   box-shadow: 
-    0 0 30px rgba(0, 183, 255, 0.6),
-    0 0 60px rgba(0, 183, 255, 0.3),
-    inset 0 0 30px rgba(0, 183, 255, 0.05);
+    0 0 30px rgba(0, 229, 255, 0.5),
+    0 0 60px rgba(0, 229, 255, 0.25),
+    inset 0 0 30px rgba(0, 229, 255, 0.05);
   transform: translateY(-8px);
 }
 
-/* Ícone Neon Azul */
+/* Ícone Neon Ciano */
 .icon-neon-cyan {
-  color: #5AD7FF;
-  filter: drop-shadow(0 0 12px rgba(161, 243, 255, 0.6));
+  color: #00E5FF;
+  filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.6));
 }
 
 /* Textos dos Cards */
 .text-card-title {
-  color: #E9F7FF;
+  color: #FFFFFF;
 }
 
 .text-card-description {
-  color: #A9C4D9;
+  color: #D6EAF2;
 }
 
-/* Título EmpreendaJá - Gradiente Roxo/Azul */
+/* Título EmpreendaJá - Gradiente Ciano */
 .title-empreendaja {
   background: linear-gradient(
     90deg,
-    #C372FF 0%,
-    #C372FF 30%,
-    #4AAEFF 70%,
-    #4AAEFF 100%
+    #00E5FF 0%,
+    #00E5FF 30%,
+    #00C2D1 70%,
+    #00E5FF 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 20px rgba(195, 114, 255, 0.5))
-          drop-shadow(0 0 40px rgba(74, 174, 255, 0.3));
+  filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.5))
+          drop-shadow(0 0 40px rgba(0, 194, 209, 0.3));
   animation: title-shimmer 4s ease-in-out infinite;
 }
 
@@ -600,74 +602,74 @@ div[class*='fixed']:has(a[href*='lovable.dev']) {
   }
 }
 
-/* Partículas coloridas */
-/* Partículas - Neon Azul (#2FD6F3) */
+/* Partículas coloridas - CIANO */
+/* Partículas - Neon Ciano (#00E5FF) */
 .particle-neon-blue {
-  background: #2FD6F3;
-  box-shadow: 0 0 10px #2FD6F3, 0 0 20px rgba(47, 214, 243, 0.5);
+  background: #00E5FF;
+  box-shadow: 0 0 10px #00E5FF, 0 0 20px rgba(0, 229, 255, 0.5);
 }
 
-/* Partículas - Neon Roxo (#7A4FD9) */
+/* Partículas - Neon Ciano Escuro (#00C2D1) */
 .particle-neon-purple {
-  background: #7A4FD9;
-  box-shadow: 0 0 10px #7A4FD9, 0 0 20px rgba(122, 79, 217, 0.5);
+  background: #00C2D1;
+  box-shadow: 0 0 10px #00C2D1, 0 0 20px rgba(0, 194, 209, 0.5);
 }
 
 /* Partículas legado para compatibilidade */
 .particle-pink {
-  background: #2FD6F3;
-  box-shadow: 0 0 10px #2FD6F3, 0 0 20px rgba(47, 214, 243, 0.5);
+  background: #00E5FF;
+  box-shadow: 0 0 10px #00E5FF, 0 0 20px rgba(0, 229, 255, 0.5);
 }
 
 .particle-blue {
-  background: #7A4FD9;
-  box-shadow: 0 0 10px #7A4FD9, 0 0 20px rgba(122, 79, 217, 0.5);
+  background: #00C2D1;
+  box-shadow: 0 0 10px #00C2D1, 0 0 20px rgba(0, 194, 209, 0.5);
 }
 
 .particle-cyan {
-  background: #2FD6F3;
-  box-shadow: 0 0 10px #2FD6F3, 0 0 20px rgba(47, 214, 243, 0.5);
+  background: #00E5FF;
+  box-shadow: 0 0 10px #00E5FF, 0 0 20px rgba(0, 229, 255, 0.5);
 }
 
-/* Névoa luminosa roxo escuro */
+/* Névoa luminosa ciano escuro */
 .icon-glow-mist {
-  background: radial-gradient(circle, rgba(58, 26, 95, 0.6) 0%, rgba(122, 79, 217, 0.3) 40%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 194, 209, 0.4) 0%, rgba(0, 229, 255, 0.2) 40%, transparent 70%);
   filter: blur(50px);
 }
 
-/* Neon Blue Glow Decorativo */
+/* Neon Cyan Glow Decorativo */
 .neon-blue-glow {
-  background: radial-gradient(circle, rgba(47, 214, 243, 0.4) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.3) 0%, transparent 70%);
   filter: blur(40px);
 }
 
-/* Neon Purple Glow Decorativo */
+/* Neon Cyan Dark Glow Decorativo */
 .neon-purple-glow {
-  background: radial-gradient(circle, rgba(122, 79, 217, 0.4) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 194, 209, 0.3) 0%, transparent 70%);
   filter: blur(40px);
 }
 
-/* Card Azul Petróleo → Turquesa */
+/* Card Azul Escuro → Ciano */
 .card-turquoise {
-  background: linear-gradient(180deg, #0E3A55 0%, #157A9E 100%);
-  border: 1px solid rgba(26, 143, 191, 0.2);
+  background: linear-gradient(180deg, #0B2A3C 0%, #0E3447 100%);
+  border: 1px solid rgba(0, 229, 255, 0.2);
   box-shadow: 
-    0 0 30px rgba(26, 143, 191, 0.15),
-    inset 0 0 30px rgba(255, 255, 255, 0.03);
+    0 0 30px rgba(0, 229, 255, 0.1),
+    inset 0 0 30px rgba(255, 255, 255, 0.02);
 }
 
 .card-turquoise:hover {
-  border-color: rgba(26, 143, 191, 0.5);
+  border-color: rgba(0, 229, 255, 0.4);
   box-shadow: 
-    0 0 40px rgba(47, 214, 243, 0.25),
-    0 0 80px rgba(26, 143, 191, 0.15),
-    inset 0 0 40px rgba(255, 255, 255, 0.05);
+    0 0 40px rgba(0, 229, 255, 0.2),
+    0 0 80px rgba(0, 194, 209, 0.1),
+    inset 0 0 40px rgba(255, 255, 255, 0.03);
 }
 
-/* Ícone Turquesa Brilhante (#45E3FF) */
+/* Ícone Ciano Brilhante (#00E5FF) */
 .icon-neon-turquoise {
-  color: #45E3FF;
-  filter: drop-shadow(0 0 15px rgba(69, 227, 255, 0.6)) drop-shadow(0 0 30px rgba(69, 227, 255, 0.3));
+  color: #00E5FF;
+  filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.6)) drop-shadow(0 0 30px rgba(0, 229, 255, 0.3));
 }
 
 /* Safe Area Support for Mobile Navigation Bars */
@@ -695,53 +697,53 @@ div[class*='fixed']:has(a[href*='lovable.dev']) {
   padding-bottom: env(safe-area-inset-bottom, 20px);
 }
 
-/* === CARD PREMIUM - DESTAQUE VERDE NEON === */
+/* === CARD PREMIUM - DESTAQUE CIANO NEON === */
 
-/* Card Premium - Destaque Verde Neon */
+/* Card Premium - Destaque Ciano Neon */
 .card-glass-neon-premium {
-  background: rgba(15, 20, 40, 0.55);
+  background: rgba(7, 30, 45, 0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-radius: 18px;
-  border: 2px solid #00FF88;
+  border: 2px solid #00E5FF;
   box-shadow: 
-    0 0 25px rgba(0, 255, 136, 0.5),
-    0 0 50px rgba(0, 255, 136, 0.2),
-    inset 0 0 20px rgba(0, 255, 136, 0.05);
+    0 0 25px rgba(0, 229, 255, 0.5),
+    0 0 50px rgba(0, 229, 255, 0.2),
+    inset 0 0 20px rgba(0, 229, 255, 0.05);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
 }
 
 .card-glass-neon-premium:hover {
-  border-color: #00FF88;
+  border-color: #00E5FF;
   box-shadow: 
-    0 0 40px rgba(0, 255, 136, 0.7),
-    0 0 80px rgba(0, 255, 136, 0.4),
-    inset 0 0 40px rgba(0, 255, 136, 0.08);
+    0 0 40px rgba(0, 229, 255, 0.7),
+    0 0 80px rgba(0, 229, 255, 0.4),
+    inset 0 0 40px rgba(0, 229, 255, 0.08);
   transform: translateY(-10px) scale(1.02);
 }
 
-/* Ícone Verde Neon */
+/* Ícone Ciano Neon Premium */
 .icon-neon-green {
-  color: #00FF88;
-  filter: drop-shadow(0 0 15px rgba(0, 255, 136, 0.7));
+  color: #00E5FF;
+  filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.7));
 }
 
-/* Badge Premium */
+/* Badge Premium - Ciano */
 .badge-premium {
-  background: linear-gradient(135deg, #00FF88 0%, #00CC6A 100%);
-  color: #0A1628;
+  background: linear-gradient(135deg, #00E5FF 0%, #00C2D1 100%);
+  color: #071E2D;
   font-size: 0.65rem;
   font-weight: 700;
   padding: 4px 10px;
   border-radius: 20px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
   animation: badge-pulse 2s ease-in-out infinite;
 }
 
 @keyframes badge-pulse {
-  0%, 100% { box-shadow: 0 0 15px rgba(0, 255, 136, 0.5); }
-  50% { box-shadow: 0 0 25px rgba(0, 255, 136, 0.8); }
+  0%, 100% { box-shadow: 0 0 15px rgba(0, 229, 255, 0.5); }
+  50% { box-shadow: 0 0 25px rgba(0, 229, 255, 0.8); }
 }

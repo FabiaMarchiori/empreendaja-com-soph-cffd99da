@@ -27,41 +27,41 @@ export const PremiumTopicCard = ({
         <span className="badge-premium">{badge}</span>
       </div>
 
-      {/* Brilho interno verde */}
+      {/* Brilho interno ciano */}
       <div className="absolute inset-0 rounded-[18px] pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-                        w-40 h-40 bg-gradient-radial from-[#00FF88]/15 via-[#00CC6A]/8 to-transparent 
+                        w-40 h-40 bg-gradient-radial from-[#00E5FF]/15 via-[#00C2D1]/8 to-transparent 
                         blur-2xl opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
       </div>
       
-      {/* Glow verde na borda superior */}
+      {/* Glow ciano na borda superior */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[2px] 
-                      bg-gradient-to-r from-transparent via-[#00FF88]/70 to-transparent 
-                      group-hover:via-[#00FF88] transition-all duration-500" />
+                      bg-gradient-to-r from-transparent via-[#00E5FF]/70 to-transparent 
+                      group-hover:via-[#00E5FF] transition-all duration-500" />
 
       {/* Conteúdo */}
       <div className="relative flex flex-col items-center text-center h-full justify-between space-y-3 sm:space-y-4 pt-4">
-        {/* Ícone Verde Neon */}
+        {/* Ícone Ciano Neon */}
         <div className="relative flex-shrink-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#00FF88]/30 via-[#00CC6A]/20 to-[#00FF88]/10 
+          <div className="absolute inset-0 bg-gradient-to-br from-[#00E5FF]/30 via-[#00C2D1]/20 to-[#00E5FF]/10 
                           opacity-50 blur-2xl group-hover:opacity-80 group-hover:blur-3xl
                           transition-all duration-500 scale-150" />
           <div className="relative p-3 sm:p-4 md:p-5 rounded-xl 
-                          bg-[#00FF88]/15 backdrop-blur-sm border border-[#00FF88]/30
-                          group-hover:bg-[#00FF88]/25 group-hover:border-[#00FF88]/50 
+                          bg-[#00E5FF]/15 backdrop-blur-sm border border-[#00E5FF]/30
+                          group-hover:bg-[#00E5FF]/25 group-hover:border-[#00E5FF]/50 
                           group-hover:scale-110 transition-all duration-500">
-            <Icon className="w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11 icon-neon-green
-                            group-hover:drop-shadow-[0_0_25px_rgba(0,255,136,0.9)]
+            <Icon className="w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11 icon-neon-cyan
+                            group-hover:drop-shadow-[0_0_25px_rgba(0,229,255,0.9)]
                             transition-all duration-500" />
           </div>
         </div>
 
         {/* Título e descrição */}
         <div className="flex-grow flex flex-col justify-center">
-          <h3 className="font-bold text-sm sm:text-base md:text-lg text-[#E9FFF2] 
+          <h3 className="font-bold text-sm sm:text-base md:text-lg text-white 
                          group-hover:text-white transition-colors line-clamp-1">{title}</h3>
-          <p className="text-xs sm:text-sm text-[#A9D9C4] mt-2 
-                        group-hover:text-[#C8F0D8] transition-colors leading-relaxed line-clamp-2">
+          <p className="text-xs sm:text-sm text-[#D6EAF2] mt-2 
+                        group-hover:text-[#E9F7FF] transition-colors leading-relaxed line-clamp-2">
             {description}
           </p>
         </div>
