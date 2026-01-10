@@ -168,34 +168,34 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden background-empreendaja">
-      {/* Névoa luminosa roxo-azulado no topo */}
+      {/* Névoa luminosa ciano no topo */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] 
-                      bg-gradient-radial from-[#482A72]/50 via-[#2E1B4D]/30 to-transparent 
+                      bg-gradient-radial from-[#00E5FF]/20 via-[#00C2D1]/10 to-transparent 
                       blur-3xl pointer-events-none" />
       
-      {/* Partículas Neon Azul (#00B7FF) */}
-      <div className="particle absolute w-2 h-2 rounded-full top-[20%] left-[15%] bg-[#00B7FF] shadow-[0_0_10px_#00B7FF]" style={{ animationDelay: '0s' }} />
-      <div className="particle absolute w-3 h-3 rounded-full top-[40%] right-[20%] bg-[#5AD7FF] shadow-[0_0_12px_#5AD7FF]" style={{ animationDelay: '1s' }} />
-      <div className="particle absolute w-2 h-2 rounded-full top-[55%] left-[80%] bg-[#00B7FF] shadow-[0_0_10px_#00B7FF]" style={{ animationDelay: '0.5s' }} />
-      <div className="particle absolute w-2 h-2 rounded-full bottom-[35%] left-[25%] bg-[#74C8FF] shadow-[0_0_10px_#74C8FF]" style={{ animationDelay: '3s' }} />
+      {/* Partículas Neon Ciano (#00E5FF) */}
+      <div className="particle absolute w-2 h-2 rounded-full top-[20%] left-[15%] bg-[#00E5FF] shadow-[0_0_10px_#00E5FF]" style={{ animationDelay: '0s' }} />
+      <div className="particle absolute w-3 h-3 rounded-full top-[40%] right-[20%] bg-[#00C2D1] shadow-[0_0_12px_#00C2D1]" style={{ animationDelay: '1s' }} />
+      <div className="particle absolute w-2 h-2 rounded-full top-[55%] left-[80%] bg-[#00E5FF] shadow-[0_0_10px_#00E5FF]" style={{ animationDelay: '0.5s' }} />
+      <div className="particle absolute w-2 h-2 rounded-full bottom-[35%] left-[25%] bg-[#00C2D1] shadow-[0_0_10px_#00C2D1]" style={{ animationDelay: '3s' }} />
       
-      {/* Partículas Neon Ciano (#5AD7FF) */}
-      <div className="particle absolute w-2 h-2 rounded-full top-[30%] right-[10%] bg-[#5AD7FF] shadow-[0_0_10px_#5AD7FF]" style={{ animationDelay: '2s' }} />
-      <div className="particle absolute w-3 h-3 rounded-full bottom-[25%] left-[8%] bg-[#00B7FF] shadow-[0_0_12px_#00B7FF]" style={{ animationDelay: '4s' }} />
-      <div className="particle absolute w-2 h-2 rounded-full top-[65%] right-[35%] bg-[#A1F3FF] shadow-[0_0_10px_#A1F3FF]" style={{ animationDelay: '5s' }} />
-      <div className="particle absolute w-3 h-3 rounded-full bottom-[20%] right-[30%] bg-[#74C8FF] shadow-[0_0_12px_#74C8FF]" style={{ animationDelay: '2.5s' }} />
+      {/* Partículas Neon Ciano Variantes */}
+      <div className="particle absolute w-2 h-2 rounded-full top-[30%] right-[10%] bg-[#00E5FF] shadow-[0_0_10px_#00E5FF]" style={{ animationDelay: '2s' }} />
+      <div className="particle absolute w-3 h-3 rounded-full bottom-[25%] left-[8%] bg-[#00C2D1] shadow-[0_0_12px_#00C2D1]" style={{ animationDelay: '4s' }} />
+      <div className="particle absolute w-2 h-2 rounded-full top-[65%] right-[35%] bg-[#00E5FF] shadow-[0_0_10px_#00E5FF]" style={{ animationDelay: '5s' }} />
+      <div className="particle absolute w-3 h-3 rounded-full bottom-[20%] right-[30%] bg-[#00C2D1] shadow-[0_0_12px_#00C2D1]" style={{ animationDelay: '2.5s' }} />
       
-      {/* Luzes Neon Decorativas Azul */}
-      <div className="absolute top-40 left-5 w-32 h-32 bg-[#00B7FF]/20 blur-3xl rounded-full" />
-      <div className="absolute bottom-40 right-5 w-48 h-48 bg-[#5AD7FF]/15 blur-3xl rounded-full" />
-      <div className="absolute top-1/2 right-10 w-24 h-24 bg-[#74C8FF]/20 blur-3xl rounded-full" />
+      {/* Luzes Neon Decorativas Ciano */}
+      <div className="absolute top-40 left-5 w-32 h-32 bg-[#00E5FF]/15 blur-3xl rounded-full" />
+      <div className="absolute bottom-40 right-5 w-48 h-48 bg-[#00C2D1]/12 blur-3xl rounded-full" />
+      <div className="absolute top-1/2 right-10 w-24 h-24 bg-[#00E5FF]/15 blur-3xl rounded-full" />
       
-      {/* Névoa azul petróleo nas laterais */}
+      {/* Névoa azul escuro nas laterais */}
       <div className="absolute top-1/3 left-0 w-[400px] h-[600px] 
-                      bg-gradient-radial from-[#062C4F]/50 via-[#043B59]/30 to-transparent 
+                      bg-gradient-radial from-[#0B2A3C]/50 via-[#0E3447]/30 to-transparent 
                       blur-3xl pointer-events-none" />
       <div className="absolute top-1/4 right-0 w-[400px] h-[600px] 
-                      bg-gradient-radial from-[#043B59]/50 via-[#062C4F]/30 to-transparent 
+                      bg-gradient-radial from-[#0E3447]/50 via-[#0B2A3C]/30 to-transparent 
                       blur-3xl pointer-events-none" />
       
       {/* Noise Overlay */}
@@ -219,14 +219,14 @@ const Index = () => {
                   size="icon" 
                   className="rounded-full w-12 h-12 sm:w-14 sm:h-14 hover:scale-105 transition-transform p-0 overflow-hidden"
                   style={{ 
-                    backgroundColor: '#2ED8FF',
+                    backgroundColor: '#00E5FF',
                     border: '2px solid rgba(255,255,255,0.2)'
                   }}
                 >
                   {avatarUrl ? (
                     <img src={avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
                   ) : (
-                    <UserIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                    <UserIcon className="w-5 h-5 sm:w-6 sm:h-6 text-[#071E2D]" />
                   )}
                 </Button>
               </DropdownMenuTrigger>
@@ -234,18 +234,18 @@ const Index = () => {
                 align="end" 
                 className="min-w-[260px] rounded-xl border shadow-xl"
                 style={{ 
-                  background: 'linear-gradient(180deg, #0B3C4A 0%, #0F5C6E 100%)',
-                  borderColor: 'rgba(255,255,255,0.12)',
+                  background: 'linear-gradient(180deg, #0B2A3C 0%, #0E3447 100%)',
+                  borderColor: 'rgba(0, 229, 255, 0.15)',
                   boxShadow: '0 8px 32px rgba(0,0,0,0.4)'
                 }}
               >
                 {/* Bloco de Identidade do Usuário */}
                 <div className="flex items-center gap-3 px-3 py-3">
-                  <Avatar className="w-10 h-10" style={{ border: '1px solid rgba(255,255,255,0.2)' }}>
+                  <Avatar className="w-10 h-10" style={{ border: '1px solid rgba(0, 229, 255, 0.2)' }}>
                     <AvatarImage src={avatarUrl} />
                     <AvatarFallback 
-                      className="text-white font-semibold text-sm"
-                      style={{ backgroundColor: '#2ED8FF' }}
+                      className="text-[#071E2D] font-semibold text-sm"
+                      style={{ backgroundColor: '#00E5FF' }}
                     >
                       {userInitials}
                     </AvatarFallback>
@@ -258,25 +258,25 @@ const Index = () => {
                     )}
                     <span 
                       className="text-xs truncate"
-                      style={{ color: '#B8DCE6' }}
+                      style={{ color: '#D6EAF2' }}
                     >
                       {userEmail}
                     </span>
                   </div>
                 </div>
 
-                <DropdownMenuSeparator style={{ backgroundColor: 'rgba(255,255,255,0.12)' }} />
+                <DropdownMenuSeparator style={{ backgroundColor: 'rgba(0, 229, 255, 0.15)' }} />
 
                 {/* Ações */}
                 <DropdownMenuItem 
                   onClick={() => navigate('/chat')} 
-                  className="cursor-pointer text-white mx-1 my-1 rounded-lg transition-colors focus:text-white focus:bg-[rgba(46,216,255,0.18)] hover:bg-[rgba(46,216,255,0.18)]"
+                  className="cursor-pointer text-white mx-1 my-1 rounded-lg transition-colors focus:text-white focus:bg-[rgba(0,229,255,0.15)] hover:bg-[rgba(0,229,255,0.15)]"
                 >
-                  <MessageCircle className="mr-2 h-4 w-4" style={{ color: '#2ED8FF' }} />
+                  <MessageCircle className="mr-2 h-4 w-4" style={{ color: '#00E5FF' }} />
                   Chat Livre
                 </DropdownMenuItem>
 
-                <DropdownMenuSeparator style={{ backgroundColor: 'rgba(255,255,255,0.12)' }} />
+                <DropdownMenuSeparator style={{ backgroundColor: 'rgba(0, 229, 255, 0.15)' }} />
 
                 {/* Sair do App */}
                 <DropdownMenuItem 
@@ -298,7 +298,7 @@ const Index = () => {
           <div className="max-w-5xl space-y-8">
             {/* Avatar da Soph - Sem moldura, integrado ao background */}
             <div className="relative">
-              {/* Névoa roxa luminosa atrás - glow sutil */}
+              {/* Névoa ciano luminosa atrás - glow sutil */}
               <div className="absolute inset-0 w-80 h-80 sm:w-96 sm:h-96 mx-auto -top-8 icon-glow-mist"></div>
               
               {/* Avatar da Soph - SEM moldura, apenas drop-shadow sutil */}
@@ -306,7 +306,7 @@ const Index = () => {
                 <img 
                   src={sophAvatar} 
                   alt="Soph - Mentora Virtual" 
-                  className="w-full h-auto drop-shadow-[0_0_30px_rgba(100,86,183,0.5)]"
+                  className="w-full h-auto drop-shadow-[0_0_30px_rgba(0,229,255,0.4)]"
                 />
               </div>
               
@@ -316,34 +316,34 @@ const Index = () => {
               <div className="particle particle-cyan absolute w-2 h-2 rounded-full bottom-1/4 left-1/3" style={{ animationDelay: '1s' }}></div>
             </div>
 
-            {/* Title with EmpreendaJá Gradient */}
+            {/* Title with EmpreendaJá Gradient - CIANO */}
             <div className="space-y-4 animate-slide-in-up overflow-visible" style={{ animationDelay: '0.2s' }}>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black title-empreendaja whitespace-nowrap">
                 EmpreendaJá
               </h1>
                 <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white">
-                  com <span className="text-[#4AAEFF]">Soph</span>
+                  com <span className="text-[#00E5FF]">Soph</span>
                 </p>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#D6EAF2] max-w-xl mx-auto leading-relaxed">
                 Sua agente virtual de negócios que vai te ajudar a estruturar e crescer o seu negócio
               </p>
             </div>
 
-            {/* CTA Buttons with Enhanced Effects */}
+            {/* CTA Buttons with Enhanced Effects - CIANO */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8 animate-slide-in-up" style={{ animationDelay: '0.4s' }}>
               <Button
                 size="lg"
                 onClick={() => navigate("/auth")}
-                className="relative text-sm sm:text-base md:text-lg px-6 py-4 sm:px-8 sm:py-5 md:px-10 md:py-7 bg-gradient-to-r from-[#7A4FD9] to-[#9D4EDD] shadow-[0_0_20px_rgba(122,79,217,0.4)] hover:shadow-[0_0_30px_rgba(157,78,221,0.5)] transition-all font-bold group overflow-hidden"
+                className="relative text-sm sm:text-base md:text-lg px-6 py-4 sm:px-8 sm:py-5 md:px-10 md:py-7 bg-gradient-to-r from-[#00C2D1] to-[#00E5FF] text-[#071E2D] shadow-[0_0_20px_rgba(0,229,255,0.4)] hover:shadow-[0_0_30px_rgba(0,229,255,0.6)] transition-all font-bold group overflow-hidden"
               >
                 <span className="relative z-10">Começar Agora</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-[#9D4EDD] to-[#7A4FD9] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#00E5FF] to-[#00C2D1] opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 onClick={() => navigate("/auth")}
-                className="text-sm sm:text-base md:text-lg px-6 py-4 sm:px-8 sm:py-5 md:px-10 md:py-7 border-2 glass hover:glass-strong font-bold gap-2"
+                className="text-sm sm:text-base md:text-lg px-6 py-4 sm:px-8 sm:py-5 md:px-10 md:py-7 border-2 border-[#00E5FF]/30 glass hover:glass-strong hover:border-[#00E5FF]/60 font-bold gap-2 text-white"
               >
                 <LogIn className="w-5 h-5" />
                 Já tenho código de acesso
@@ -353,37 +353,37 @@ const Index = () => {
             {/* Animated Statistics Cards */}
             <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 pt-12 max-w-md mx-auto animate-slide-in-up" style={{ animationDelay: '0.6s' }}>
               <div className="glass-strong rounded-2xl p-4 hover:scale-105 transition-transform">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent">100%</div>
-                <div className="text-xs text-muted-foreground font-medium mt-1">Gratuito</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-br from-[#00E5FF] to-[#00C2D1] bg-clip-text text-transparent">100%</div>
+                <div className="text-xs text-[#D6EAF2]/60 font-medium mt-1">Gratuito</div>
               </div>
               <div className="glass-strong rounded-2xl p-4 hover:scale-105 transition-transform">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-br from-secondary to-accent bg-clip-text text-transparent">24/7</div>
-                <div className="text-xs text-muted-foreground font-medium mt-1">Disponível</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-br from-[#00C2D1] to-[#00E5FF] bg-clip-text text-transparent">24/7</div>
+                <div className="text-xs text-[#D6EAF2]/60 font-medium mt-1">Disponível</div>
               </div>
               <div className="glass-strong rounded-2xl p-4 hover:scale-105 transition-transform">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-br from-accent to-primary bg-clip-text text-transparent">7+</div>
-                <div className="text-xs text-muted-foreground font-medium mt-1">Tópicos</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-br from-[#00E5FF] to-[#00C2D1] bg-clip-text text-transparent">7+</div>
+                <div className="text-xs text-[#D6EAF2]/60 font-medium mt-1">Tópicos</div>
               </div>
             </div>
           </div>
         </div>
       ) : (
         <div className="relative container mx-auto px-4 pt-16 sm:pt-20 pb-8 sm:pb-12 md:pb-16 max-w-6xl">
-          {/* Névoa roxo escuro superior */}
+          {/* Névoa ciano superior */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] 
-                          bg-gradient-radial from-[#3A1A5F]/40 via-[#7A4FD9]/20 to-transparent 
+                          bg-gradient-radial from-[#00E5FF]/15 via-[#00C2D1]/10 to-transparent 
                           blur-3xl pointer-events-none" />
           
-          {/* Luzes neon decorativas */}
+          {/* Luzes neon decorativas ciano */}
           <div className="absolute top-40 left-5 w-32 h-32 neon-blue-glow rounded-full" />
           <div className="absolute bottom-40 right-5 w-48 h-48 neon-purple-glow rounded-full" />
           
-          {/* Título Neon Azul */}
+          {/* Título Neon Ciano */}
           <div className="text-center mb-16 space-y-4 animate-fade-up-scale">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-black title-neon-blue">
               Como posso te ajudar hoje?
             </h2>
-            <p className="text-lg text-[#A9C4D9] font-medium drop-shadow-lg">
+            <p className="text-lg text-[#D6EAF2] font-medium drop-shadow-lg">
               Escolha um tópico ou inicie um chat livre com a Soph
             </p>
           </div>
@@ -419,16 +419,16 @@ const Index = () => {
           </div>
 
           {/* Footer Institucional */}
-          <footer className="relative py-8 mt-16 border-t border-white/10">
+          <footer className="relative py-8 mt-16 border-t border-[#00E5FF]/10">
             <div className="container mx-auto px-4 text-center">
-              <p className="text-sm sm:text-base text-white/60 font-medium">
+              <p className="text-sm sm:text-base text-[#D6EAF2]/60 font-medium">
                 Material desenvolvido por{" "}
                 <span className="text-white font-semibold">EmpreendeJá com Soph</span>
                 {" "}— Inteligência que impulsiona negócios
               </p>
               <div className="flex items-center justify-center gap-1 mt-2">
-                <Sparkles className="w-4 h-4 text-primary" />
-                <span className="text-xs text-white/40">Powered by AI</span>
+                <Sparkles className="w-4 h-4 text-[#00E5FF]" />
+                <span className="text-xs text-[#D6EAF2]/40">Powered by AI</span>
               </div>
             </div>
           </footer>

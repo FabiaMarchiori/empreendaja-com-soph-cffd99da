@@ -59,9 +59,9 @@ const ToolContent = () => {
 
   if (toolLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#482A72] via-[#2E1B4D] via-[#062C4F] to-[#043B59]">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#071E2D] via-[#0B2A3C] to-[#0E3447]">
         <div className="flex flex-col items-center gap-4">
-          <Loader2 className="w-12 h-12 text-[#4AAEFF] animate-spin" />
+          <Loader2 className="w-12 h-12 text-[#00E5FF] animate-spin" />
           <p className="text-white/80">Carregando ferramenta...</p>
         </div>
       </div>
@@ -70,7 +70,7 @@ const ToolContent = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#482A72] via-[#2E1B4D] via-[#062C4F] to-[#043B59] p-4">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#071E2D] via-[#0B2A3C] to-[#0E3447] p-4">
         <div className="glass-strong rounded-2xl p-8 text-center max-w-md">
           <AlertCircle className="w-16 h-16 text-red-400 mx-auto mb-4" />
           <h2 className="text-xl font-bold text-white mb-2">{error}</h2>
@@ -79,7 +79,7 @@ const ToolContent = () => {
           </p>
           <Button
             onClick={() => navigate("/")}
-            className="bg-gradient-to-r from-[#C372FF] to-[#4AAEFF] text-white"
+            className="bg-gradient-to-r from-[#00C2D1] to-[#00E5FF] text-[#071E2D]"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Voltar ao Início
@@ -92,7 +92,7 @@ const ToolContent = () => {
   return (
     <div className="h-screen flex flex-col bg-background">
       {/* Header */}
-      <header className="flex items-center justify-between px-3 py-2 border-b border-border/50 glass-strong backdrop-blur-xl">
+      <header className="flex items-center justify-between px-3 py-2 border-b border-[#00E5FF]/10 glass-strong backdrop-blur-xl">
         <Button
           variant="ghost"
           size="sm"
@@ -102,7 +102,7 @@ const ToolContent = () => {
           <ArrowLeft className="w-4 h-4 mr-1" />
           Voltar
         </Button>
-        <h1 className="text-sm font-semibold bg-gradient-to-r from-[#C372FF] to-[#4AAEFF] bg-clip-text text-transparent">
+        <h1 className="text-sm font-semibold bg-gradient-to-r from-[#00E5FF] to-[#00C2D1] bg-clip-text text-transparent">
           {toolName}
         </h1>
         <div className="w-16" />
