@@ -60,12 +60,12 @@ const PricingRedirectContent = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#482A72] via-[#2E1B4D] via-[#062C4F] to-[#043B59] p-4">
-        <div className="glass-strong rounded-2xl p-8 text-center max-w-md">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#071E2D] via-[#0B2A3C] to-[#0E3447] p-4">
+        <div className="glass-strong rounded-2xl p-8 text-center max-w-md border border-[#00E5FF]/20 shadow-[0_0_30px_rgba(0,229,255,0.1)]">
           <p className="text-white mb-6">{error}</p>
           <Button
             onClick={() => navigate("/")}
-            className="bg-gradient-to-r from-[#C372FF] to-[#4AAEFF] text-white"
+            className="bg-gradient-to-r from-[#00C2D1] to-[#00E5FF] text-white hover:shadow-[0_0_20px_rgba(0,229,255,0.4)] transition-all"
           >
             Voltar ao Início
           </Button>
@@ -75,15 +75,15 @@ const PricingRedirectContent = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#482A72] via-[#2E1B4D] via-[#062C4F] to-[#043B59] p-4">
-      <div className="glass-strong rounded-2xl p-8 text-center max-w-md space-y-6">
-        <Loader2 className="w-12 h-12 text-[#4AAEFF] animate-spin mx-auto" />
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#071E2D] via-[#0B2A3C] to-[#0E3447] p-4">
+      <div className="glass-strong rounded-2xl p-8 text-center max-w-md space-y-6 border border-[#00E5FF]/20 shadow-[0_0_30px_rgba(0,229,255,0.1)]">
+        <Loader2 className="w-12 h-12 text-[#00E5FF] animate-spin mx-auto" />
         <p className="text-white/80">Redirecionando para Precificação Inteligente...</p>
         
         {destination && (
           <Button
             onClick={() => window.location.replace(destination)}
-            className="bg-gradient-to-r from-[#C372FF] to-[#4AAEFF] text-white"
+            className="bg-gradient-to-r from-[#00C2D1] to-[#00E5FF] text-white hover:shadow-[0_0_20px_rgba(0,229,255,0.4)] transition-all"
           >
             <ExternalLink className="w-4 h-4 mr-2" />
             Abrir Precificação
