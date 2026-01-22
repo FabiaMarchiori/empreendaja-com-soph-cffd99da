@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Loader2, ExternalLink } from "lucide-react";
 import { AccessGate } from "@/components/AccessGate";
 
-const DASHBOARD_PATH = "/"; // Ajuste se o dashboard do app de Precificação tiver outro caminho
+// Token é gerado pela Edge Function e enviado como query param
 
 const PricingRedirectContent = () => {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ const PricingRedirectContent = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchAndRedirect = async () => {
+    const generateTokenAndRedirect = async () => {
       try {
         const { data: { session }, error: sessionError } = await supabase.auth.getSession();
         
@@ -23,27 +23,31 @@ const PricingRedirectContent = () => {
           return;
         }
 
-        const { data, error: fnError } = await supabase.functions.invoke('get-tool-url', {
-          body: { slug: 'pricing' },
+        // Chamar nova Edge Function que gera token JWT para o App de Precificação
+        const { data, error: fnError } = await supabase.functions.invoke('generate-pricing-token', {
           headers: { Authorization: `Bearer ${session.access_token}` }
         });
 
-        if (fnError || !data?.url) {
-          console.error("Error fetching tool URL:", fnError);
+        if (fnError || !data?.redirectUrl) {
+          console.error("Error generating pricing token:", fnError);
           // Se erro relacionado a sessão, redirecionar para login
-          if (fnError?.message?.includes('session') || fnError?.message?.includes('auth')) {
+          if (fnError?.message?.includes('session') || fnError?.message?.includes('auth') || fnError?.message?.includes('Sessão')) {
             navigate("/auth", { state: { returnTo: "/pricing" } });
+            return;
+          }
+          // Se erro de acesso não autorizado
+          if (fnError?.message?.includes('Acesso não autorizado')) {
+            setError("Você não tem acesso à ferramenta de Precificação Inteligente");
             return;
           }
           setError("Não foi possível carregar a ferramenta");
           return;
         }
 
-        const finalUrl = data.url + DASHBOARD_PATH;
-        setDestination(finalUrl);
+        setDestination(data.redirectUrl);
         
-        // Redirect fora do iframe (top-level)
-        window.location.replace(finalUrl);
+        // Redirecionar navegador para App de Precificação com token JWT
+        window.location.replace(data.redirectUrl);
       } catch (err: any) {
         console.error("Error:", err);
         // Tratar erro de sessão como necessidade de login
@@ -55,7 +59,7 @@ const PricingRedirectContent = () => {
       }
     };
 
-    fetchAndRedirect();
+    generateTokenAndRedirect();
   }, [navigate]);
 
   if (error) {
