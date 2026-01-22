@@ -17,3 +17,6 @@ verify_jwt = false
 
 [functions.validate-soph-code]
 verify_jwt = false
+
+[functions.generate-pricing-token]
+verify_jwt = false
